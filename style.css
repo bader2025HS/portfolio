@@ -14,7 +14,7 @@ body{
 #header{
     width: 100%;
     height: 100vh;
-    background-image: url(images/OMG.png);
+    background-image: url(OMG.png);
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
@@ -323,7 +323,7 @@ nav .fa-solid{
 
 @media only screen and (max-width: 600px){
     #header{
-        background-image: url(images/newphone.png);
+        background-image: url(newphone.png);
         background-size: cover;
         background-position: center;
         background-repeat: no-repeat;
