@@ -80,16 +80,17 @@ nav ul li a:hover::after{
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
-    gap: 40px;
+    gap: 20px;
     align-items: flex-start;
 }
 .about-col-1{
-    flex-basis: 0 0 aut;
-    margin-left: 0;
+    flex-basis: 40%;
+    margin-left: 20px;
 }
 .about-col-1 img {
-    width: auto;
-    height: 420px;
+    width: 100%;
+    height: auto;
+    max-height: 500px;
     object-fit: cover;
     border-radius: 15px;
     display: block;
