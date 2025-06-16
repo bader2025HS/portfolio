@@ -11,12 +11,13 @@ body{
     background: #080808;
     color: #fff;
 }
-#header{
+#header {
     width: 100%;
     height: 100vh;
     background-image: url(OMG.png);
     background-size: cover;
     background-position: center;
+    background-attachment: fixed; /*Only active on desktop*/
 }
 .container{
     padding: 10px 10%;
@@ -319,15 +320,15 @@ form .btn2{
 nav .fa-solid{
     display: none;
 }
-
 @media only screen and (max-width: 600px){
     #header{
         background-image: url(newphone.png);
         background-size: cover;
         background-position: center;
         background-repeat: no-repeat;
+        background-attachment: scroll; /*overrides fixed for mobile*/
         height: 100vh;
-    } 
+    }
     .header-text{
         margin-top: 100%;
         font-size: 16px;
