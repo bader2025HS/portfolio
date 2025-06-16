@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE-edge">
+    <meta name="viewport" content="width=device-width, initiale-scale=1.0">
+    <title>Personal Portfolio Website</title> 
+    <link rel="stylesheet" href="style.css">
+    <script src="https://kit.fontawesome.com/9c8af7e2d0.js" crossorigin="anonymous"></script>
+</head>
+<body>
+<div id="header">
+    <div class="container">
+        <nav>
+            <img src="images/Screenshot%202025-06-13%20210003.png" class="logo">
+            <ul id="sidemenu">
+                <li><a href="#header">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#services">Focus Areas</a></li>
+                <li><a href="#portfolio">Work</a></li>
+                <li><a href="#contact">Contact</a></li>
+                <i class="fa-solid fa-xmark" onclick="closemenu()"></i>
+            </ul>
+            <i class="fa-solid fa-bars" onclick="openmenu()"></i>
+        </nav>
+        <div class="header-text">
+            <p>International Security Student</p>
+            <h1>Hi, I'm <span>Bader</span><br>Suliman</h1>  
+        </div>
+    </div>
+</div>
+
+<!-----------about------------>
+<div id="about">
+    <div class="container">
+        <div class="row">
+            <div class="about-col-1">
+                <img src="images/pp.png">
+            </div>
+            <div class="about-col-2">
+                <h1 class="sub-title">About Me</h1>
+                <p>I'm a Master's student in International Security at Sciences Po Paris, with a strong academic background and hands-on experience in diplomacy, humanitarian work, and environmental policy. I’ve worked with embassies, NGOs, and research institutions across Europe and the Middle East, always driven by a commitment to social impact and global cooperation. My work combines analytical rigor with field experience, and I’m passionate about building solutions where security, development, and human rights intersect.</p>
+                <div class="tab-titles">
+                    <p class="tab-links active-link" onclick="opentab('skills')">Skills</p>
+                    <p class="tab-links" onclick="opentab('experience')">Experience</p>
+                    <p class="tab-links" onclick="opentab('education')">Education</p>
+                </div>
+                <div class="tab-contents active-tab" id="skills">
+                    <ul>
+                    <li><span>Research</span><br>Legal and geopolitical research applied to migration and security contexts</li>
+                    <li><span>Communication</span><br>Productivity tools (Excel, Word, Canva, WordPress)</li>
+                    <li><span>Policy Writing</span><br>Draft policy briefs, memos, and reports for academic or institutional use</li>
+                     <li><span>Media Monitoring</span><br>Identify key narratives, assess public discourse, and support diplomatic responses</li>
+                     <li><span>Data Analysis</span><br>Clean, structure, and interpret datasets using Excel and basic statistical tools</li>
+                    </ul>
+                        </div>
+                 <div class="tab-contents" id="experience">
+                    <ul>
+                    <li><span>ARDHIS - Immigration Law. Paris, 2024-2025</span><br>Supported LGBT+ asylum seekers; conducted legal and geopolitical research (e.g., DRC, Cameroon).</li>
+                    <li><span>Tarjimly – Interpreter. Remote, Active since 2022</span><br>Provided Arabic–English–French interpretation for refugees in asylum, healthcare, and social service contexts.</li>
+                    <li><span>Royal Scientific Society - Research Intern. Amman, 2023</span><br>Researched desalination impacts in MENA; drafted bilingual policy briefs for institutional partners.</li>
+                    <li><span>MEDMUN – Director. Menton, 2022-2023</span><br>Led Arabic-language simulations on Syria/Yemen; moderated debates and coordinated multilingual teams.</li>
+                    <li><span>City Hall – IR Intern. Nancy, 2022 </span><br>Facilitated visits and cultural exchange for twin-city students; ensured intercultural mediation.</li>
+                    </ul>
+                </div>
+                <div class="tab-contents" id="education">
+                    <ul>
+                    <li><span>Dual M.A. – PSIA & FU Berlin (2024–2026)</span><br>International Security, Conflict Management, and Middle Eastern Studies.</li>
+                    <li><span>INALCO – Persian Language & Civilization (Paris, 2024–2025)</span><br>Focus on Iranian politics, society, literature, and history.</li>
+                    <li><span>B.A. – Sciences Po Paris (2021–2024)</span><br>Exchange Year – Tokyo University of Foreign Studies (2023–2024)</li>
+                    <li>Campus Menton – Mediterranean & Middle Eastern Studies (2022–2023)</li>
+                    <li>Campus Nancy – French-German & EU Politics (2021–2022)</li>
+                        <a href="images/Bachelors%20diploma.pdf" target="_blank">
+                            <button style="background-color: #ff004f;
+                                           color: white;
+                                           padding: 10px 20px; 
+                                           border: none;
+                                           border-radius: 8px;
+                                           font-size: 13px;
+                                           cursor: pointer;">View My Degree</button></a>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!----------------------services----------------->    
+<div id="services">
+    <div class="container">
+     <h1 class="sub-title">Focus Areas</h1>
+        <div class="services-list">
+            <div>
+                <i class="fa-solid fa-person-walking-luggage"></i>
+                <h2>Migration & Displacement</h2>
+                <p>Exploring the drivers, legal frameworks, and human impact of forced migration across regions.</p>
+                <a href="https://drive.google.com/file/d/1BAYfuWqf_xtYfPRTDJ2S2eTWLrdPthzL/view?usp=drive_link">Learn more</a> 
+            </div>
+             <div>
+                 <i class="fa-solid fa-scale-unbalanced-flip"></i>
+                <h2>Middle East Geopolitics</h2>
+                <p>Analyzing power dynamics, conflicts, and regional strategies shaping the contemporary Middle East.</p>
+                <a href="https://drive.google.com/file/d/1RPF4Cpzp7i4Rz8NUK8SzMrbFRB4pqyqa/view?usp=drive_link">Learn more</a> 
+            </div>
+             <div>
+                <i class="fa-solid fa-book-open"></i>
+                <h2>Humanitarian Data & Policy</h2>
+                <p>Supporting vulnerable communities through research, legal aid, and rights-based policy approaches.</p>
+                <a href="https://drive.google.com/file/d/1o7cdTI_8v_8J6O60m5SVMzsSmTI0XF2G/view?usp=drive_link">Learn more</a> 
+            </div>
+        </div>
+    </div>
+ </div>   
+<!---------------portfolio------------>
+    <div id="portfolio">
+    <div class="container">
+        <h1 class="sub-title">My Work</h1>
+        <div class="work-list">
+            <div class="work">
+                    <img src="images/mywork1.png">
+                <div class="layer">
+                    <h3><b>Interactive Human Security Twine Game</b></h3>
+                    <p>Designed an interactive digital experience to teach key Human Security concepts—including the 7 Securities, Responsibility to Protect (R2P), and radicalization—through branching narratives, embedded quizzes, and visual storytelling. The project aimed to make complex policy frameworks accessible and engaging for a broader audience.</p>
+                    <a href="https://bader2025hs.github.io/human-security-final/"><i  class="fa-solid fa-link"></i></a>
+                </div>
+                </div>
+             <div class="work">
+                    <img src="images/mywork2.png">
+                  <div class="layer">
+                    <h3><b>Asylum Research and Legal Support for LGBT+ Refugees</b></h3>
+                    <p>Supported asylum applicants by drafting case briefs and conducting contextual research for OFPRA and CNDA hearings. Authored a 70-page report on the situation of LGBT+ individuals in the DRC, Cameroon, Senegal, and Côte d’Ivoire, used to support claims and inform legal strategy.</p>
+                    <a href="https://drive.google.com/file/d/1fzo9DaZZnWsPb5oyor-2r3Wx4Pcfcwzz/view?usp=drive_link"><i class="fa-solid fa-link"></i></a>
+                </div>
+                </div>
+             <div class="work">
+                    <img src="images/mywork3.png">
+                  <div class="layer">
+                    <h3><b>Research: French ODA Allocation in West Africa</b></h3>
+                    <p>Studied how France allocates Official Development Assistance (ODA) across West African countries, using data from 2003 to 2023. The research analyzed trends, priorities, and underlying political and economic logics guiding aid distribution, offering insights into France’s development strategy and regional engagement.</p>
+                    <a href="https://drive.google.com/file/d/1tMLRtsgw6Ip6mzWVFRWqnAoKpm1-RTs-/view?usp=drive_link"><i class="fa-solid fa-link"></i></a>
+                </div>
+                </div>
+            </div>
+        <a href="https://drive.google.com/file/d/1lnS3G4C9w44sFIUacKEammXANaxAO3y4/view?usp=drive_link" class="btn">See more</a>
+        </div>
+    </div>
+<!---------------contact------------->
+    <div id="contact">
+        <div class="container">
+            <div class="row">
+                <div class="contact-left">
+                    <h1 class="sub-title">Contact Me</h1>
+                    <p><i class="fa-solid fa-paper-plane"></i>badersuliman79@gmail.com</p>
+                    <p><i class="fa-solid fa-phone"></i>+33 7 81 78 90 73</p>
+                    <div class="social-icons">
+                        <a href="https://instagram.com/badersouleymann"><i class="fa-brands fa-square-instagram"></i></a>
+                        <a href=""><i class="fa-brands fa-twitter-square"></i></a>
+                        <a href="https://facebook.com/Bader Suliman"><i class="fa-brands fa-square-facebook"></i></a>
+                        <a href="https://linkedin.com/in/bader-suliman-845840234"><i class="fa-brands fa-linkedin"></i></a>
+                    </div>
+                    <a href="images/resume.english.pdf" target="_blank" download class="btn btn2">Download CV</a>
+                </div>
+                <div class="contact-right">
+                <form name="submit-to-google-sheet">
+                    <input type="text" name="Name" placeholder="Your Name" required>
+                    <input type="email" name="email" placeholder="Your Email" required>
+                    <textarea name="Message" rows="6" placeholder="Your Message"></textarea>
+                    <button type="submit" class="btn btn2">Submit</button>
+                </form>
+                <span id="msg"></span>
+                </div>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>Copyright © Made with <i class="fa-solid fa-heart"></i> by Bader </p>
+        </div>
+    </div>
+    
+    
+    
+<script>
+    
+    var tablinks = document.getElementsByClassName("tab-links");
+    var tabcontents = document.getElementsByClassName("tab-contents");
+    function opentab(tabname){
+        for(tablink of tablinks){
+            tablink.classList.remove("active-link");
+        }
+        for(tabcontent of tabcontents){
+            tabcontent.classList.remove("active-tab");
+        }
+        event.currentTarget.classList.add("active-link");
+        document.getElementById(tabname).classList.add("active-tab")
+    }
+
+</script>
+    
+<script>
+    
+    var sidemenu = document.getElementById("sidemenu");
+    
+    function openmenu(){
+        sidemenu.style.right="0"
+    }
+    function closemenu(){
+        sidemenu.style.right="-200px"
+    }
+    
+    
+</script>
+    <script>
+  const scriptURL = 'https://script.google.com/macros/s/AKfycbxWeF9YMLhyD0jRCL1YQxt0fs6XILTjBqDecLxa_mYm8eH4hBGx63MSnc7nRdV7WnKd/exec'
+  const form = document.forms['submit-to-google-sheet']
+  const msg = document.getElementById("msg")
+
+  form.addEventListener('submit', e => {
+    e.preventDefault()
+    fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+      .then(response => {
+        msg.innerHTML="Message sent successfully"
+        setTimeout(function(){
+            msg.innerHTML=""
+        },5000)
+        form.reset()
+    })
+      .catch(error => console.error('Error!', error.message))
+  })
+</script>
+</body>
+</html>
