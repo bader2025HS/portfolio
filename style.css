@@ -79,13 +79,13 @@ nav ul li a:hover::after{
 .row{
     display: flex;
     justify-content: space-between;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
     gap: 20px;
     align-items: flex-start;
 }
 .about-col-1{
-    flex-basis: 40%;
-    margin-left: 20px;
+    flex-basis: 0 0 40%;
+    margin-right: 20px;
 }
 .about-col-1 img {
     width: 100%;
@@ -97,6 +97,7 @@ nav ul li a:hover::after{
 }
 .about-col-2{
     flex-basis: 60%;
+    flex: 1;
 }
 
 .sub-title{
