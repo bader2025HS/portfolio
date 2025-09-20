@@ -113,7 +113,7 @@
     header nav a{margin:0; padding:16px 14px; border-radius:12px; font-size:1.12rem; background:#fff; border:1px solid var(--line)}
     header nav a.active{color:var(--accent); border-color:var(--accent)}
 
-    /* >>> Transplanted from your old version to show name + square in mobile menu */
+    /* Name + square in mobile menu */
     #siteNav .mhead{
       display:flex; align-items:center; gap:10px;
       position:absolute; left:18px; top:calc(env(safe-area-inset-top,0px) + 18px);
@@ -144,54 +144,32 @@
   .chips-mini{display:flex; gap:8px; flex-wrap:wrap}
   .chip-mini{padding:4px 10px; border:1px solid var(--line); border-radius:999px; background:var(--card); font-weight:600; font-size:.92rem}
 
-  /* ===== Skills & Languages (UPDATED ONLY THIS SECTION) ===== */
+  /* === NEW: Language + chip layouts === */
+  .lang-row{
+    display:flex; gap:10px; align-items:center; flex-wrap:nowrap;
+    overflow-x:auto; padding-bottom:6px; scrollbar-width:thin;
+  }
+  .lang-row .lang-item{
+    display:inline-flex; align-items:center; gap:10px; white-space:nowrap;
+    padding:6px 10px; border:1px solid var(--line); border-radius:999px;
+    background:var(--card); font-weight:600;
+  }
+  .lang-row .flag{
+    width:20px; height:20px; flex:0 0 20px; border-radius:50%;
+    overflow:hidden; box-shadow:0 0 0 1px var(--line), 0 1px 2px rgba(2,6,23,.12);
+  }
+  .lang-row .flag img{width:100%; height:100%; object-fit:cover; display:block}
+
+  @media (max-width:800px){
+    .lang-row{display:grid; grid-template-columns:1fr 1fr; overflow:visible}
+    .lang-row .lang-item{white-space:normal}
+  }
+
   .skills-2{display:grid; grid-template-columns:1fr 1fr; gap:18px; margin-top:6px}
   @media (max-width:900px){.skills-2{grid-template-columns:1fr}}
-
-  .lang-cols{display:grid; grid-template-columns:1fr 1fr; gap:18px; margin-top:6px}
-  @media (max-width:800px){.lang-cols{grid-template-columns:1fr}}
-  .lang-cols ul{list-style:none; padding:0; margin:.3rem 0 0}
-  .lang-item{display:flex; align-items:center; gap:10px; margin:4px 0}
-  .lang-item strong{font-weight:800}
-  .lang-item small{color:var(--muted); font-weight:700}
-
-  /* Chips for skills (no bullets) */
-  .chips{display:flex; flex-wrap:wrap; gap:8px; margin-top:.4rem}
-  .chip{
-    display:inline-flex; align-items:center;
-    padding:6px 10px; border:1px solid var(--line);
-    border-radius:999px; background:#fff; font-weight:600; font-size:.95rem
-  }
-
-  /* Flag circles for Languages (sharp + visible) */
-  .flag{
-    display:inline-block;
-    width:24px;
-    height:24px;
-    border-radius:50%;
-    overflow:hidden;
-    flex:0 0 24px;
-    box-shadow:0 0 0 1px var(--line), 0 1px 2px rgba(2,6,23,.12);
-  }
-  .flag img{
-    width:100%;
-    height:100%;
-    object-fit:cover;
-    display:block;
-    image-rendering:auto;
-  }
-
-  /* Projects */
-  .projects{display:grid; grid-template-columns:repeat(3,1fr); gap:12px}
-  @media (max-width:1000px){.projects{grid-template-columns:1fr}}
-  .project{will-change:transform; transform:translateZ(0); transition:transform .28s, box-shadow .28s}
-  .project:hover{transform:scale(1.12); z-index:6; box-shadow:0 22px 54px rgba(2,6,23,.18)}
-  .thumb{aspect-ratio:16/10; border-radius:14px; border:1px solid var(--line); background:#e6fffb center/cover no-repeat; transition:transform .28s}
-  .project:hover .thumb{transform:scale(1.18)}
-  .project .body{display:grid; grid-template-rows:0fr; transition:grid-template-rows .25s, opacity .25s; opacity:0}
-  .project:hover .body{grid-template-rows:1fr; opacity:1}
-  .project .body>div{overflow:hidden}
-  @media (hover:none){ .project .body{grid-template-rows:1fr; opacity:1} .project:hover,.project:hover .thumb{transform:none} }
+  .skills-chips{display:flex; flex-wrap:wrap; gap:10px; margin-top:10px}
+  .chip-lg{padding:10px 12px; border:1px solid var(--line); border-radius:14px; background:var(--card); font-weight:600}
+  .card > strong{display:block; margin-bottom:8px}
 
   /* Experience */
   .timeline{position:relative; margin-top:8px}
@@ -226,37 +204,21 @@
 
   /* === Desktop menu framing (mobile untouched) === */
   @media (min-width:761px){
-  /* No frame around the name (brand) on desktop */
-header .brand{
-  padding:0;
-  border:none;
-  border-radius:0;
-  background:transparent;
-  box-shadow:none;
-}
+    /* No frame around the name (brand) on desktop */
+    header .brand{
+      padding:0; border:none; border-radius:0; background:transparent; box-shadow:none;
+    }
     /* Keep nav inline and add framed pills */
     header nav#siteNav{
-      display:flex;
-      align-items:center;
-      gap:8px;
+      display:flex; align-items:center; gap:8px;
     }
     header nav#siteNav a{
-      margin:0;
-      padding:8px 12px;
-      border:1px solid var(--line);
-      border-radius:12px;
-      background:rgba(255,255,255,.9);
-      text-decoration:none;
-      color:var(--muted);
+      margin:0; padding:8px 12px; border:1px solid var(--line); border-radius:12px;
+      background:rgba(255,255,255,.9); text-decoration:none; color:var(--muted);
     }
-    header nav#siteNav a:hover{
-      border-color:var(--accent);
-      color:var(--accent);
-    }
+    header nav#siteNav a:hover{border-color:var(--accent); color:var(--accent)}
     header nav#siteNav a.active{
-      border-color:var(--accent);
-      color:var(--accent);
-      box-shadow:0 0 0 2px rgba(14,165,162,.12) inset;
+      border-color:var(--accent); color:var(--accent); box-shadow:0 0 0 2px rgba(14,165,162,.12) inset;
     }
     /* Hide overlay brand (avoid duplicate) on desktop only */
     #siteNav .mhead{display:none;}
@@ -317,68 +279,73 @@ header .brand{
       <h2 class="reveal fx-wipe-l">Skills and Languages</h2>
       <p class="lead reveal fx-from-right">Fluency, methods, and tools.</p>
 
-      <!-- LANGUAGES (top card) -->
+      <!-- Languages: single line (scrollable) on desktop, two columns on phones -->
       <div class="card reveal fx-zoom">
         <strong class="reveal fx-wipe-r">Languages</strong>
-        <div class="lang-cols reveal fx-from-up">
-          <ul class="lead">
-            <li class="lang-item"><span class="flag"><img src="https://flagcdn.com/w80/sa.png" alt="Arabic flag"></span><strong>Arabic</strong> <small>(Native)</small></li>
-            <li class="lang-item"><span class="flag"><img src="https://flagcdn.com/w80/fr.png" alt="French flag"></span><strong>French</strong> <small>(Native)</small></li>
-            <li class="lang-item"><span class="flag"><img src="https://flagcdn.com/w80/gb.png" alt="English flag"></span><strong>English</strong> <small>(C2)</small></li>
-          </ul>
-          <ul class="lead">
-            <li class="lang-item"><span class="flag"><img src="https://flagcdn.com/w80/de.png" alt="German flag"></span><strong>German</strong> <small>(C1)</small></li>
-            <li class="lang-item"><span class="flag"><img src="https://flagcdn.com/w80/ir.png" alt="Persian flag"></span><strong>Persian</strong> <small>(A2)</small></li>
-            <li class="lang-item"><span class="flag"><img src="https://flagcdn.com/w80/jp.png" alt="Japanese flag"></span><strong>Japanese</strong> <small>(A2)</small></li>
-          </ul>
+        <div class="lang-row reveal fx-from-up">
+          <div class="lang-item">
+            <span class="flag"><img src="https://flagcdn.com/w80/sa.png" alt="Arabic flag"></span>
+            Arabic (Native)
+          </div>
+          <div class="lang-item">
+            <span class="flag"><img src="https://flagcdn.com/w80/fr.png" alt="French flag"></span>
+            French (Native)
+          </div>
+          <div class="lang-item">
+            <span class="flag"><img src="https://flagcdn.com/w80/gb.png" alt="English flag"></span>
+            English (C2)
+          </div>
+          <div class="lang-item">
+            <span class="flag"><img src="https://flagcdn.com/w80/de.png" alt="German flag"></span>
+            German (C1)
+          </div>
+          <div class="lang-item">
+            <span class="flag"><img src="https://flagcdn.com/w80/ir.png" alt="Persian flag"></span>
+            Persian (A2)
+          </div>
+          <div class="lang-item">
+            <span class="flag"><img src="https://flagcdn.com/w80/jp.png" alt="Japanese flag"></span>
+            Japanese (A2)
+          </div>
         </div>
       </div>
 
-      <!-- SKILLS (two columns, no bullets — chips) -->
+      <!-- Skills: two cards side-by-side (stack on mobile), chips instead of bullets -->
       <div class="skills-2">
         <div class="card reveal fx-from-left">
           <strong class="reveal fx-wipe-l">Soft skills</strong>
-          <div class="chips">
-            <span class="chip">Analytical synthesis</span>
-            <span class="chip">Policy brief writing</span>
-            <span class="chip">Editorial judgement</span>
-            <span class="chip">Media monitoring</span>
-            <span class="chip">Crisis communications</span>
-            <span class="chip">Stakeholder mapping</span>
-            <span class="chip">Facilitation & teamwork</span>
-            <span class="chip">Cross-cultural communication</span>
-            <span class="chip">Presentation & public speaking</span>
-            <span class="chip">Project coordination</span>
-            <span class="chip">Attention to detail</span>
-            <span class="chip">Diplomacy & discretion</span>
-            <span class="chip">Problem framing</span>
-            <span class="chip">Narrative design</span>
-            <span class="chip">Time & priority management</span>
+          <div class="skills-chips">
+            <span class="chip-lg">Communications</span>
+            <span class="chip-lg">Editorial judgement</span>
+            <span class="chip-lg">Analytical thinking & synthesis</span>
+            <span class="chip-lg">Press review & media monitoring</span>
+            <span class="chip-lg">Critical thinking</span>
+            <span class="chip-lg">Teamwork & facilitation</span>
+            <span class="chip-lg">Stakeholder coordination</span>
+            <span class="chip-lg">Policy writing & briefs</span>
+            <span class="chip-lg">Interviewing</span>
+            <span class="chip-lg">Storytelling</span>
+            <span class="chip-lg">Copyediting & proofreading</span>
+            <span class="chip-lg">Public speaking & presentations</span>
           </div>
         </div>
+
         <div class="card reveal fx-from-right">
           <strong class="reveal fx-wipe-r">Hard skills</strong>
-          <div class="chips">
-            <span class="chip">Excel (pivots, XLOOKUP)</span>
-            <span class="chip">Word (styles & refs)</span>
-            <span class="chip">PowerPoint storytelling</span>
-            <span class="chip">SharePoint & Teams</span>
-            <span class="chip">Google Sheets/Docs/Slides</span>
-            <span class="chip">Google Drive admin</span>
-            <span class="chip">QGIS</span>
-            <span class="chip">Mapbox</span>
-            <span class="chip">Data visualization</span>
-            <span class="chip">Tableau / Power BI</span>
-            <span class="chip">OSINT basics</span>
-            <span class="chip">WordPress</span>
-            <span class="chip">GitHub Pages</span>
-            <span class="chip">Basic HTML & CSS</span>
-            <span class="chip">SPSS / Stata (basics)</span>
-            <span class="chip">NVivo (qual coding)</span>
-            <span class="chip">Notion & Airtable</span>
-            <span class="chip">Mailchimp</span>
-            <span class="chip">Hootsuite</span>
-            <span class="chip">Canva & Figma</span>
+          <div class="skills-chips">
+            <span class="chip-lg">Excel</span>
+            <span class="chip-lg">Google Workspace (Docs/Sheets/Drive)</span>
+            <span class="chip-lg">Microsoft 365 (Word/PowerPoint/Outlook/SharePoint)</span>
+            <span class="chip-lg">Tableau / Power BI</span>
+            <span class="chip-lg">SPSS / Stata (basics)</span>
+            <span class="chip-lg">NVivo (qual coding)</span>
+            <span class="chip-lg">Notion & Airtable</span>
+            <span class="chip-lg">WordPress</span>
+            <span class="chip-lg">Mailchimp</span>
+            <span class="chip-lg">Hootsuite</span>
+            <span class="chip-lg">Figma</span>
+            <span class="chip-lg">Video editing & montage (Premiere/CapCut)</span>
+            <span class="chip-lg">OSINT basics</span>
           </div>
         </div>
       </div>
@@ -420,7 +387,7 @@ header .brand{
   <section id="experience" class="section">
     <div class="wrap">
       <h2 class="reveal fx-wipe-l">Experience</h2>
-    <p class="lead reveal fx-from-right">Communications, humanitarian data, and policy research.</p>
+      <p class="lead reveal fx-from-right">Communications, humanitarian data, and policy research.</p>
       <div class="timeline">
         <div class="t">
           <div class="dot" aria-hidden="true"></div>
@@ -539,7 +506,7 @@ header .brand{
         <div style="display:flex;gap:10px;flex-wrap:wrap">
           <a class="btn primary" href="mailto:badersuliman79@gmail.com">Email me</a>
           <a class="btn ghost" href="https://www.linkedin.com/in/bader-suliman-845840234" target="_blank" rel="noopener">LinkedIn</a>
-          <a class="btn ghost" href="bs.eng.cv.pdf" target=_blank" rel="noopener">Download CV</a>
+          <a class="btn ghost" href="bs.eng.cv.pdf" target="_blank" rel="noopener">Download CV</a>
         </div>
       </div>
     </div>
