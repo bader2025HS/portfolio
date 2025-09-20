@@ -85,9 +85,9 @@
   }
   nav a:hover{color:var(--accent)}
   nav a.active{color:var(--accent)}
-  nav a:after{display:none !important}
+  nav a:after{display:none !important} /* remove underline */
 
-  /* Hamburger + mobile overlay */
+  /* Hamburger + mobile overlay — EXACTLY like v30 */
   .menu-toggle{display:none; place-items:center; width:42px; height:42px;
     border:1px solid var(--line); border-radius:12px; background:var(--card); box-shadow:var(--shadow)}
   .menu-toggle .bar{width:20px; height:2px; background:var(--text); position:relative; transition:transform .25s}
@@ -105,7 +105,7 @@
       position:fixed; inset:0; z-index:10004; height:100svh;
       padding:calc(env(safe-area-inset-top,0px) + 84px) 18px 24px;
       display:flex; flex-direction:column; gap:10px;
-      background:#fff !important;
+      background:#fff !important; /* solid white */
       transform:translateY(-100%); opacity:0; visibility:hidden; pointer-events:none;
       transition:transform .28s ease, opacity .2s ease;
     }
@@ -113,7 +113,7 @@
     header nav a{margin:0; padding:16px 14px; border-radius:12px; font-size:1.12rem; background:#fff; border:1px solid var(--line)}
     header nav a.active{color:var(--accent); border-color:var(--accent)}
 
-    /* show name + square in the opened mobile menu */
+    /* >>> Transplanted from your old version to show name + square in mobile menu */
     #siteNav .mhead{
       display:flex; align-items:center; gap:10px;
       position:absolute; left:18px; top:calc(env(safe-area-inset-top,0px) + 18px);
@@ -124,7 +124,7 @@
   #progress{position:fixed; top:0; left:0; height:3px; width:0; z-index:10000;
     background:linear-gradient(90deg,var(--accent),#7c61ff,#ff7a6e,#f59e0b)}
 
-  /* Buttons / cards */
+  /* Type / buttons / cards */
   h1{font-size:clamp(44px,7vw,74px); margin:0 0 6px}
   .btn{display:inline-flex; align-items:center; gap:8px; padding:10px 14px; border-radius:14px;
     border:1px solid var(--line); font-weight:700; text-decoration:none; position:relative; overflow:hidden}
@@ -144,42 +144,33 @@
   .chips-mini{display:flex; gap:8px; flex-wrap:wrap}
   .chip-mini{padding:4px 10px; border:1px solid var(--line); border-radius:999px; background:var(--card); font-weight:600; font-size:.92rem}
 
-  /* ====== Skills & Languages – LEFT/RIGHT layout ====== */
-  .skills-layout{
-    display:grid;
-    grid-template-columns:minmax(240px,320px) 1fr;
-    gap:18px;
-    margin-top:6px;
-  }
-  .skills-stack{
-    display:grid;
-    grid-template-rows:auto auto;
-    gap:18px;
-  }
+  /* Skills & Languages */
+  .skills-2{display:grid; grid-template-columns:1fr 1fr; gap:18px; margin-top:6px}
+  @media (max-width:900px){.skills-2{grid-template-columns:1fr}}
+  .skills-2 ul{margin:.3rem 0 0 18px}
 
-  /* Languages: single compact list, no extra text */
-  .lang-list{list-style:none; padding:0; margin:.3rem 0 0; display:grid; gap:8px}
-  .lang-item{display:flex; align-items:center; gap:10px; margin:0; white-space:nowrap}
-  .lang-item strong{font-weight:800}
-  .lang-item small{color:var(--muted); font-weight:700}
+  .lang-cols{display:grid; grid-template-columns:1fr 1fr; gap:18px; margin-top:6px}
+  @media (max-width:800px){.lang-cols{grid-template-columns:1fr}}
+  /* remove bullets ONLY in language lists */
+  .lang-cols ul{list-style:none; padding:0; margin:.3rem 0 0}
+  .lang-item{display:flex; align-items:center; gap:10px; margin:4px 0}
 
-  /* Chips for skills (no bullets) */
-  .chips{display:flex; flex-wrap:wrap; gap:8px; margin-top:.4rem}
-  .chip{display:inline-flex; align-items:center; padding:6px 10px; border:1px solid var(--line);
-        border-radius:999px; background:#fff; font-weight:600; font-size:.95rem}
-
-  /* Flag circles */
+  /* Flag circles for Languages (sharp + visible) */
   .flag{
     display:inline-block;
-    width:24px; height:24px; border-radius:50%;
-    overflow:hidden; flex:0 0 24px;
+    width:24px;
+    height:24px;
+    border-radius:50%;
+    overflow:hidden;
+    flex:0 0 24px;
     box-shadow:0 0 0 1px var(--line), 0 1px 2px rgba(2,6,23,.12);
   }
-  .flag img{width:100%; height:100%; object-fit:cover; display:block; image-rendering:auto}
-
-  /* Mobile collapse */
-  @media (max-width:900px){
-    .skills-layout{grid-template-columns:1fr}
+  .flag img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    display:block;
+    image-rendering:auto;
   }
 
   /* Projects */
@@ -212,14 +203,14 @@
   .edu .item .where{color:var(--muted); font-weight:600}
   .edu .item p{margin:.35rem 0 0}
 
-  /* Activities */
+  /* Activities — 4-in-row desktop, FORCE 2×2 on phones */
   .activities-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:12px}
   @media (max-width:900px){ .activities-grid{grid-template-columns:repeat(2,1fr)} }
-  @media (max-width:420px){ .activities-grid{grid-template-columns:repeat(2,1fr)} }
+  @media (max-width:420px){ .activities-grid{grid-template-columns:repeat(2,1fr)} } /* keep 2 columns on very small phones */
   .activity{aspect-ratio:1/1; display:grid; place-items:center; text-align:center; padding:12px}
   .activity .title{font-weight:800}
 
-  /* Footer */
+  /* Footer (small) */
   footer{border-top:1px solid var(--line); color:var(--muted); padding:10px 0; margin-top:24px;
     background:rgba(255,255,255,.95); backdrop-filter:saturate(120%) blur(10px); font-size:.92rem}
   .to-top{position:fixed; right:18px; bottom:18px; z-index:9997; opacity:0; pointer-events:none; transition:opacity .2s}
@@ -227,12 +218,39 @@
 
   /* === Desktop menu framing (mobile untouched) === */
   @media (min-width:761px){
-    header .brand{padding:0; border:none; border-radius:0; background:transparent; box-shadow:none;}
-    header nav#siteNav{display:flex; align-items:center; gap:8px;}
-    header nav#siteNav a{margin:0; padding:8px 12px; border:1px solid var(--line);
-      border-radius:12px; background:rgba(255,255,255,.9); text-decoration:none; color:var(--muted);}
-    header nav#siteNav a:hover{border-color:var(--accent); color:var(--accent)}
-    header nav#siteNav a.active{border-color:var(--accent); color:var(--accent); box-shadow:0 0 0 2px rgba(14,165,162,.12) inset;}
+  /* No frame around the name (brand) on desktop */
+header .brand{
+  padding:0;
+  border:none;
+  border-radius:0;
+  background:transparent;
+  box-shadow:none;
+}
+    /* Keep nav inline and add framed pills */
+    header nav#siteNav{
+      display:flex;
+      align-items:center;
+      gap:8px;
+    }
+    header nav#siteNav a{
+      margin:0;
+      padding:8px 12px;
+      border:1px solid var(--line);
+      border-radius:12px;
+      background:rgba(255,255,255,.9);
+      text-decoration:none;
+      color:var(--muted);
+    }
+    header nav#siteNav a:hover{
+      border-color:var(--accent);
+      color:var(--accent);
+    }
+    header nav#siteNav a.active{
+      border-color:var(--accent);
+      color:var(--accent);
+      box-shadow:0 0 0 2px rgba(14,165,162,.12) inset;
+    }
+    /* Hide overlay brand (avoid duplicate) on desktop only */
     #siteNav .mhead{display:none;}
   }
 </style>
@@ -242,11 +260,15 @@
 <header>
   <div class="inner">
     <div class="brand"><div class="badge" aria-hidden="true"></div><span>Bader Suliman</span></div>
+
+    <!-- Hamburger -->
     <button class="menu-toggle" id="menuBtn" aria-label="Open menu" aria-expanded="false" aria-controls="siteNav">
       <span class="bar"></span>
     </button>
+
     <nav id="siteNav">
       <div class="mhead"><div class="badge" aria-hidden="true"></div><span>Bader Suliman</span></div>
+
       <a href="#about">About</a>
       <a href="#skills">Skills</a>
       <a href="#education">Education</a>
@@ -263,6 +285,7 @@
   <section id="about" class="section">
     <div class="wrap reveal fx-from-down">
       <h1 class="reveal fx-wipe-l">Bader Suliman</h1>
+
       <div class="strap reveal fx-from-right">
         <span class="rotator"><span id="rotate" class="fade">Communications</span></span>
         <div class="chips-mini">
@@ -270,6 +293,7 @@
           <span class="chip-mini">Paris • willing to relocate</span>
         </div>
       </div>
+
       <div class="card reveal fx-zoom">
         <strong class="reveal fx-wipe-r">About</strong>
         <p class="lead reveal fx-from-left" style="margin:.4rem 0 0">
@@ -285,68 +309,44 @@
       <h2 class="reveal fx-wipe-l">Skills and Languages</h2>
       <p class="lead reveal fx-from-right">Fluency, methods, and tools.</p>
 
-      <div class="skills-layout">
-        <!-- LEFT: Languages -->
-        <aside class="card languages-card reveal fx-from-left">
-          <strong class="reveal fx-wipe-l">Languages</strong>
-          <ul class="lead lang-list">
-            <li class="lang-item"><span class="flag"><img src="https://flagcdn.com/w80/sa.png" alt="Arabic flag"></span><strong>Arabic</strong> <small>(Native)</small></li>
-            <li class="lang-item"><span class="flag"><img src="https://flagcdn.com/w80/fr.png" alt="French flag"></span><strong>French</strong> <small>(Native)</small></li>
-            <li class="lang-item"><span class="flag"><img src="https://flagcdn.com/w80/gb.png" alt="English flag"></span><strong>English</strong> <small>(C2)</small></li>
-            <li class="lang-item"><span class="flag"><img src="https://flagcdn.com/w80/de.png" alt="German flag"></span><strong>German</strong> <small>(C1)</small></li>
-            <li class="lang-item"><span class="flag"><img src="https://flagcdn.com/w80/ir.png" alt="Persian flag"></span><strong>Persian</strong> <small>(A2)</small></li>
-            <li class="lang-item"><span class="flag"><img src="https://flagcdn.com/w80/jp.png" alt="Japanese flag"></span><strong>Japanese</strong> <small>(A2)</small></li>
+      <div class="card reveal fx-zoom">
+        <strong class="reveal fx-wipe-r">Languages</strong>
+        <div class="lang-cols reveal fx-from-up">
+          <ul class="lead">
+            <li class="lang-item"><span class="flag"><img src="https://flagcdn.com/w80/sa.png" alt="Arabic flag"></span><strong>Arabic</strong> - Native (MSA and dialects)</li>
+            <li class="lang-item"><span class="flag"><img src="https://flagcdn.com/w80/fr.png" alt="French flag"></span><strong>French</strong> - Native</li>
+            <li class="lang-item"><span class="flag"><img src="https://flagcdn.com/w80/gb.png" alt="English flag"></span><strong>English</strong> - C2 (spoken, read, written)</li>
           </ul>
-        </aside>
+          <ul class="lead">
+            <li class="lang-item"><span class="flag"><img src="https://flagcdn.com/w80/de.png" alt="German flag"></span><strong>German</strong> - C1 (spoken, read, written)</li>
+            <li class="lang-item"><span class="flag"><img src="https://flagcdn.com/w80/ir.png" alt="Persian flag"></span><strong>Persian</strong> - A2 (spoken, read, written)</li>
+            <li class="lang-item"><span class="flag"><img src="https://flagcdn.com/w80/jp.png" alt="Japanese flag"></span><strong>Japanese</strong> - A2 (spoken, read, written)</li>
+          </ul>
+        </div>
+      </div>
 
-        <!-- RIGHT: two stacked skills cards (chips, no bullets) -->
-        <div class="skills-stack">
-          <div class="card reveal fx-from-right">
-            <strong class="reveal fx-wipe-r">Soft skills</strong>
-            <div class="chips">
-              <span class="chip">Analytical synthesis</span>
-              <span class="chip">Policy brief writing</span>
-              <span class="chip">Editorial judgement</span>
-              <span class="chip">Media monitoring</span>
-              <span class="chip">Crisis communications</span>
-              <span class="chip">Stakeholder mapping</span>
-              <span class="chip">Facilitation & teamwork</span>
-              <span class="chip">Cross-cultural communication</span>
-              <span class="chip">Presentation & public speaking</span>
-              <span class="chip">Project coordination</span>
-              <span class="chip">Attention to detail</span>
-              <span class="chip">Diplomacy & discretion</span>
-              <span class="chip">Problem framing</span>
-              <span class="chip">Narrative design</span>
-              <span class="chip">Time & priority management</span>
-            </div>
-          </div>
-
-          <div class="card reveal fx-from-right">
-            <strong class="reveal fx-wipe-r">Hard skills</strong>
-            <div class="chips">
-              <span class="chip">Excel (pivots, XLOOKUP)</span>
-              <span class="chip">Word (styles & references)</span>
-              <span class="chip">PowerPoint storytelling</span>
-              <span class="chip">SharePoint & Teams</span>
-              <span class="chip">Google Sheets/Docs/Slides</span>
-              <span class="chip">Google Drive admin</span>
-              <span class="chip">QGIS</span>
-              <span class="chip">Mapbox</span>
-              <span class="chip">Data visualization</span>
-              <span class="chip">Tableau / Power BI</span>
-              <span class="chip">OSINT basics</span>
-              <span class="chip">WordPress</span>
-              <span class="chip">GitHub Pages</span>
-              <span class="chip">Basic HTML & CSS</span>
-              <span class="chip">SPSS / Stata (basics)</span>
-              <span class="chip">NVivo (qual coding)</span>
-              <span class="chip">Notion & Airtable</span>
-              <span class="chip">Mailchimp</span>
-              <span class="chip">Hootsuite</span>
-              <span class="chip">Canva & Figma</span>
-            </div>
-          </div>
+      <div class="skills-2">
+        <div class="card reveal fx-from-left">
+          <strong class="reveal fx-wipe-l">Soft skills</strong>
+          <ul class="lead">
+            <li>Analytical thinking and synthesis</li>
+            <li>Press review and media monitoring</li>
+            <li>Critical thinking</li>
+            <li>Team work and facilitation</li>
+            <li>Communication and storytelling</li>
+            <li>Stakeholder coordination</li>
+          </ul>
+        </div>
+        <div class="card reveal fx-from-right">
+          <strong class="reveal fx-wipe-r">Hard skills</strong>
+          <ul class="lead">
+            <li>Data analysis and cleaning (Excel)</li>
+            <li>Mapping (QGIS and Mapbox)</li>
+            <li>Dashboards and visuals</li>
+            <li>WordPress and GitHub Pages</li>
+            <li>Basic HTML and CSS, Twine</li>
+            <li>Microsoft 365 (Word, PowerPoint, Outlook)</li>
+          </ul>
         </div>
       </div>
     </div>
@@ -482,6 +482,21 @@
     </div>
   </section>
 
+  <!-- Extracurricular Activities — 4 squares -->
+  <section id="activities" class="section">
+    <div class="wrap">
+      <h2 class="reveal fx-wipe-l">Extracurricular Activities</h2>
+      <p class="lead reveal fx-from-right">Clubs, volunteering, events, and field exposure.</p>
+
+      <div class="activities-grid">
+        <article class="card activity reveal fx-zoom"><div class="title">Sciences Po Monde Arabe — Communications Director</div></article>
+        <article class="card activity reveal fx-zoom"><div class="title">Tarjimly — Volunteer Translator & Interpreter</div></article>
+        <article class="card activity reveal fx-zoom"><div class="title">Events — Mediterranean of the Future & Paris Peace Forum</div></article>
+        <article class="card activity reveal fx-zoom"><div class="title">MEDMUN — Arabic Committee Director</div></article>
+      </div>
+    </div>
+  </section>
+
   <!-- Contact -->
   <section id="contact" class="section">
     <div class="wrap reveal fx-from-up">
@@ -491,7 +506,7 @@
         <div style="display:flex;gap:10px;flex-wrap:wrap">
           <a class="btn primary" href="mailto:badersuliman79@gmail.com">Email me</a>
           <a class="btn ghost" href="https://www.linkedin.com/in/bader-suliman-845840234" target="_blank" rel="noopener">LinkedIn</a>
-          <a class="btn ghost" href="bs.eng.cv.pdf" target="_blank" rel="noopener">Download CV</a>
+          <a class="btn ghost" href="bs.eng.cv.pdf" target=_blank" rel="noopener">Download CV</a>
         </div>
       </div>
     </div>
@@ -539,7 +554,7 @@ const onScroll=()=>{
 };
 addEventListener('scroll',onScroll,{passive:true}); onScroll();
 
-/* Mobile menu */
+/* Mobile menu (unchanged from v30) */
 const menuBtn=document.getElementById('menuBtn');
 const nav=document.getElementById('siteNav');
 function closeNav(){ document.body.classList.remove('nav-open'); menuBtn.setAttribute('aria-expanded','false'); nav.setAttribute('aria-hidden','true'); }
