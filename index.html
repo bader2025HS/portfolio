@@ -35,11 +35,11 @@
     mix-blend-mode:soft-light; animation:gridPan 30s linear infinite;
   }
   body::after{
-    content:""; position:fixed; inset:0; z-index:-1; pointer-events:none; opacity:.18;
+    content:""; position:fixed; inset:0; pointer-events:none; opacity:.18;
     background:
       repeating-radial-gradient(circle at 20% 30%, rgba(2,6,23,.08) 0 2px, transparent 2px 18px),
       repeating-radial-gradient(circle at 75% 60%, rgba(2,6,23,.06) 0 2px, transparent 2px 22px);
-    filter:blur(.2px);
+    filter:blur(.2px); z-index:-1;
   }
   @keyframes gridPan{to{transform:translate3d(-26px,-26px,0)}}
 
@@ -79,15 +79,15 @@
     box-shadow:0 6px 18px rgba(2,6,23,.06); animation:spin 10s linear infinite}
   @keyframes spin{to{transform:rotate(360deg)}}
 
-  /* Navbar links (no underline) */
+  /* Navbar links */
   nav a{
     color:var(--muted); text-decoration:none; font-weight:600; margin-left:14px; position:relative; padding:6px 0
   }
   nav a:hover{color:var(--accent)}
   nav a.active{color:var(--accent)}
-  nav a:after{display:none !important} /* remove underline */
+  nav a:after{display:none !important}
 
-  /* Hamburger + mobile overlay — EXACTLY like v30 */
+  /* Hamburger + mobile overlay */
   .menu-toggle{display:none; place-items:center; width:42px; height:42px;
     border:1px solid var(--line); border-radius:12px; background:var(--card); box-shadow:var(--shadow)}
   .menu-toggle .bar{width:20px; height:2px; background:var(--text); position:relative; transition:transform .25s}
@@ -105,15 +105,13 @@
       position:fixed; inset:0; z-index:10004; height:100svh;
       padding:calc(env(safe-area-inset-top,0px) + 84px) 18px 24px;
       display:flex; flex-direction:column; gap:10px;
-      background:#fff !important; /* solid white */
+      background:#fff !important;
       transform:translateY(-100%); opacity:0; visibility:hidden; pointer-events:none;
       transition:transform .28s ease, opacity .2s ease;
     }
     body.nav-open header nav#siteNav{transform:translateY(0); opacity:1; visibility:visible; pointer-events:auto}
     header nav a{margin:0; padding:16px 14px; border-radius:12px; font-size:1.12rem; background:#fff; border:1px solid var(--line)}
     header nav a.active{color:var(--accent); border-color:var(--accent)}
-
-    /* Name + square in mobile menu */
     #siteNav .mhead{
       display:flex; align-items:center; gap:10px;
       position:absolute; left:18px; top:calc(env(safe-area-inset-top,0px) + 18px);
@@ -132,7 +130,6 @@
   .btn.ghost{background:var(--card); color:var(--text)}
   .btn:hover{transform:translateY(-1px)}
   .btn:after{content:""; position:absolute; inset:auto; top:0; left:0; width:0; height:100%; background:rgba(255,255,255,.15); transition:width .25s}
-  .btn:hover:after{width:100%}
   .card{background:var(--card); border:1px solid var(--line); border-radius:var(--radius); box-shadow:var(--shadow); padding:clamp(14px,2vw,18px); transition:transform .2s, box-shadow .2s}
   .card:hover{transform:translateY(-2px); box-shadow:0 14px 36px rgba(2,6,23,.11)}
 
@@ -144,10 +141,11 @@
   .chips-mini{display:flex; gap:8px; flex-wrap:wrap}
   .chip-mini{padding:4px 10px; border:1px solid var(--line); border-radius:999px; background:var(--card); font-weight:600; font-size:.92rem}
 
-  /* === NEW: Language + chip layouts === */
+  /* === Languages row (tiny extra space above scrollbar) === */
   .lang-row{
     display:flex; gap:10px; align-items:center; flex-wrap:nowrap;
-    overflow-x:auto; padding-bottom:6px; scrollbar-width:thin;
+    overflow-x:auto; padding-bottom:12px; /* tiny extra space */
+    scrollbar-width:thin; margin-top:2px;
   }
   .lang-row .lang-item{
     display:inline-flex; align-items:center; gap:10px; white-space:nowrap;
@@ -159,17 +157,20 @@
     overflow:hidden; box-shadow:0 0 0 1px var(--line), 0 1px 2px rgba(2,6,23,.12);
   }
   .lang-row .flag img{width:100%; height:100%; object-fit:cover; display:block}
-
   @media (max-width:800px){
     .lang-row{display:grid; grid-template-columns:1fr 1fr; overflow:visible}
     .lang-row .lang-item{white-space:normal}
   }
 
+  /* Skills layout (unchanged columns) + smaller chips */
   .skills-2{display:grid; grid-template-columns:1fr 1fr; gap:18px; margin-top:6px}
   @media (max-width:900px){.skills-2{grid-template-columns:1fr}}
-  .skills-chips{display:flex; flex-wrap:wrap; gap:10px; margin-top:10px}
-  .chip-lg{padding:10px 12px; border:1px solid var(--line); border-radius:14px; background:var(--card); font-weight:600}
-  .card > strong{display:block; margin-bottom:8px}
+  .skills-chips{display:flex; flex-wrap:wrap; gap:8px; margin-top:12px}
+  .chip-lg{
+    padding:6px 10px; border:1px solid var(--line); border-radius:12px;
+    background:var(--card); font-weight:600; font-size:.9rem; line-height:1.2;
+  }
+  .card > strong{display:block; margin-bottom:10px}
 
   /* Experience */
   .timeline{position:relative; margin-top:8px}
@@ -189,10 +190,10 @@
   .edu .item .where{color:var(--muted); font-weight:600}
   .edu .item p{margin:.35rem 0 0}
 
-  /* Activities — 4-in-row desktop, FORCE 2×2 on phones */
+  /* Activities */
   .activities-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:12px}
   @media (max-width:900px){ .activities-grid{grid-template-columns:repeat(2,1fr)} }
-  @media (max-width:420px){ .activities-grid{grid-template-columns:repeat(2,1fr)} } /* keep 2 columns on very small phones */
+  @media (max-width:420px){ .activities-grid{grid-template-columns:repeat(2,1fr)} }
   .activity{aspect-ratio:1/1; display:grid; place-items:center; text-align:center; padding:12px}
   .activity .title{font-weight:800}
 
@@ -202,25 +203,18 @@
   .to-top{position:fixed; right:18px; bottom:18px; z-index:9997; opacity:0; pointer-events:none; transition:opacity .2s}
   .to-top.show{opacity:1; pointer-events:auto}
 
-  /* === Desktop menu framing (mobile untouched) === */
+  /* Desktop menu framing */
   @media (min-width:761px){
-    /* No frame around the name (brand) on desktop */
-    header .brand{
-      padding:0; border:none; border-radius:0; background:transparent; box-shadow:none;
-    }
-    /* Keep nav inline and add framed pills */
-    header nav#siteNav{
-      display:flex; align-items:center; gap:8px;
-    }
+    header .brand{padding:0; border:none; border-radius:0; background:transparent; box-shadow:none;}
+    header nav#siteNav{display:flex; align-items:center; gap:8px}
     header nav#siteNav a{
-      margin:0; padding:8px 12px; border:1px solid var(--line); border-radius:12px;
-      background:rgba(255,255,255,.9); text-decoration:none; color:var(--muted);
+      margin:0; padding:8px 12px; border:1px solid var(--line);
+      border-radius:12px; background:rgba(255,255,255,.9); text-decoration:none; color:var(--muted);
     }
     header nav#siteNav a:hover{border-color:var(--accent); color:var(--accent)}
     header nav#siteNav a.active{
       border-color:var(--accent); color:var(--accent); box-shadow:0 0 0 2px rgba(14,165,162,.12) inset;
     }
-    /* Hide overlay brand (avoid duplicate) on desktop only */
     #siteNav .mhead{display:none;}
   }
 </style>
@@ -279,7 +273,7 @@
       <h2 class="reveal fx-wipe-l">Skills and Languages</h2>
       <p class="lead reveal fx-from-right">Fluency, methods, and tools.</p>
 
-      <!-- Languages: single line (scrollable) on desktop, two columns on phones -->
+      <!-- Languages: same items, tiny extra top space before scroll bar via padding-bottom -->
       <div class="card reveal fx-zoom">
         <strong class="reveal fx-wipe-r">Languages</strong>
         <div class="lang-row reveal fx-from-up">
@@ -310,22 +304,18 @@
         </div>
       </div>
 
-      <!-- Skills: two cards side-by-side (stack on mobile), chips instead of bullets -->
+      <!-- Skills: two columns, smaller chips, curated lists -->
       <div class="skills-2">
         <div class="card reveal fx-from-left">
           <strong class="reveal fx-wipe-l">Soft skills</strong>
           <div class="skills-chips">
             <span class="chip-lg">Communications</span>
-            <span class="chip-lg">Editorial judgement</span>
             <span class="chip-lg">Analytical thinking & synthesis</span>
             <span class="chip-lg">Press review & media monitoring</span>
             <span class="chip-lg">Critical thinking</span>
             <span class="chip-lg">Teamwork & facilitation</span>
             <span class="chip-lg">Stakeholder coordination</span>
             <span class="chip-lg">Policy writing & briefs</span>
-            <span class="chip-lg">Interviewing</span>
-            <span class="chip-lg">Storytelling</span>
-            <span class="chip-lg">Copyediting & proofreading</span>
             <span class="chip-lg">Public speaking & presentations</span>
           </div>
         </div>
@@ -333,19 +323,13 @@
         <div class="card reveal fx-from-right">
           <strong class="reveal fx-wipe-r">Hard skills</strong>
           <div class="skills-chips">
-            <span class="chip-lg">Excel</span>
+            <span class="chip-lg">Data analysis and cleaning (Excel)</span>
+            <span class="chip-lg">Mapping (QGIS and Mapbox)</span>
+            <span class="chip-lg">Dashboards and visuals</span>
+            <span class="chip-lg">WordPress and GitHub Pages</span>
+            <span class="chip-lg">Microsoft 365 (Word, PowerPoint, Outlook)</span>
             <span class="chip-lg">Google Workspace (Docs/Sheets/Drive)</span>
-            <span class="chip-lg">Microsoft 365 (Word/PowerPoint/Outlook/SharePoint)</span>
-            <span class="chip-lg">Tableau / Power BI</span>
-            <span class="chip-lg">SPSS / Stata (basics)</span>
-            <span class="chip-lg">NVivo (qual coding)</span>
-            <span class="chip-lg">Notion & Airtable</span>
-            <span class="chip-lg">WordPress</span>
-            <span class="chip-lg">Mailchimp</span>
-            <span class="chip-lg">Hootsuite</span>
-            <span class="chip-lg">Figma</span>
             <span class="chip-lg">Video editing & montage (Premiere/CapCut)</span>
-            <span class="chip-lg">OSINT basics</span>
           </div>
         </div>
       </div>
@@ -482,7 +466,7 @@
     </div>
   </section>
 
-  <!-- Extracurricular Activities — 4 squares -->
+  <!-- Extracurricular Activities -->
   <section id="activities" class="section">
     <div class="wrap">
       <h2 class="reveal fx-wipe-l">Extracurricular Activities</h2>
@@ -554,7 +538,7 @@ const onScroll=()=>{
 };
 addEventListener('scroll',onScroll,{passive:true}); onScroll();
 
-/* Mobile menu (unchanged from v30) */
+/* Mobile menu */
 const menuBtn=document.getElementById('menuBtn');
 const nav=document.getElementById('siteNav');
 function closeNav(){ document.body.classList.remove('nav-open'); menuBtn.setAttribute('aria-expanded','false'); nav.setAttribute('aria-hidden','true'); }
