@@ -261,6 +261,7 @@ header .brand{
     </button>
 
     <nav id="siteNav">
+      <!-- brand inside the overlay too -->
       <div class="mhead"><div class="badge" aria-hidden="true"></div><span>Bader Suliman</span></div>
 
       <a href="#about">About</a>
@@ -558,3 +559,4 @@ nav.querySelectorAll('a').forEach(a=>a.addEventListener('click',closeNav));
 addEventListener('keydown',e=>{ if(e.key==='Escape') closeNav(); });
 addEventListener('resize',()=>{ if(innerWidth>760) closeNav(); },{passive:true});
 </script>
+
