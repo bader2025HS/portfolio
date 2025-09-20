@@ -167,31 +167,24 @@
   }
   .flag img{width:100%; height:100%; object-fit:cover; display:block; image-rendering:auto}
 
-  @media (max-width:780px){
-    .lang-card .lang-title{margin-bottom:6px;}
-    .lang-wrap{margin-top:4px;}
-    .lang-row{overflow:visible; padding:0; gap:8px; display:grid; grid-template-columns:1fr 1fr;}
-    .lang-pill{font-size:.9rem; padding:5px 8px; gap:6px}
-    .flag{width:18px; height:18px; flex:0 0 18px}
-    #skills .wrap > .lang-card{margin-bottom:16px;} /* space before Soft skills box */
-  }
-
   /* Skills layout */
   .skills-2{display:grid; grid-template-columns:1fr 1fr; gap:18px; margin-top:6px}
-  @media (max-width:900px){
-    .skills-2{grid-template-columns:1fr; gap:16px} /* Soft then Hard stacked on phone */
-  }
   .skill-group-title{display:block; font-weight:700}
-
-  .chips{
-    display:grid; grid-template-columns:repeat(2,1fr);
-    gap:8px; margin-top:8px;
-  }
+  .chips{display:grid; grid-template-columns:repeat(2,1fr); gap:8px; margin-top:8px}
   .chip{
     display:inline-flex; align-items:center; justify-content:center;
     padding:4px 8px; border:1px solid var(--line); border-radius:999px;
-    font-weight:600; font-size:.9rem; text-align:center; box-shadow:0 1px 2px rgba(2,6,23,.05);
-    white-space:nowrap;
+    font-weight:600; font-size:.9rem; text-align:center; box-shadow:0 1px 2px rgba(2,6,23,.05); white-space:nowrap;
+  }
+
+  /* Phone: make Languages + Soft + Hard align as identical full-width boxes */
+  @media (max-width:900px){
+    /* stack and make widths/margins identical */
+    .stack-uniform{display:block}
+    .stack-uniform > .card{width:100%; margin:0 0 16px 0}
+    .stack-uniform > .card:last-child{margin-bottom:0}
+    #skills .wrap > .lang-card{margin-bottom:16px} /* same gap before Soft */
+    .skills-2{grid-template-columns:1fr; gap:16px}  /* ensure single column */
   }
 
   /* Projects */
@@ -321,7 +314,7 @@
       </div>
 
       <!-- Skills -->
-      <div class="skills-2">
+      <div class="skills-2 stack-uniform">
         <!-- Soft skills -->
         <div class="card reveal fx-from-left">
           <strong class="skill-group-title reveal fx-wipe-l">Soft skills</strong>
