@@ -1,235 +1,560 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE-edge">
-    <meta name="viewport" content="width=device-width, initiale-scale=1.0">
-    <title>Personal Portfolio Website</title> 
-    <link rel="stylesheet" href="style.css?v=17">
-    <script src="https://kit.fontawesome.com/9c8af7e2d0.js" crossorigin="anonymous"></script>
-</head>
-<body>
-<div id="header">
-    <div class="container">
-        <nav>
-            <img src="logonobkg.png" class="logo">
-            <ul id="sidemenu">
-                <li><a href="#header">Home</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#services">Focus Areas</a></li>
-                <li><a href="#portfolio">Work</a></li>
-                <li><a href="#contact">Contact</a></li>
-                <i class="fa-solid fa-xmark" onclick="closemenu()"></i>
-            </ul>
-            <i class="fa-solid fa-bars" onclick="openmenu()"></i>
-        </nav>
-        <div class="header-text">
-            <p>International Security Student</p>
-            <h1>Hi, I'm <span>Bader</span><br>Suliman</h1>  
-        </div>
-    </div>
-</div>
+<!-- PORTFOLIO — v31 (desktop menu framed) -->
 
-<!-----------about------------>
-<div id="about">
-    <div class="container">
-        <div class="row">
-            <div class="about-col-1">
-                <img src="newppnew.png">
-            </div>
-            <div class="about-col-2">
-                <h1 class="sub-title">About Me</h1>
-                <p>I'm a Master's student in International Security at Sciences Po Paris, with a strong academic background and hands-on experience in diplomacy, humanitarian work, and environmental policy. I’ve worked with embassies, NGOs, and research institutions across Europe and the Middle East, always driven by a commitment to social impact and global cooperation. My work combines analytical rigor with field experience, and I’m passionate about building solutions where security, development, and human rights intersect.</p>
-                <div class="tab-titles">
-                    <p class="tab-links active-link" onclick="opentab('skills')">Skills</p>
-                    <p class="tab-links" onclick="opentab('experience')">Experience</p>
-                    <p class="tab-links" onclick="opentab('education')">Education</p>
-                </div>
-                <div class="tab-contents active-tab" id="skills">
-                    <ul>
-                    <li><span>Research</span><br>Legal and geopolitical research applied to migration and security contexts</li>
-                    <li><span>Communication</span><br>Productivity tools (Excel, Word, Canva, WordPress)</li>
-                    <li><span>Policy Writing</span><br>Draft policy briefs, memos, and reports for academic or institutional use</li>
-                     <li><span>Media Monitoring</span><br>Identify key narratives, assess public discourse, and support diplomatic responses</li>
-                     <li><span>Data Analysis</span><br>Clean, structure, and interpret datasets using Excel and basic statistical tools</li>
-                    </ul>
-                        </div>
-                 <div class="tab-contents" id="experience">
-                    <ul>
-                    <li><span>ARDHIS - Immigration Law. Paris, 2024-2025</span><br>Supported LGBT+ asylum seekers; conducted legal and geopolitical research (e.g., DRC, Cameroon).</li>
-                    <li><span>Tarjimly – Interpreter. Remote, Active since 2022</span><br>Provided Arabic–English–French interpretation for refugees in asylum, healthcare, and social service contexts.</li>
-                    <li><span>Royal Scientific Society - Research Intern. Amman, 2023</span><br>Researched desalination impacts in MENA; drafted bilingual policy briefs for institutional partners.</li>
-                    <li><span>MEDMUN – Director. Menton, 2022-2023</span><br>Led Arabic-language simulations on Syria/Yemen; moderated debates and coordinated multilingual teams.</li>
-                    <li><span>City Hall – IR Intern. Nancy, 2022 </span><br>Facilitated visits and cultural exchange for twin-city students; ensured intercultural mediation.</li>
-                    </ul>
-                </div>
-                <div class="tab-contents" id="education">
-                    <ul>
-                    <li><span>Dual M.A. – PSIA & FU Berlin (2024–2026)</span><br>International Security, Conflict Management, and Middle Eastern Studies.</li>
-                    <li><span>INALCO – Persian Language & Civilization (Paris, 2024–2025)</span><br>Focus on Iranian politics, society, literature, and history.</li>
-                    <li><span>B.A. – Sciences Po Paris (2021–2024)</span><br>Exchange Year – Tokyo University of Foreign Studies (2023–2024)</li>
-                    <li>Campus Menton – Mediterranean & Middle Eastern Studies (2022–2023)</li>
-                    <li>Campus Nancy – French-German & EU Politics (2021–2022)</li>
-                        <a href="Bachelors diploma.pdf" target="_blank">
-                            <button style="background-color: #ff004f;
-                                           color: white;
-                                           padding: 10px 20px; 
-                                           border: none;
-                                           border-radius: 8px;
-                                           font-size: 13px;
-                                           cursor: pointer;">View My Degree</button></a>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<!----------------------services----------------->    
-<div id="services">
-    <div class="container">
-     <h1 class="sub-title">Focus Areas</h1>
-        <div class="services-list">
-            <div>
-                <i class="fa-solid fa-person-walking-luggage"></i>
-                <h2>Migration & Displacement</h2>
-                <p>Exploring the drivers, legal frameworks, and human impact of forced migration across regions.</p>
-                <a href="https://drive.google.com/file/d/13sqci7_y4AeKYESpqBvQ8IvlyRcwN2dn/view?usp=drive_link">Learn more</a> 
-            </div>
-             <div>
-                 <i class="fa-solid fa-scale-unbalanced-flip"></i>
-                <h2>Middle East Geopolitics</h2>
-                <p>Analyzing power dynamics, conflicts, and regional strategies shaping the contemporary Middle East.</p>
-                <a href="https://drive.google.com/file/d/1NwFmDum8xWyOpI1fEIxZMbdQu8qLhO9g/view?usp=drive_link">Learn more</a> 
-            </div>
-             <div>
-                <i class="fa-solid fa-book-open"></i>
-                <h2>Humanitarian Data & Policy</h2>
-                <p>Supporting vulnerable communities through research, legal aid, and rights-based policy approaches.</p>
-                <a href="https://drive.google.com/file/d/1_vNABo3QiNrpVz16cp14NaQXh7Z3PAtz/view?usp=drive_link">Learn more</a> 
-            </div>
-        </div>
-    </div>
- </div>   
-<!---------------portfolio------------>
-    <div id="portfolio">
-    <div class="container">
-        <h1 class="sub-title">My Work</h1>
-        <div class="work-list">
-            <div class="work">
-                    <img src="mywork1.png">
-                <div class="layer">
-                    <h3><b>Interactive Human Security Twine Game</b></h3>
-                    <p>Designed an interactive digital experience to teach key Human Security concepts—including the 7 Securities, Responsibility to Protect (R2P), and radicalization—through branching narratives, embedded quizzes, and visual storytelling. The project aimed to make complex policy frameworks accessible and engaging for a broader audience.</p>
-                    <a href="https://bader2025hs.github.io/human-security-final/"><i  class="fa-solid fa-link"></i></a>
-                </div>
-                </div>
-             <div class="work">
-                    <img src="mywork2.png">
-                  <div class="layer">
-                    <h3><b>Asylum Research and Legal Support for LGBT+ Refugees</b></h3>
-                    <p>Supported asylum applicants by drafting case briefs and conducting contextual research for OFPRA and CNDA hearings. Authored a 70-page report on the situation of LGBT+ individuals in the DRC, Cameroon, Senegal, and Côte d’Ivoire, used to support claims and inform legal strategy.</p>
-                    <a href="https://drive.google.com/file/d/1fzo9DaZZnWsPb5oyor-2r3Wx4Pcfcwzz/view?usp=drive_link"><i class="fa-solid fa-link"></i></a>
-                </div>
-                </div>
-             <div class="work">
-                    <img src="mywork3.png">
-                  <div class="layer">
-                    <h3><b>Research: French ODA Allocation in West Africa</b></h3>
-                    <p>Studied how France allocates Official Development Assistance (ODA) across West African countries, using data from 2003 to 2023. The research analyzed trends, priorities, and underlying political and economic logics guiding aid distribution, offering insights into France’s development strategy and regional engagement.</p>
-                    <a href="https://drive.google.com/file/d/1tMLRtsgw6Ip6mzWVFRWqnAoKpm1-RTs-/view?usp=drive_link"><i class="fa-solid fa-link"></i></a>
-                </div>
-                </div>
-            </div>
-        <a href="https://drive.google.com/file/d/1lnS3G4C9w44sFIUacKEammXANaxAO3y4/view?usp=drive_link" class="btn">See more</a>
-        </div>
-    </div>
-<!---------------contact------------->
-    <div id="contact">
-        <div class="container">
-            <div class="row">
-                <div class="contact-left">
-                    <h1 class="sub-title">Contact Me</h1>
-                    <p><i class="fa-solid fa-paper-plane"></i>badersuliman79@gmail.com</p>
-                    <p><i class="fa-solid fa-phone"></i>+33 7 81 78 90 73</p>
-                    <div class="social-icons">
-                        <a href="https://instagram.com/badersouleymann"><i class="fa-brands fa-square-instagram"></i></a>
-                        <a href=""><i class="fa-brands fa-twitter-square"></i></a>
-                        <a href="https://facebook.com/Bader Suliman"><i class="fa-brands fa-square-facebook"></i></a>
-                        <a href="https://linkedin.com/in/bader-suliman-845840234"><i class="fa-brands fa-linkedin"></i></a>
-                    </div>
-                    <a href="bs.cv.eng.pdf" target="_blank" download class="btn btn2">Download CV</a>
-                </div>
-                <div class="contact-right">
-                <form name="submit-to-google-sheet">
-                    <input type="text" name="Name" placeholder="Your Name" required>
-                    <input type="email" name="email" placeholder="Your Email" required>
-                    <textarea name="Message" rows="6" placeholder="Your Message"></textarea>
-                    <button type="submit" class="btn btn2">Submit</button>
-                </form>
-                <span id="msg"></span>
-                </div>
-            </div>
-        </div>
-        <div class="copyright">
-            <p>Copyright © Made with <i class="fa-solid fa-heart"></i> by Bader </p>
-        </div>
-    </div>
-    
-    
-    
+<!-- Viewport (safety) -->
 <script>
-    
-    var tablinks = document.getElementsByClassName("tab-links");
-    var tabcontents = document.getElementsByClassName("tab-contents");
-    function opentab(tabname){
-        for(tablink of tablinks){
-            tablink.classList.remove("active-link");
-        }
-        for(tabcontent of tabcontents){
-            tabcontent.classList.remove("active-tab");
-        }
-        event.currentTarget.classList.add("active-link");
-        document.getElementById(tabname).classList.add("active-tab")
-    }
-
+(function(){
+  if(!document.querySelector('meta[name="viewport"]')){
+    const m=document.createElement('meta');
+    m.name='viewport'; m.content='width=device-width, initial-scale=1';
+    document.head.appendChild(m);
+  }
+})();
 </script>
-    
+
+<style>
+  :root{
+    --header:72px; --maxw:860px;
+    --bg1:#eafaf7; --bg2:#f7fbff; --bg3:#e9f8ff;
+    --text:#0f172a; --muted:#475569; --card:#f8fafc; --line:#e2e8f0;
+    --accent:#0ea5a2; --accent2:#1fbdb9; --gold:#d4af37;
+    --radius:18px; --shadow:0 10px 30px rgba(2,6,23,.07);
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth; scroll-padding-top:calc(var(--header) + 14px)}
+  body{
+    margin:0; color:var(--text); font-family:system-ui,-apple-system,Segoe UI,Inter,Roboto,Arial;
+    background:linear-gradient(120deg,var(--bg1),var(--bg2),var(--bg3));
+    background-size:200% 200%; animation:bgShift 22s ease infinite;
+  }
+  @keyframes bgShift{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
+  body:before{
+    content:""; position:fixed; inset:0; z-index:-1; opacity:.05; pointer-events:none;
+    background:
+      repeating-linear-gradient(90deg,#000 0 1px,transparent 1px 26px),
+      repeating-linear-gradient(0deg,#000 0 1px,transparent 1px 26px);
+    mix-blend-mode:soft-light; animation:gridPan 30s linear infinite;
+  }
+  body::after{
+    content:""; position:fixed; inset:0; z-index:-1; pointer-events:none; opacity:.18;
+    background:
+      repeating-radial-gradient(circle at 20% 30%, rgba(2,6,23,.08) 0 2px, transparent 2px 18px),
+      repeating-radial-gradient(circle at 75% 60%, rgba(2,6,23,.06) 0 2px, transparent 2px 22px);
+    filter:blur(.2px);
+  }
+  @keyframes gridPan{to{transform:translate3d(-26px,-26px,0)}}
+
+  .wrap{max-width:var(--maxw); margin-inline:auto; padding:clamp(16px,3vw,26px)}
+  .section{margin:clamp(24px,5vw,46px) 0}
+  .section h2{margin:0 0 6px; font-size:clamp(26px,4.2vw,38px)}
+  .section h2 + .lead{margin-top:2px}
+  .lead{color:var(--muted)}
+
+  /* Reveals */
+  .reveal{opacity:0; will-change:transform,filter;
+    transition:opacity .6s cubic-bezier(.2,.7,.2,1),
+               transform .6s cubic-bezier(.2,.7,.2,1),
+               filter .6s cubic-bezier(.2,.7,.2,1)}
+  .reveal.in{opacity:1; transform:none; filter:none}
+  .fx-from-left{transform:translateX(-28px) skewX(-2deg); filter:blur(4px)}
+  .fx-from-right{transform:translateX(28px) skewX(2deg); filter:blur(4px)}
+  .fx-from-up{transform:translateY(-24px); filter:blur(6px)}
+  .fx-from-down{transform:translateY(24px); filter:blur(6px)}
+  .fx-zoom{transform:scale(.94); filter:blur(4px)}
+  .fx-wipe-l,.fx-wipe-r{display:inline-block; will-change:clip-path; transition:clip-path .7s cubic-bezier(.2,.7,.2,1)}
+  .fx-wipe-l{clip-path:inset(0 100% 0 0)} .fx-wipe-r{clip-path:inset(0 0 0 100%)}
+  .fx-wipe-l.in,.fx-wipe-r.in{clip-path:inset(0 0 0 0)}
+
+  /* Header */
+  header{
+    position:sticky; top:0; z-index:9999; height:var(--header);
+    background:rgba(255,255,255,.95); border-bottom:1px solid var(--line);
+    backdrop-filter:saturate(120%) blur(10px);
+  }
+  header .inner{max-width:var(--maxw); height:100%; margin:auto; padding:0 16px;
+    display:flex; align-items:center; justify-content:space-between; gap:12px}
+  .brand{display:flex; align-items:center; gap:10px; font-weight:800; white-space:nowrap}
+  .brand span{display:inline-block}
+  .badge{width:34px; height:34px; border-radius:10px; flex:0 0 34px;
+    background:conic-gradient(from 220deg,var(--accent),var(--accent2));
+    box-shadow:0 6px 18px rgba(2,6,23,.06); animation:spin 10s linear infinite}
+  @keyframes spin{to{transform:rotate(360deg)}}
+
+  /* Navbar links (no underline) */
+  nav a{
+    color:var(--muted); text-decoration:none; font-weight:600; margin-left:14px; position:relative; padding:6px 0
+  }
+  nav a:hover{color:var(--accent)}
+  nav a.active{color:var(--accent)}
+  nav a:after{display:none !important} /* remove underline */
+
+  /* Hamburger + mobile overlay — EXACTLY like v30 */
+  .menu-toggle{display:none; place-items:center; width:42px; height:42px;
+    border:1px solid var(--line); border-radius:12px; background:var(--card); box-shadow:var(--shadow)}
+  .menu-toggle .bar{width:20px; height:2px; background:var(--text); position:relative; transition:transform .25s}
+  .menu-toggle .bar:before,.menu-toggle .bar:after{
+    content:""; position:absolute; left:0; width:20px; height:2px; background:var(--text); transition:.25s}
+  .menu-toggle .bar:before{top:-6px} .menu-toggle .bar:after{top:6px}
+  body.nav-open .menu-toggle .bar{transform:rotate(45deg)}
+  body.nav-open .menu-toggle .bar:before{transform:rotate(-90deg) translateX(-6px); opacity:0}
+  body.nav-open .menu-toggle .bar:after{transform:rotate(-90deg); top:0}
+  body.nav-open{overflow:hidden}
+
+  @media (max-width:760px), (max-device-width:812px){
+    .menu-toggle{display:grid; position:fixed; right:12px; top:12px; z-index:10005}
+    header nav#siteNav{
+      position:fixed; inset:0; z-index:10004; height:100svh;
+      padding:calc(env(safe-area-inset-top,0px) + 84px) 18px 24px;
+      display:flex; flex-direction:column; gap:10px;
+      background:#fff !important; /* solid white */
+      transform:translateY(-100%); opacity:0; visibility:hidden; pointer-events:none;
+      transition:transform .28s ease, opacity .2s ease;
+    }
+    body.nav-open header nav#siteNav{transform:translateY(0); opacity:1; visibility:visible; pointer-events:auto}
+    header nav a{margin:0; padding:16px 14px; border-radius:12px; font-size:1.12rem; background:#fff; border:1px solid var(--line)}
+    header nav a.active{color:var(--accent); border-color:var(--accent)}
+    #siteNav .mhead{display:none;} /* hidden on mobile overlay already shows brand elsewhere */
+  }
+
+  #progress{position:fixed; top:0; left:0; height:3px; width:0; z-index:10000;
+    background:linear-gradient(90deg,var(--accent),#7c61ff,#ff7a6e,#f59e0b)}
+
+  /* Type / buttons / cards */
+  h1{font-size:clamp(44px,7vw,74px); margin:0 0 6px}
+  .btn{display:inline-flex; align-items:center; gap:8px; padding:10px 14px; border-radius:14px;
+    border:1px solid var(--line); font-weight:700; text-decoration:none; position:relative; overflow:hidden}
+  .btn.primary{background:linear-gradient(135deg,var(--accent),var(--accent2)); color:#fff; border-color:transparent}
+  .btn.ghost{background:var(--card); color:var(--text)}
+  .btn:hover{transform:translateY(-1px)}
+  .btn:after{content:""; position:absolute; inset:auto; top:0; left:0; width:0; height:100%; background:rgba(255,255,255,.15); transition:width .25s}
+  .btn:hover:after{width:100%}
+  .card{background:var(--card); border:1px solid var(--line); border-radius:var(--radius); box-shadow:var(--shadow); padding:clamp(14px,2vw,18px); transition:transform .2s, box-shadow .2s}
+  .card:hover{transform:translateY(-2px); box-shadow:0 14px 36px rgba(2,6,23,.11)}
+
+  /* Strap under name */
+  .strap{margin:6px 0 12px; display:flex; align-items:center; gap:10px; flex-wrap:wrap}
+  .rotator{font-weight:800; letter-spacing:.2px}
+  .fade{opacity:0; transform:translateY(6px); transition:opacity .25s, transform .25s}
+  .fade.show{opacity:1; transform:none}
+  .chips-mini{display:flex; gap:8px; flex-wrap:wrap}
+  .chip-mini{padding:4px 10px; border:1px solid var(--line); border-radius:999px; background:var(--card); font-weight:600; font-size:.92rem}
+
+  /* Skills & Languages */
+  .skills-2{display:grid; grid-template-columns:1fr 1fr; gap:18px; margin-top:6px}
+  @media (max-width:900px){.skills-2{grid-template-columns:1fr}}
+  .skills-2 ul{margin:.3rem 0 0 18px}
+
+  .lang-cols{display:grid; grid-template-columns:1fr 1fr; gap:18px; margin-top:6px}
+  @media (max-width:800px){.lang-cols{grid-template-columns:1fr}}
+  /* remove bullets ONLY in language lists */
+  .lang-cols ul{list-style:none; padding:0; margin:.3rem 0 0}
+  .lang-item{display:flex; align-items:center; gap:10px; margin:4px 0}
+
+  /* Flag circles for Languages (sharp + visible) */
+  .flag{
+    display:inline-block;
+    width:24px;
+    height:24px;
+    border-radius:50%;
+    overflow:hidden;
+    flex:0 0 24px;
+    box-shadow:0 0 0 1px var(--line), 0 1px 2px rgba(2,6,23,.12);
+  }
+  .flag img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    display:block;
+    image-rendering:auto;
+  }
+
+  /* Projects */
+  .projects{display:grid; grid-template-columns:repeat(3,1fr); gap:12px}
+  @media (max-width:1000px){.projects{grid-template-columns:1fr}}
+  .project{will-change:transform; transform:translateZ(0); transition:transform .28s, box-shadow .28s}
+  .project:hover{transform:scale(1.12); z-index:6; box-shadow:0 22px 54px rgba(2,6,23,.18)}
+  .thumb{aspect-ratio:16/10; border-radius:14px; border:1px solid var(--line); background:#e6fffb center/cover no-repeat; transition:transform .28s}
+  .project:hover .thumb{transform:scale(1.18)}
+  .project .body{display:grid; grid-template-rows:0fr; transition:grid-template-rows .25s, opacity .25s; opacity:0}
+  .project:hover .body{grid-template-rows:1fr; opacity:1}
+  .project .body>div{overflow:hidden}
+  @media (hover:none){ .project .body{grid-template-rows:1fr; opacity:1} .project:hover,.project:hover .thumb{transform:none} }
+
+  /* Experience */
+  .timeline{position:relative; margin-top:8px}
+  .timeline:before{content:""; position:absolute; left:12px; top:0; bottom:0; width:2px; background:linear-gradient(var(--accent),var(--gold)); opacity:.3}
+  .t{display:grid; grid-template-columns:26px 1fr; gap:12px; margin:14px 0}
+  .dot{width:22px; height:22px; border-radius:50%; border:2px solid var(--accent); background:radial-gradient(circle at 40% 35%, #d4af37, #f3e8c1); box-shadow:0 0 0 3px rgba(14,165,162,.12)}
+  .role{display:flex; align-items:center; justify-content:space-between; gap:12px; white-space:nowrap}
+  @media (max-width:520px){ .role{white-space:normal} }
+  .where{color:var(--muted)}
+  .tags{display:flex; gap:6px; flex-wrap:wrap; margin-top:8px}
+  .tag{display:inline-block; padding:6px 10px; border:1px solid var(--line); border-radius:999px; font-size:.95rem; color:#0b3b3a; background:#e9fbf9}
+
+  /* Education */
+  .edu{display:grid; grid-template-columns:1fr; gap:12px}
+  .edu .item .head{display:flex; align-items:center; justify-content:space-between; gap:10px; flex-wrap:wrap}
+  .edu .item strong{display:block}
+  .edu .item .where{color:var(--muted); font-weight:600}
+  .edu .item p{margin:.35rem 0 0}
+
+  /* Activities — 4-in-row desktop, FORCE 2×2 on phones */
+  .activities-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:12px}
+  @media (max-width:900px){ .activities-grid{grid-template-columns:repeat(2,1fr)} }
+  @media (max-width:420px){ .activities-grid{grid-template-columns:repeat(2,1fr)} } /* keep 2 columns on very small phones */
+  .activity{aspect-ratio:1/1; display:grid; place-items:center; text-align:center; padding:12px}
+  .activity .title{font-weight:800}
+
+  /* Footer (small) */
+  footer{border-top:1px solid var(--line); color:var(--muted); padding:10px 0; margin-top:24px;
+    background:rgba(255,255,255,.95); backdrop-filter:saturate(120%) blur(10px); font-size:.92rem}
+  .to-top{position:fixed; right:18px; bottom:18px; z-index:9997; opacity:0; pointer-events:none; transition:opacity .2s}
+  .to-top.show{opacity:1; pointer-events:auto}
+
+  /* === Desktop menu framing (mobile untouched) === */
+  @media (min-width:761px){
+  /* No frame around the name (brand) on desktop */
+header .brand{
+  padding:0;
+  border:none;
+  border-radius:0;
+  background:transparent;
+  box-shadow:none;
+}
+    /* Keep nav inline and add framed pills */
+    header nav#siteNav{
+      display:flex;
+      align-items:center;
+      gap:8px;
+    }
+    header nav#siteNav a{
+      margin:0;
+      padding:8px 12px;
+      border:1px solid var(--line);
+      border-radius:12px;
+      background:rgba(255,255,255,.9);
+      text-decoration:none;
+      color:var(--muted);
+    }
+    header nav#siteNav a:hover{
+      border-color:var(--accent);
+      color:var(--accent);
+    }
+    header nav#siteNav a.active{
+      border-color:var(--accent);
+      color:var(--accent);
+      box-shadow:0 0 0 2px rgba(14,165,162,.12) inset;
+    }
+    /* Hide overlay brand (avoid duplicate) on desktop only */
+    #siteNav .mhead{display:none;}
+  }
+</style>
+
+<div id="progress"></div>
+
+<header>
+  <div class="inner">
+    <div class="brand"><div class="badge" aria-hidden="true"></div><span>Bader Suliman</span></div>
+
+    <!-- Hamburger -->
+    <button class="menu-toggle" id="menuBtn" aria-label="Open menu" aria-expanded="false" aria-controls="siteNav">
+      <span class="bar"></span>
+    </button>
+
+    <nav id="siteNav">
+      <div class="mhead"><div class="badge" aria-hidden="true"></div><span>Bader Suliman</span></div>
+
+      <a href="#about">About</a>
+      <a href="#skills">Skills</a>
+      <a href="#education">Education</a>
+      <a href="#experience">Experience</a>
+      <a href="#work">Work</a>
+      <a href="#activities">Activities</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <!-- About -->
+  <section id="about" class="section">
+    <div class="wrap reveal fx-from-down">
+      <h1 class="reveal fx-wipe-l">Bader Suliman</h1>
+
+      <div class="strap reveal fx-from-right">
+        <span class="rotator"><span id="rotate" class="fade">Communications</span></span>
+        <div class="chips-mini">
+          <span class="chip-mini">AR EN FR DE</span>
+          <span class="chip-mini">Paris • willing to relocate</span>
+        </div>
+      </div>
+
+      <div class="card reveal fx-zoom">
+        <strong class="reveal fx-wipe-r">About</strong>
+        <p class="lead reveal fx-from-left" style="margin:.4rem 0 0">
+          I make sense first, then make it simple. Think press reviews that highlight what matters, maps that you can read in five seconds, and short briefs that help a team decide the next step. I also enjoy research the practical way, from digging through datasets and field notes to speaking with practitioners, then turning that into concise takeaways and visuals that move work forward.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Skills & Languages -->
+  <section id="skills" class="section">
+    <div class="wrap">
+      <h2 class="reveal fx-wipe-l">Skills and Languages</h2>
+      <p class="lead reveal fx-from-right">Fluency, methods, and tools.</p>
+
+      <div class="card reveal fx-zoom">
+        <strong class="reveal fx-wipe-r">Languages</strong>
+        <div class="lang-cols reveal fx-from-up">
+          <ul class="lead">
+            <li class="lang-item"><span class="flag"><img src="https://flagcdn.com/w80/sa.png" alt="Arabic flag"></span><strong>Arabic</strong> - Native (MSA and dialects)</li>
+            <li class="lang-item"><span class="flag"><img src="https://flagcdn.com/w80/fr.png" alt="French flag"></span><strong>French</strong> - Native</li>
+            <li class="lang-item"><span class="flag"><img src="https://flagcdn.com/w80/gb.png" alt="English flag"></span><strong>English</strong> - C2 (spoken, read, written)</li>
+          </ul>
+          <ul class="lead">
+            <li class="lang-item"><span class="flag"><img src="https://flagcdn.com/w80/de.png" alt="German flag"></span><strong>German</strong> - C1 (spoken, read, written)</li>
+            <li class="lang-item"><span class="flag"><img src="https://flagcdn.com/w80/ir.png" alt="Persian flag"></span><strong>Persian</strong> - A2 (spoken, read, written)</li>
+            <li class="lang-item"><span class="flag"><img src="https://flagcdn.com/w80/jp.png" alt="Japanese flag"></span><strong>Japanese</strong> - A2 (spoken, read, written)</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="skills-2">
+        <div class="card reveal fx-from-left">
+          <strong class="reveal fx-wipe-l">Soft skills</strong>
+          <ul class="lead">
+            <li>Analytical thinking and synthesis</li>
+            <li>Press review and media monitoring</li>
+            <li>Critical thinking</li>
+            <li>Team work and facilitation</li>
+            <li>Communication and storytelling</li>
+            <li>Stakeholder coordination</li>
+          </ul>
+        </div>
+        <div class="card reveal fx-from-right">
+          <strong class="reveal fx-wipe-r">Hard skills</strong>
+          <ul class="lead">
+            <li>Data analysis and cleaning (Excel)</li>
+            <li>Mapping (QGIS and Mapbox)</li>
+            <li>Dashboards and visuals</li>
+            <li>WordPress and GitHub Pages</li>
+            <li>Basic HTML and CSS, Twine</li>
+            <li>Microsoft 365 (Word, PowerPoint, Outlook)</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Education -->
+  <section id="education" class="section">
+    <div class="wrap">
+      <h2 class="reveal fx-wipe-r">Education</h2>
+      <p class="lead reveal fx-from-left">Focus on security, migration, and EU governance.</p>
+      <div class="edu">
+        <div class="card item reveal fx-from-up">
+          <div class="head">
+            <strong class="reveal fx-wipe-l">M.A. International Security - Sciences Po (PSIA)</strong>
+            <span class="where reveal fx-from-right">Paris • 2024–2027</span>
+          </div>
+          <p class="lead">Focus on Migration and Middle Eastern Studies at the Paris School of International Affairs.</p>
+        </div>
+        <div class="card item reveal fx-zoom">
+          <div class="head">
+            <strong class="reveal fx-wipe-r">M.A. International Relations - Freie Universität Berlin (OSI)</strong>
+            <span class="where reveal fx-from-right">Berlin • 2024–2027</span>
+          </div>
+          <p class="lead">Coursework in international relations and European Affairs in the Otto Suhr Institute track.</p>
+        </div>
+        <div class="card item reveal fx-from-down">
+          <div class="head">
+            <strong class="reveal fx-wipe-l">B.A. Politics and Government - Sciences Po</strong>
+            <span class="where reveal fx-from-right">Menton/Nancy • 2021–2024</span>
+          </div>
+          <p class="lead">Exchange: Tokyo University of Foreign Studies (TUFS) - Tokyo • 2023–2024.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Experience -->
+  <section id="experience" class="section">
+    <div class="wrap">
+      <h2 class="reveal fx-wipe-l">Experience</h2>
+      <p class="lead reveal fx-from-right">Communications, humanitarian data, and policy research.</p>
+      <div class="timeline">
+        <div class="t">
+          <div class="dot" aria-hidden="true"></div>
+          <div class="card reveal fx-from-left">
+            <div class="role">
+              <strong>Intern - Project Design and Monitoring, OIF</strong>
+              <span class="where">Paris • 2025</span>
+            </div>
+            <p class="lead" style="margin:.35rem 0 0">Analyzed project data, maintained structured cooperation databases, wrote country briefs, and supported monitoring and evaluation for the execution report.</p>
+            <div class="tags"><span class="tag">Data analysis</span><span class="tag">Database design</span><span class="tag">Country briefs</span><span class="tag">Monitoring and evaluation</span></div>
+          </div>
+        </div>
+        <div class="t">
+          <div class="dot"></div>
+          <div class="card reveal fx-from-right">
+            <div class="role">
+              <strong>Intern - Data Analysis, AQLITY</strong>
+              <span class="where">Remote • 2025</span>
+            </div>
+            <p class="lead" style="margin:.35rem 0 0">Cleaned and analyzed humanitarian datasets and produced GIS maps and visual materials to explain trends and inform reports.</p>
+            <div class="tags"><span class="tag">Data cleaning</span><span class="tag">GIS and mapping</span><span class="tag">Infographics</span><span class="tag">Reporting</span></div>
+          </div>
+        </div>
+        <div class="t">
+          <div class="dot"></div>
+          <div class="card reveal fx-from-left">
+            <div class="role">
+              <strong>Assistant - Immigration Law, ARDHIS</strong>
+              <span class="where">Paris • 2024 to 2025</span>
+            </div>
+            <p class="lead" style="margin:.35rem 0 0">Guided asylum seekers during drop in sessions, researched country conditions, and drafted case notes and briefs for OFPRA and the CNDA.</p>
+            <div class="tags"><span class="tag">Legal support</span><span class="tag">Country research</span><span class="tag">Case briefs</span><span class="tag">Interviewing</span></div>
+          </div>
+        </div>
+        <div class="t">
+          <div class="dot"></div>
+          <div class="card reveal fx-from-right">
+            <div class="role">
+              <strong>Intern - Partnerships and Development Dept., Royal Scientific Society</strong>
+              <span class="where">Amman • 2023</span>
+            </div>
+            <p class="lead" style="margin:.35rem 0 0">Researched climate, water scarcity, and desalination in the Middle East and published an article with the Konrad Adenauer Stiftung while collaborating across research and policy teams.</p>
+            <div class="tags"><span class="tag">Desalination</span><span class="tag">Climate and water</span><span class="tag">Research writing</span><span class="tag">Science diplomacy</span></div>
+          </div>
+        </div>
+        <div class="t">
+          <div class="dot"></div>
+          <div class="card reveal fx-from-left">
+            <div class="role">
+              <strong>Intern - International Relations Department, City Hall</strong>
+              <span class="where">Nancy • 2022</span>
+            </div>
+            <p class="lead" style="margin:.35rem 0 0">Organized public events and intercultural outreach with twin cities and assisted logistics and protocol for official visits.</p>
+            <div class="tags"><span class="tag">Event operations</span><span class="tag">Intercultural outreach</span><span class="tag">Protocol</span><span class="tag">Logistics</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Selected Work -->
+  <section id="work" class="section">
+    <div class="wrap">
+      <h2 class="reveal fx-wipe-r">Selected Work</h2>
+      <p class="lead reveal fx-from-left">Case studies blending analysis, design, and impact. Hover a project to see details.</p>
+      <div class="projects">
+        <article class="card project reveal fx-zoom">
+          <div class="thumb" style="background-image:url('https://images.unsplash.com/photo-1618477388954-7852f32655ec?q=80&w=1600&auto=format&fit=crop');"></div>
+          <h3 style="margin:10px 0">Human Security - Interactive Twine</h3>
+          <div class="body"><div>
+            <p class="lead">Interactive learning experience with quizzes and styled passages.</p>
+            <p><a class="btn ghost" href="#" target="_blank" rel="noopener">Open project →</a></p>
+          </div></div>
+        </article>
+        <article class="card project reveal fx-zoom">
+          <div class="thumb" style="background-image:url('https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?q=80&w=1600&auto=format&fit=crop');"></div>
+          <h3 style="margin:10px 0">SLAC Assessments - Data to Narrative</h3>
+          <div class="body"><div>
+            <p class="lead">Settlement level data distilled into briefs and maps for partners.</p>
+            <p><a class="btn ghost" href="#" target="_blank" rel="noopener">Open project →</a></p>
+          </div></div>
+        </article>
+        <article class="card project reveal fx-zoom">
+          <div class="thumb" style="background-image:url('https://images.unsplash.com/photo-1545239351-1141bd82e8a6?q=80&w=1600&auto=format&fit=crop');"></div>
+          <h3 style="margin:10px 0">Desalination - Policy Brief</h3>
+          <div class="body"><div>
+            <p class="lead">Explainer on environmental and social impacts.</p>
+            <p><a class="btn ghost" href="#" target="_blank" rel="noopener">Open project →</a></p>
+          </div></div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Extracurricular Activities — 4 squares -->
+  <section id="activities" class="section">
+    <div class="wrap">
+      <h2 class="reveal fx-wipe-l">Extracurricular Activities</h2>
+      <p class="lead reveal fx-from-right">Clubs, volunteering, events, and field exposure.</p>
+
+      <div class="activities-grid">
+        <article class="card activity reveal fx-zoom"><div class="title">Sciences Po Monde Arabe — Communications Director</div></article>
+        <article class="card activity reveal fx-zoom"><div class="title">Tarjimly — Volunteer Translator & Interpreter</div></article>
+        <article class="card activity reveal fx-zoom"><div class="title">Events — Mediterranean of the Future & Paris Peace Forum</div></article>
+        <article class="card activity reveal fx-zoom"><div class="title">MEDMUN — Arabic Committee Director</div></article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact" class="section">
+    <div class="wrap reveal fx-from-up">
+      <div class="card reveal fx-zoom">
+        <h2 class="reveal fx-wipe-r">Let’s work together</h2>
+        <p class="lead reveal fx-from-left">Available for research, data, and communications projects.</p>
+        <div style="display:flex;gap:10px;flex-wrap:wrap">
+          <a class="btn primary" href="mailto:badersuliman79@gmail.com">Email me</a>
+          <a class="btn ghost" href="https://www.linkedin.com/in/bader-suliman-845840234" target="_blank" rel="noopener">LinkedIn</a>
+          <a class="btn ghost" href="#" target="_blank" rel="noopener">Download CV</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer><div class="wrap">© 2025 Bader Suliman</div></footer>
+<a href="#about" class="btn primary to-top" id="toTop">↑ Top</a>
+
 <script>
-    
-    var sidemenu = document.getElementById("sidemenu");
-    
-    function openmenu(){
-        sidemenu.style.right="0"
-    }
-    function closemenu(){
-        sidemenu.style.right="-200px"
-    }
-    
-    
+/* Reveal on scroll */
+(function(){
+  const els=[...document.querySelectorAll('.reveal')];
+  if(!('IntersectionObserver'in window)){els.forEach(e=>e.classList.add('in'))}
+  else{
+    const io=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{root:null,rootMargin:'0px 0px -10% 0px',threshold:0});
+    els.forEach(e=>io.observe(e));
+  }
+  const kick=()=>els.forEach(e=>{const r=e.getBoundingClientRect(); if(r.top<innerHeight*.9&&r.bottom>0)e.classList.add('in')});
+  requestAnimationFrame(kick); addEventListener('load',kick,{once:true}); addEventListener('resize',kick); addEventListener('orientationchange',kick);
+})();
+
+// Rotating tagline
+const words=["Communications","Data","Mapping","Research"]; let wi=0;
+const rot=document.getElementById("rotate");
+function cycle(){ if(!rot) return; rot.classList.remove('show'); setTimeout(()=>{ wi=(wi+1)%words.length; rot.textContent=words[wi]; rot.classList.add('show'); },220); }
+if(rot){ rot.classList.add('show'); setInterval(cycle,1800); }
+
+// Back to top
+const toTop=document.getElementById('toTop');
+const toggleTop=()=>{ scrollY>400 ? toTop.classList.add('show') : toTop.classList.remove('show') };
+addEventListener('scroll',toggleTop,{passive:true}); toggleTop();
+
+// Active nav highlight + progress bar
+const links=[...document.querySelectorAll('nav a')];
+const ids=links.map(a=>a.getAttribute('href')).filter(h=>h.startsWith('#'));
+const secs=ids.map(id=>document.querySelector(id));
+let prog=document.getElementById('progress'); if(!prog){prog=document.createElement('div');prog.id='progress';document.body.appendChild(prog);}
+const onScroll=()=>{
+  const h=document.documentElement; const scrolled=(h.scrollTop)/(h.scrollHeight-h.clientHeight);
+  prog.style.width=(scrolled*100)+'%';
+  let idx=0; secs.forEach((s,i)=>{const r=s.getBoundingClientRect(); if(r.top<=innerHeight*0.4) idx=i;});
+  const atBottom=Math.ceil(scrollY+innerHeight)>=document.body.scrollHeight-2; if(atBottom) idx=secs.length-1;
+  links.forEach(a=>a.classList.remove('active')); const active=document.querySelector(`nav a[href="${ids[idx]}"]`); if(active) active.classList.add('active');
+};
+addEventListener('scroll',onScroll,{passive:true}); onScroll();
+
+/* Mobile menu (unchanged from v30) */
+const menuBtn=document.getElementById('menuBtn');
+const nav=document.getElementById('siteNav');
+function closeNav(){ document.body.classList.remove('nav-open'); menuBtn.setAttribute('aria-expanded','false'); nav.setAttribute('aria-hidden','true'); }
+function openNav(){ document.body.classList.add('nav-open'); menuBtn.setAttribute('aria-expanded','true'); nav.removeAttribute('aria-hidden'); }
+menuBtn.addEventListener('click',()=>{ document.body.classList.contains('nav-open') ? closeNav() : openNav(); });
+nav.querySelectorAll('a').forEach(a=>a.addEventListener('click',closeNav));
+addEventListener('keydown',e=>{ if(e.key==='Escape') closeNav(); });
+addEventListener('resize',()=>{ if(innerWidth>760) closeNav(); },{passive:true});
 </script>
-    <script>
-  const scriptURL = 'https://script.google.com/macros/s/AKfycbxWeF9YMLhyD0jRCL1YQxt0fs6XILTjBqDecLxa_mYm8eH4hBGx63MSnc7nRdV7WnKd/exec'
-  const form = document.forms['submit-to-google-sheet']
-  const msg = document.getElementById("msg")
-
-  form.addEventListener('submit', e => {
-    e.preventDefault()
-    fetch(scriptURL, { method: 'POST', body: new FormData(form)})
-      .then(response => {
-        msg.innerHTML="Message sent successfully"
-        setTimeout(function(){
-            msg.innerHTML=""
-        },5000)
-        form.reset()
-    })
-      .catch(error => console.error('Error!', error.message))
-  })
-</script>
-</body>
-</html>
-
-
-
-
-
-
