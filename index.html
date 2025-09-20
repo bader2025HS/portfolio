@@ -144,16 +144,24 @@
   .chips-mini{display:flex; gap:8px; flex-wrap:wrap}
   .chip-mini{padding:4px 10px; border:1px solid var(--line); border-radius:999px; background:var(--card); font-weight:600; font-size:.92rem}
 
-  /* Skills & Languages */
+  /* ===== Skills & Languages (UPDATED ONLY THIS SECTION) ===== */
   .skills-2{display:grid; grid-template-columns:1fr 1fr; gap:18px; margin-top:6px}
   @media (max-width:900px){.skills-2{grid-template-columns:1fr}}
-  .skills-2 ul{margin:.3rem 0 0 18px}
 
   .lang-cols{display:grid; grid-template-columns:1fr 1fr; gap:18px; margin-top:6px}
   @media (max-width:800px){.lang-cols{grid-template-columns:1fr}}
-  /* remove bullets ONLY in language lists */
   .lang-cols ul{list-style:none; padding:0; margin:.3rem 0 0}
   .lang-item{display:flex; align-items:center; gap:10px; margin:4px 0}
+  .lang-item strong{font-weight:800}
+  .lang-item small{color:var(--muted); font-weight:700}
+
+  /* Chips for skills (no bullets) */
+  .chips{display:flex; flex-wrap:wrap; gap:8px; margin-top:.4rem}
+  .chip{
+    display:inline-flex; align-items:center;
+    padding:6px 10px; border:1px solid var(--line);
+    border-radius:999px; background:#fff; font-weight:600; font-size:.95rem
+  }
 
   /* Flag circles for Languages (sharp + visible) */
   .flag{
@@ -309,44 +317,69 @@ header .brand{
       <h2 class="reveal fx-wipe-l">Skills and Languages</h2>
       <p class="lead reveal fx-from-right">Fluency, methods, and tools.</p>
 
+      <!-- LANGUAGES (top card) -->
       <div class="card reveal fx-zoom">
         <strong class="reveal fx-wipe-r">Languages</strong>
         <div class="lang-cols reveal fx-from-up">
           <ul class="lead">
-            <li class="lang-item"><span class="flag"><img src="https://flagcdn.com/w80/sa.png" alt="Arabic flag"></span><strong>Arabic</strong> - Native (MSA and dialects)</li>
-            <li class="lang-item"><span class="flag"><img src="https://flagcdn.com/w80/fr.png" alt="French flag"></span><strong>French</strong> - Native</li>
-            <li class="lang-item"><span class="flag"><img src="https://flagcdn.com/w80/gb.png" alt="English flag"></span><strong>English</strong> - C2 (spoken, read, written)</li>
+            <li class="lang-item"><span class="flag"><img src="https://flagcdn.com/w80/sa.png" alt="Arabic flag"></span><strong>Arabic</strong> <small>(Native)</small></li>
+            <li class="lang-item"><span class="flag"><img src="https://flagcdn.com/w80/fr.png" alt="French flag"></span><strong>French</strong> <small>(Native)</small></li>
+            <li class="lang-item"><span class="flag"><img src="https://flagcdn.com/w80/gb.png" alt="English flag"></span><strong>English</strong> <small>(C2)</small></li>
           </ul>
           <ul class="lead">
-            <li class="lang-item"><span class="flag"><img src="https://flagcdn.com/w80/de.png" alt="German flag"></span><strong>German</strong> - C1 (spoken, read, written)</li>
-            <li class="lang-item"><span class="flag"><img src="https://flagcdn.com/w80/ir.png" alt="Persian flag"></span><strong>Persian</strong> - A2 (spoken, read, written)</li>
-            <li class="lang-item"><span class="flag"><img src="https://flagcdn.com/w80/jp.png" alt="Japanese flag"></span><strong>Japanese</strong> - A2 (spoken, read, written)</li>
+            <li class="lang-item"><span class="flag"><img src="https://flagcdn.com/w80/de.png" alt="German flag"></span><strong>German</strong> <small>(C1)</small></li>
+            <li class="lang-item"><span class="flag"><img src="https://flagcdn.com/w80/ir.png" alt="Persian flag"></span><strong>Persian</strong> <small>(A2)</small></li>
+            <li class="lang-item"><span class="flag"><img src="https://flagcdn.com/w80/jp.png" alt="Japanese flag"></span><strong>Japanese</strong> <small>(A2)</small></li>
           </ul>
         </div>
       </div>
 
+      <!-- SKILLS (two columns, no bullets — chips) -->
       <div class="skills-2">
         <div class="card reveal fx-from-left">
           <strong class="reveal fx-wipe-l">Soft skills</strong>
-          <ul class="lead">
-            <li>Analytical thinking and synthesis</li>
-            <li>Press review and media monitoring</li>
-            <li>Critical thinking</li>
-            <li>Team work and facilitation</li>
-            <li>Communication and storytelling</li>
-            <li>Stakeholder coordination</li>
-          </ul>
+          <div class="chips">
+            <span class="chip">Analytical synthesis</span>
+            <span class="chip">Policy brief writing</span>
+            <span class="chip">Editorial judgement</span>
+            <span class="chip">Media monitoring</span>
+            <span class="chip">Crisis communications</span>
+            <span class="chip">Stakeholder mapping</span>
+            <span class="chip">Facilitation & teamwork</span>
+            <span class="chip">Cross-cultural communication</span>
+            <span class="chip">Presentation & public speaking</span>
+            <span class="chip">Project coordination</span>
+            <span class="chip">Attention to detail</span>
+            <span class="chip">Diplomacy & discretion</span>
+            <span class="chip">Problem framing</span>
+            <span class="chip">Narrative design</span>
+            <span class="chip">Time & priority management</span>
+          </div>
         </div>
         <div class="card reveal fx-from-right">
           <strong class="reveal fx-wipe-r">Hard skills</strong>
-          <ul class="lead">
-            <li>Data analysis and cleaning (Excel)</li>
-            <li>Mapping (QGIS and Mapbox)</li>
-            <li>Dashboards and visuals</li>
-            <li>WordPress and GitHub Pages</li>
-            <li>Basic HTML and CSS, Twine</li>
-            <li>Microsoft 365 (Word, PowerPoint, Outlook)</li>
-          </ul>
+          <div class="chips">
+            <span class="chip">Excel (pivots, XLOOKUP)</span>
+            <span class="chip">Word (styles & refs)</span>
+            <span class="chip">PowerPoint storytelling</span>
+            <span class="chip">SharePoint & Teams</span>
+            <span class="chip">Google Sheets/Docs/Slides</span>
+            <span class="chip">Google Drive admin</span>
+            <span class="chip">QGIS</span>
+            <span class="chip">Mapbox</span>
+            <span class="chip">Data visualization</span>
+            <span class="chip">Tableau / Power BI</span>
+            <span class="chip">OSINT basics</span>
+            <span class="chip">WordPress</span>
+            <span class="chip">GitHub Pages</span>
+            <span class="chip">Basic HTML & CSS</span>
+            <span class="chip">SPSS / Stata (basics)</span>
+            <span class="chip">NVivo (qual coding)</span>
+            <span class="chip">Notion & Airtable</span>
+            <span class="chip">Mailchimp</span>
+            <span class="chip">Hootsuite</span>
+            <span class="chip">Canva & Figma</span>
+          </div>
         </div>
       </div>
     </div>
@@ -387,7 +420,7 @@ header .brand{
   <section id="experience" class="section">
     <div class="wrap">
       <h2 class="reveal fx-wipe-l">Experience</h2>
-      <p class="lead reveal fx-from-right">Communications, humanitarian data, and policy research.</p>
+    <p class="lead reveal fx-from-right">Communications, humanitarian data, and policy research.</p>
       <div class="timeline">
         <div class="t">
           <div class="dot" aria-hidden="true"></div>
