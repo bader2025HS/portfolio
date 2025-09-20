@@ -35,11 +35,11 @@
     mix-blend-mode:soft-light; animation:gridPan 30s linear infinite;
   }
   body::after{
-    content:""; position:fixed; inset:0; pointer-events:none; opacity:.18;
+    content:""; position:fixed; inset:0; z-index:-1; pointer-events:none; opacity:.18;
     background:
       repeating-radial-gradient(circle at 20% 30%, rgba(2,6,23,.08) 0 2px, transparent 2px 18px),
       repeating-radial-gradient(circle at 75% 60%, rgba(2,6,23,.06) 0 2px, transparent 2px 22px);
-    filter:blur(.2px); z-index:-1;
+    filter:blur(.2px);
   }
   @keyframes gridPan{to{transform:translate3d(-26px,-26px,0)}}
 
@@ -79,7 +79,7 @@
     box-shadow:0 6px 18px rgba(2,6,23,.06); animation:spin 10s linear infinite}
   @keyframes spin{to{transform:rotate(360deg)}}
 
-  /* Navbar links */
+  /* Navbar links (no underline) */
   nav a{
     color:var(--muted); text-decoration:none; font-weight:600; margin-left:14px; position:relative; padding:6px 0
   }
@@ -87,7 +87,7 @@
   nav a.active{color:var(--accent)}
   nav a:after{display:none !important}
 
-  /* Hamburger + mobile overlay */
+  /* Hamburger + mobile overlay — EXACTLY like v30 */
   .menu-toggle{display:none; place-items:center; width:42px; height:42px;
     border:1px solid var(--line); border-radius:12px; background:var(--card); box-shadow:var(--shadow)}
   .menu-toggle .bar{width:20px; height:2px; background:var(--text); position:relative; transition:transform .25s}
@@ -130,6 +130,7 @@
   .btn.ghost{background:var(--card); color:var(--text)}
   .btn:hover{transform:translateY(-1px)}
   .btn:after{content:""; position:absolute; inset:auto; top:0; left:0; width:0; height:100%; background:rgba(255,255,255,.15); transition:width .25s}
+  .btn:hover:after{width:100%}
   .card{background:var(--card); border:1px solid var(--line); border-radius:var(--radius); box-shadow:var(--shadow); padding:clamp(14px,2vw,18px); transition:transform .2s, box-shadow .2s}
   .card:hover{transform:translateY(-2px); box-shadow:0 14px 36px rgba(2,6,23,.11)}
 
@@ -141,36 +142,53 @@
   .chips-mini{display:flex; gap:8px; flex-wrap:wrap}
   .chip-mini{padding:4px 10px; border:1px solid var(--line); border-radius:999px; background:var(--card); font-weight:600; font-size:.92rem}
 
-  /* === Languages row (tiny extra space above scrollbar) === */
+  /* ===== Skills & Languages (UPDATED) ===== */
+  /* Language row: one line on desktop, two columns on phones */
+  .lang-wrap{margin-top:4px;} /* tiny space above the row */
   .lang-row{
-    display:flex; gap:10px; align-items:center; flex-wrap:nowrap;
-    overflow-x:auto; padding-bottom:12px; /* tiny extra space */
-    scrollbar-width:thin; margin-top:2px;
+    display:flex; gap:10px; align-items:center;
+    overflow-x:auto; padding:8px 2px 2px; scroll-snap-type:x proximity;
   }
-  .lang-row .lang-item{
-    display:inline-flex; align-items:center; gap:10px; white-space:nowrap;
+  .lang-pill{
+    display:inline-flex; align-items:center; gap:8px;
     padding:6px 10px; border:1px solid var(--line); border-radius:999px;
-    background:var(--card); font-weight:600;
+    background:var(--card); white-space:nowrap; scroll-snap-align:center;
+    box-shadow:0 1px 2px rgba(2,6,23,.05);
   }
-  .lang-row .flag{
-    width:20px; height:20px; flex:0 0 20px; border-radius:50%;
-    overflow:hidden; box-shadow:0 0 0 1px var(--line), 0 1px 2px rgba(2,6,23,.12);
+  .flag{
+    display:inline-block; width:20px; height:20px; border-radius:50%; overflow:hidden; flex:0 0 20px;
+    box-shadow:0 0 0 1px var(--line), 0 1px 2px rgba(2,6,23,.12);
   }
-  .lang-row .flag img{width:100%; height:100%; object-fit:cover; display:block}
-  @media (max-width:800px){
-    .lang-row{display:grid; grid-template-columns:1fr 1fr; overflow:visible}
-    .lang-row .lang-item{white-space:normal}
+  .flag img{width:100%; height:100%; object-fit:cover; display:block; image-rendering:auto}
+  @media (max-width:780px){
+    .lang-row{
+      overflow:visible; padding:0; gap:8px;
+      display:grid; grid-template-columns:1fr 1fr; /* two columns on phones */
+    }
   }
 
-  /* Skills layout (unchanged columns) + smaller chips */
+  /* Skill chips */
   .skills-2{display:grid; grid-template-columns:1fr 1fr; gap:18px; margin-top:6px}
   @media (max-width:900px){.skills-2{grid-template-columns:1fr}}
-  .skills-chips{display:flex; flex-wrap:wrap; gap:8px; margin-top:12px}
-  .chip-lg{
-    padding:6px 10px; border:1px solid var(--line); border-radius:12px;
-    background:var(--card); font-weight:600; font-size:.9rem; line-height:1.2;
+  .skill-group-title{display:block; font-weight:700}
+  .chips{display:flex; flex-wrap:wrap; gap:8px; margin-top:8px} /* space between title & chips */
+  .chip{
+    display:inline-flex; align-items:center; padding:4px 8px; /* smaller chips */
+    border:1px solid var(--line); border-radius:999px; background:var(--card);
+    font-weight:600; font-size:.9rem; box-shadow:0 1px 2px rgba(2,6,23,.05);
   }
-  .card > strong{display:block; margin-bottom:10px}
+
+  /* Projects */
+  .projects{display:grid; grid-template-columns:repeat(3,1fr); gap:12px}
+  @media (max-width:1000px){.projects{grid-template-columns:1fr}}
+  .project{will-change:transform; transform:translateZ(0); transition:transform .28s, box-shadow .28s}
+  .project:hover{transform:scale(1.12); z-index:6; box-shadow:0 22px 54px rgba(2,6,23,.18)}
+  .thumb{aspect-ratio:16/10; border-radius:14px; border:1px solid var(--line); background:#e6fffb center/cover no-repeat; transition:transform .28s}
+  .project:hover .thumb{transform:scale(1.18)}
+  .project .body{display:grid; grid-template-rows:0fr; transition:grid-template-rows .25s, opacity .25s; opacity:0}
+  .project:hover .body{grid-template-rows:1fr; opacity:1}
+  .project .body>div{overflow:hidden}
+  @media (hover:none){ .project .body{grid-template-rows:1fr; opacity:1} .project:hover,.project:hover .thumb{transform:none} }
 
   /* Experience */
   .timeline{position:relative; margin-top:8px}
@@ -190,7 +208,7 @@
   .edu .item .where{color:var(--muted); font-weight:600}
   .edu .item p{margin:.35rem 0 0}
 
-  /* Activities */
+  /* Activities — 4-in-row desktop, FORCE 2×2 on phones */
   .activities-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:12px}
   @media (max-width:900px){ .activities-grid{grid-template-columns:repeat(2,1fr)} }
   @media (max-width:420px){ .activities-grid{grid-template-columns:repeat(2,1fr)} }
@@ -203,18 +221,16 @@
   .to-top{position:fixed; right:18px; bottom:18px; z-index:9997; opacity:0; pointer-events:none; transition:opacity .2s}
   .to-top.show{opacity:1; pointer-events:auto}
 
-  /* Desktop menu framing */
+  /* === Desktop menu framing (mobile untouched) === */
   @media (min-width:761px){
     header .brand{padding:0; border:none; border-radius:0; background:transparent; box-shadow:none;}
-    header nav#siteNav{display:flex; align-items:center; gap:8px}
+    header nav#siteNav{display:flex; align-items:center; gap:8px;}
     header nav#siteNav a{
-      margin:0; padding:8px 12px; border:1px solid var(--line);
-      border-radius:12px; background:rgba(255,255,255,.9); text-decoration:none; color:var(--muted);
+      margin:0; padding:8px 12px; border:1px solid var(--line); border-radius:12px;
+      background:rgba(255,255,255,.9); text-decoration:none; color:var(--muted);
     }
     header nav#siteNav a:hover{border-color:var(--accent); color:var(--accent)}
-    header nav#siteNav a.active{
-      border-color:var(--accent); color:var(--accent); box-shadow:0 0 0 2px rgba(14,165,162,.12) inset;
-    }
+    header nav#siteNav a.active{border-color:var(--accent); color:var(--accent); box-shadow:0 0 0 2px rgba(14,165,162,.12) inset}
     #siteNav .mhead{display:none;}
   }
 </style>
@@ -267,69 +283,53 @@
     </div>
   </section>
 
-  <!-- Skills & Languages -->
+  <!-- Skills & Languages (UPDATED ONLY THIS SECTION) -->
   <section id="skills" class="section">
     <div class="wrap">
       <h2 class="reveal fx-wipe-l">Skills and Languages</h2>
       <p class="lead reveal fx-from-right">Fluency, methods, and tools.</p>
 
-      <!-- Languages: same items, tiny extra top space before scroll bar via padding-bottom -->
       <div class="card reveal fx-zoom">
         <strong class="reveal fx-wipe-r">Languages</strong>
-        <div class="lang-row reveal fx-from-up">
-          <div class="lang-item">
-            <span class="flag"><img src="https://flagcdn.com/w80/sa.png" alt="Arabic flag"></span>
-            Arabic (Native)
-          </div>
-          <div class="lang-item">
-            <span class="flag"><img src="https://flagcdn.com/w80/fr.png" alt="French flag"></span>
-            French (Native)
-          </div>
-          <div class="lang-item">
-            <span class="flag"><img src="https://flagcdn.com/w80/gb.png" alt="English flag"></span>
-            English (C2)
-          </div>
-          <div class="lang-item">
-            <span class="flag"><img src="https://flagcdn.com/w80/de.png" alt="German flag"></span>
-            German (C1)
-          </div>
-          <div class="lang-item">
-            <span class="flag"><img src="https://flagcdn.com/w80/ir.png" alt="Persian flag"></span>
-            Persian (A2)
-          </div>
-          <div class="lang-item">
-            <span class="flag"><img src="https://flagcdn.com/w80/jp.png" alt="Japanese flag"></span>
-            Japanese (A2)
+        <div class="lang-wrap reveal fx-from-up">
+          <div class="lang-row">
+            <span class="lang-pill"><span class="flag"><img src="https://flagcdn.com/w40/sa.png" alt="Arabic"/></span><strong>Arabic</strong> (Native)</span>
+            <span class="lang-pill"><span class="flag"><img src="https://flagcdn.com/w40/fr.png" alt="French"/></span><strong>French</strong> (Native)</span>
+            <span class="lang-pill"><span class="flag"><img src="https://flagcdn.com/w40/gb.png" alt="English"/></span><strong>English</strong> (C2)</span>
+            <span class="lang-pill"><span class="flag"><img src="https://flagcdn.com/w40/de.png" alt="German"/></span><strong>German</strong> (C1)</span>
+            <span class="lang-pill"><span class="flag"><img src="https://flagcdn.com/w40/ir.png" alt="Persian"/></span><strong>Persian</strong> (A2)</span>
+            <span class="lang-pill"><span class="flag"><img src="https://flagcdn.com/w40/jp.png" alt="Japanese"/></span><strong>Japanese</strong> (A2)</span>
           </div>
         </div>
       </div>
 
-      <!-- Skills: two columns, smaller chips, curated lists -->
       <div class="skills-2">
+        <!-- Soft skills -->
         <div class="card reveal fx-from-left">
-          <strong class="reveal fx-wipe-l">Soft skills</strong>
-          <div class="skills-chips">
-            <span class="chip-lg">Communications</span>
-            <span class="chip-lg">Analytical thinking & synthesis</span>
-            <span class="chip-lg">Press review & media monitoring</span>
-            <span class="chip-lg">Critical thinking</span>
-            <span class="chip-lg">Teamwork & facilitation</span>
-            <span class="chip-lg">Stakeholder coordination</span>
-            <span class="chip-lg">Policy writing & briefs</span>
-            <span class="chip-lg">Public speaking & presentations</span>
+          <strong class="skill-group-title reveal fx-wipe-l">Soft skills</strong>
+          <div class="chips">
+            <span class="chip">Communications</span>
+            <span class="chip">Analytical thinking &amp; synthesis</span>
+            <span class="chip">Press review &amp; media monitoring</span>
+            <span class="chip">Critical thinking</span>
+            <span class="chip">Teamwork &amp; facilitation</span>
+            <span class="chip">Stakeholder coordination</span>
+            <span class="chip">Policy writing &amp; briefs</span>
+            <span class="chip">Public speaking &amp; presentations</span>
           </div>
         </div>
 
+        <!-- Hard skills -->
         <div class="card reveal fx-from-right">
-          <strong class="reveal fx-wipe-r">Hard skills</strong>
-          <div class="skills-chips">
-            <span class="chip-lg">Data analysis and cleaning (Excel)</span>
-            <span class="chip-lg">Mapping (QGIS and Mapbox)</span>
-            <span class="chip-lg">Dashboards and visuals</span>
-            <span class="chip-lg">WordPress and GitHub Pages</span>
-            <span class="chip-lg">Microsoft 365 (Word, PowerPoint, Outlook)</span>
-            <span class="chip-lg">Google Workspace (Docs/Sheets/Drive)</span>
-            <span class="chip-lg">Video editing & montage (Premiere/CapCut)</span>
+          <strong class="skill-group-title reveal fx-wipe-r">Hard skills</strong>
+          <div class="chips">
+            <span class="chip">Data analysis &amp; cleaning (Excel)</span>
+            <span class="chip">Mapping (QGIS &amp; Mapbox)</span>
+            <span class="chip">Dashboards &amp; visuals</span>
+            <span class="chip">WordPress &amp; GitHub Pages</span>
+            <span class="chip">Microsoft 365 (Word, PowerPoint, Outlook)</span>
+            <span class="chip">Google Workspace (Docs/Sheets/Drive)</span>
+            <span class="chip">Video editing &amp; montage (Premiere/CapCut)</span>
           </div>
         </div>
       </div>
@@ -432,7 +432,7 @@
     </div>
   </section>
 
-  <!-- Selected Work -->
+  <!-- Selected Work (EXACTLY AS YOU SENT) -->
   <section id="work" class="section">
     <div class="wrap">
       <h2 class="reveal fx-wipe-r">Selected Work</h2>
@@ -466,7 +466,7 @@
     </div>
   </section>
 
-  <!-- Extracurricular Activities -->
+  <!-- Extracurricular Activities — 4 squares -->
   <section id="activities" class="section">
     <div class="wrap">
       <h2 class="reveal fx-wipe-l">Extracurricular Activities</h2>
@@ -538,7 +538,7 @@ const onScroll=()=>{
 };
 addEventListener('scroll',onScroll,{passive:true}); onScroll();
 
-/* Mobile menu */
+/* Mobile menu (unchanged from v30) */
 const menuBtn=document.getElementById('menuBtn');
 const nav=document.getElementById('siteNav');
 function closeNav(){ document.body.classList.remove('nav-open'); menuBtn.setAttribute('aria-expanded','false'); nav.setAttribute('aria-hidden','true'); }
