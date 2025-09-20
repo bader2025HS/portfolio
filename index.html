@@ -144,38 +144,55 @@
 
   /* ===== Skills & Languages (UPDATED) ===== */
   /* Language row: one line on desktop, two columns on phones */
-  .lang-wrap{margin-top:4px;} /* tiny space above the row */
+  .lang-card .lang-title{display:block}
+  .lang-wrap{margin-top:6px;} /* tiny space above the row */
   .lang-row{
     display:flex; gap:10px; align-items:center;
-    overflow-x:auto; padding:8px 2px 2px; scroll-snap-type:x proximity;
+    overflow-x:auto; padding:8px 4px 10px; /* bottom pad = gap before scrollbar */
+    scrollbar-gutter:stable; /* keeps space for scrollbar */
+    scroll-snap-type:x proximity;
   }
   .lang-pill{
     display:inline-flex; align-items:center; gap:8px;
     padding:6px 10px; border:1px solid var(--line); border-radius:999px;
     background:var(--card); white-space:nowrap; scroll-snap-align:center;
     box-shadow:0 1px 2px rgba(2,6,23,.05);
+    font-weight:600;
   }
   .flag{
     display:inline-block; width:20px; height:20px; border-radius:50%; overflow:hidden; flex:0 0 20px;
     box-shadow:0 0 0 1px var(--line), 0 1px 2px rgba(2,6,23,.12);
   }
   .flag img{width:100%; height:100%; object-fit:cover; display:block; image-rendering:auto}
+
   @media (max-width:780px){
+    /* two columns on phones + smaller pills, space after "Languages" title */
+    .lang-card .lang-title{margin-bottom:6px;}
     .lang-row{
       overflow:visible; padding:0; gap:8px;
-      display:grid; grid-template-columns:1fr 1fr; /* two columns on phones */
+      display:grid; grid-template-columns:1fr 1fr;
     }
+    .lang-pill{font-size:.9rem; padding:5px 8px; gap:6px}
+    .flag{width:18px; height:18px; flex:0 0 18px}
   }
 
-  /* Skill chips */
+  /* Skills as compact, gap-filling grid */
   .skills-2{display:grid; grid-template-columns:1fr 1fr; gap:18px; margin-top:6px}
   @media (max-width:900px){.skills-2{grid-template-columns:1fr}}
   .skill-group-title{display:block; font-weight:700}
-  .chips{display:flex; flex-wrap:wrap; gap:8px; margin-top:8px} /* space between title & chips */
+  .chips{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(140px,1fr));
+    gap:8px;
+    margin-top:8px; /* space after titles */
+  }
+  @media (max-width:520px){
+    .chips{grid-template-columns:repeat(auto-fit,minmax(120px,1fr))}
+  }
   .chip{
-    display:inline-flex; align-items:center; padding:4px 8px; /* smaller chips */
-    border:1px solid var(--line); border-radius:999px; background:var(--card);
-    font-weight:600; font-size:.9rem; box-shadow:0 1px 2px rgba(2,6,23,.05);
+    display:inline-flex; align-items:center; justify-content:center;
+    padding:4px 8px; border:1px solid var(--line); border-radius:999px; background:var(--card);
+    font-weight:600; font-size:.9rem; text-align:center; box-shadow:0 1px 2px rgba(2,6,23,.05);
   }
 
   /* Projects */
@@ -289,8 +306,8 @@
       <h2 class="reveal fx-wipe-l">Skills and Languages</h2>
       <p class="lead reveal fx-from-right">Fluency, methods, and tools.</p>
 
-      <div class="card reveal fx-zoom">
-        <strong class="reveal fx-wipe-r">Languages</strong>
+      <div class="card reveal fx-zoom lang-card">
+        <strong class="lang-title reveal fx-wipe-r">Languages</strong>
         <div class="lang-wrap reveal fx-from-up">
           <div class="lang-row">
             <span class="lang-pill"><span class="flag"><img src="https://flagcdn.com/w40/sa.png" alt="Arabic"/></span><strong>Arabic</strong> (Native)</span>
@@ -309,13 +326,13 @@
           <strong class="skill-group-title reveal fx-wipe-l">Soft skills</strong>
           <div class="chips">
             <span class="chip">Communications</span>
-            <span class="chip">Analytical thinking &amp; synthesis</span>
-            <span class="chip">Press review &amp; media monitoring</span>
+            <span class="chip">Analytical synthesis</span>
+            <span class="chip">Press &amp; media monitoring</span>
             <span class="chip">Critical thinking</span>
             <span class="chip">Teamwork &amp; facilitation</span>
             <span class="chip">Stakeholder coordination</span>
             <span class="chip">Policy writing &amp; briefs</span>
-            <span class="chip">Public speaking &amp; presentations</span>
+            <span class="chip">Public speaking</span>
           </div>
         </div>
 
@@ -323,13 +340,13 @@
         <div class="card reveal fx-from-right">
           <strong class="skill-group-title reveal fx-wipe-r">Hard skills</strong>
           <div class="chips">
-            <span class="chip">Data analysis &amp; cleaning (Excel)</span>
+            <span class="chip">Data cleaning (Excel)</span>
             <span class="chip">Mapping (QGIS &amp; Mapbox)</span>
             <span class="chip">Dashboards &amp; visuals</span>
             <span class="chip">WordPress &amp; GitHub Pages</span>
-            <span class="chip">Microsoft 365 (Word, PowerPoint, Outlook)</span>
-            <span class="chip">Google Workspace (Docs/Sheets/Drive)</span>
-            <span class="chip">Video editing &amp; montage (Premiere/CapCut)</span>
+            <span class="chip">Microsoft 365</span>
+            <span class="chip">Google Workspace</span>
+            <span class="chip">Video editing (Premiere/CapCut)</span>
           </div>
         </div>
       </div>
