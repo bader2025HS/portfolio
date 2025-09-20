@@ -130,7 +130,7 @@
   .btn:hover{transform:translateY(-1px)}
   .btn:after{content:""; position:absolute; inset:auto; top:0; left:0; width:0; height:100%; background:rgba(255,255,255,.15); transition:width .25s}
 
-  /* >>> CHANGE 1: make all boxes plain white (no transparency) */
+  /* Boxes plain white */
   .card{background:#fff !important; border:1px solid var(--line); border-radius:var(--radius); box-shadow:var(--shadow); padding:clamp(14px,2vw,18px); transition:transform .2s, box-shadow .2s}
   .card:hover{transform:translateY(-2px); box-shadow:0 14px 36px rgba(2,6,23,.11)}
   .chip-mini{background:#fff}
@@ -147,7 +147,7 @@
 
   /* ===== Skills & Languages ===== */
 
-  /* Languages (unchanged layout) */
+  /* Languages */
   .lang-card .lang-title{display:block}
   .lang-wrap{margin-top:6px;}
   .lang-row{
@@ -173,14 +173,13 @@
     .lang-row{overflow:visible; padding:0; gap:8px; display:grid; grid-template-columns:1fr 1fr;}
     .lang-pill{font-size:.9rem; padding:5px 8px; gap:6px}
     .flag{width:18px; height:18px; flex:0 0 18px}
-    #skills .wrap > .lang-card{margin-bottom:16px;} /* equal spacing before skills */
+    #skills .wrap > .lang-card{margin-bottom:16px;} /* space before Soft skills box */
   }
 
   /* Skills layout */
   .skills-2{display:grid; grid-template-columns:1fr 1fr; gap:18px; margin-top:6px}
-  /* >>> CHANGE 2: on phones, stack Soft then Hard (one after the other) */
   @media (max-width:900px){
-    .skills-2{grid-template-columns:1fr; gap:16px}
+    .skills-2{grid-template-columns:1fr; gap:16px} /* Soft then Hard stacked on phone */
   }
   .skill-group-title{display:block; font-weight:700}
 
@@ -349,7 +348,7 @@
             <span class="chip">Microsoft 365</span>
             <span class="chip">Google Workspace</span>
             <span class="chip">Video editing (Premiere/CapCut)</span>
-            <span class="chip">Data viz (Tableau/Power BI)</span>
+            <span class="chip">Basic programming/coding</span>
           </div>
         </div>
       </div>
