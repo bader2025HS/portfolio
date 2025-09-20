@@ -245,7 +245,26 @@ header .brand{
       box-shadow:0 0 0 2px rgba(14,165,162,.12) inset;
     }
     /* Hide overlay brand (avoid duplicate) on desktop only */
-    #siteNav .mhead{display:none;}
+    /* Show brand (badge + name) at the top of the mobile overlay */
+#siteNav .mhead{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  font-weight:800;
+  position:absolute;
+  top:18px;
+  left:18px;
+  padding:6px 10px;
+  border-radius:10px;
+  background:#fff;            /* crisp on any backdrop */
+  color:var(--text);
+  box-shadow:0 6px 18px rgba(2,6,23,.06);
+  z-index:10006;              /* above links inside overlay */
+}
+#siteNav .mhead .badge{
+  width:34px; height:34px; border-radius:10px;
+  flex:0 0 34px; animation:spin 10s linear infinite; /* keep the spin */
+} 
   }
 </style>
 
@@ -558,3 +577,4 @@ nav.querySelectorAll('a').forEach(a=>a.addEventListener('click',closeNav));
 addEventListener('keydown',e=>{ if(e.key==='Escape') closeNav(); });
 addEventListener('resize',()=>{ if(innerWidth>760) closeNav(); },{passive:true});
 </script>
+
