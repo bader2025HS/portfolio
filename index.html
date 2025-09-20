@@ -112,25 +112,7 @@
     body.nav-open header nav#siteNav{transform:translateY(0); opacity:1; visibility:visible; pointer-events:auto}
     header nav a{margin:0; padding:16px 14px; border-radius:12px; font-size:1.12rem; background:#fff; border:1px solid var(--line)}
     header nav a.active{color:var(--accent); border-color:var(--accent)}
-   /* Sticky brand inside the mobile overlay (visible while you scroll) */
-#siteNav .mhead{
-  display:flex !important;
-  align-items:center;
-  gap:10px;
-  position:sticky;             /* stays in view when the menu scrolls */
-  top:0;                       /* stick to the very top of the overlay */
-  padding:12px 14px;
-  margin:-12px -14px 8px;      /* stretch to overlay edges (matches your nav padding) */
-  background:#fff;             /* solid so content underneath never bleeds through */
-  border-bottom:1px solid var(--line);
-  font-weight:800;
-  z-index:10006;               /* above the overlay’s list items */
-}
-#siteNav .mhead .badge{
-  width:34px; height:34px; border-radius:10px;
-  flex:0 0 34px;
-  animation:spin 10s linear infinite; /* keep your spin */
-}
+    #siteNav .mhead{display:none;} /* hidden on mobile overlay already shows brand elsewhere */
   }
 
   #progress{position:fixed; top:0; left:0; height:3px; width:0; z-index:10000;
@@ -576,4 +558,3 @@ nav.querySelectorAll('a').forEach(a=>a.addEventListener('click',closeNav));
 addEventListener('keydown',e=>{ if(e.key==='Escape') closeNav(); });
 addEventListener('resize',()=>{ if(innerWidth>760) closeNav(); },{passive:true});
 </script>
-
