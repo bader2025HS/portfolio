@@ -112,7 +112,13 @@
     body.nav-open header nav#siteNav{transform:translateY(0); opacity:1; visibility:visible; pointer-events:auto}
     header nav a{margin:0; padding:16px 14px; border-radius:12px; font-size:1.12rem; background:#fff; border:1px solid var(--line)}
     header nav a.active{color:var(--accent); border-color:var(--accent)}
-    #siteNav .mhead{display:none;} /* hidden on mobile overlay already shows brand elsewhere */
+
+    /* >>> Transplanted from your old version to show name + square in mobile menu */
+    #siteNav .mhead{
+      display:flex; align-items:center; gap:10px;
+      position:absolute; left:18px; top:calc(env(safe-area-inset-top,0px) + 18px);
+      font-weight:800;
+    }
   }
 
   #progress{position:fixed; top:0; left:0; height:3px; width:0; z-index:10000;
@@ -261,7 +267,6 @@ header .brand{
     </button>
 
     <nav id="siteNav">
-      <!-- brand inside the overlay too -->
       <div class="mhead"><div class="badge" aria-hidden="true"></div><span>Bader Suliman</span></div>
 
       <a href="#about">About</a>
@@ -559,4 +564,3 @@ nav.querySelectorAll('a').forEach(a=>a.addEventListener('click',closeNav));
 addEventListener('keydown',e=>{ if(e.key==='Escape') closeNav(); });
 addEventListener('resize',()=>{ if(innerWidth>760) closeNav(); },{passive:true});
 </script>
-
