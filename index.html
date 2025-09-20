@@ -129,11 +129,13 @@
   .btn.ghost{background:var(--card); color:var(--text)}
   .btn:hover{transform:translateY(-1px)}
   .btn:after{content:""; position:absolute; inset:auto; top:0; left:0; width:0; height:100%; background:rgba(255,255,255,.15); transition:width .25s}
-  .btn:hover:after{width:100%}
 
-  /* === CHANGE: plain opaque cards (white) === */
-  .card{background:#fff; border:1px solid var(--line); border-radius:var(--radius); box-shadow:var(--shadow); padding:clamp(14px,2vw,18px); transition:transform .2s, box-shadow .2s}
+  /* >>> CHANGE 1: make all boxes plain white (no transparency) */
+  .card{background:#fff !important; border:1px solid var(--line); border-radius:var(--radius); box-shadow:var(--shadow); padding:clamp(14px,2vw,18px); transition:transform .2s, box-shadow .2s}
   .card:hover{transform:translateY(-2px); box-shadow:0 14px 36px rgba(2,6,23,.11)}
+  .chip-mini{background:#fff}
+  .lang-pill{background:#fff}
+  .chip{background:#fff}
 
   /* Strap under name */
   .strap{margin:6px 0 12px; display:flex; align-items:center; gap:10px; flex-wrap:wrap}
@@ -141,24 +143,22 @@
   .fade{opacity:0; transform:translateY(6px); transition:opacity .25s, transform .25s}
   .fade.show{opacity:1; transform:none}
   .chips-mini{display:flex; gap:8px; flex-wrap:wrap}
-  .chip-mini{padding:4px 10px; border:1px solid var(--line); border-radius:999px; background:#fff; font-weight:600; font-size:.92rem}
+  .chip-mini{padding:4px 10px; border:1px solid var(--line); border-radius:999px; font-weight:600; font-size:.92rem}
 
   /* ===== Skills & Languages ===== */
 
-  /* Languages (unchanged content; tiny space before scrollbar on desktop) */
+  /* Languages (unchanged layout) */
   .lang-card .lang-title{display:block}
   .lang-wrap{margin-top:6px;}
   .lang-row{
     display:flex; gap:10px; align-items:center;
     overflow-x:auto; padding:8px 4px 10px; /* tiny bottom space before scrollbar */
-    scrollbar-gutter:stable;
-    scroll-snap-type:x proximity;
+    scrollbar-gutter:stable; scroll-snap-type:x proximity;
   }
   .lang-pill{
     display:inline-flex; align-items:center; gap:8px;
     padding:6px 10px; border:1px solid var(--line); border-radius:999px;
-    background:#fff; white-space:nowrap; scroll-snap-align:center;
-    box-shadow:0 1px 2px rgba(2,6,23,.05);
+    white-space:nowrap; scroll-snap-align:center; box-shadow:0 1px 2px rgba(2,6,23,.05);
     font-weight:600;
   }
   .flag{
@@ -167,36 +167,30 @@
   }
   .flag img{width:100%; height:100%; object-fit:cover; display:block; image-rendering:auto}
 
-  /* Phone tweaks for Languages and equal spacing to Skills */
   @media (max-width:780px){
-    :root{ --mblock:16px; }
     .lang-card .lang-title{margin-bottom:6px;}
     .lang-wrap{margin-top:4px;}
     .lang-row{overflow:visible; padding:0; gap:8px; display:grid; grid-template-columns:1fr 1fr;}
     .lang-pill{font-size:.9rem; padding:5px 8px; gap:6px}
     .flag{width:18px; height:18px; flex:0 0 18px}
-    /* === CHANGE: equal space below Languages card on phones === */
-    #skills .wrap > .lang-card{margin-bottom:var(--mblock);}
+    #skills .wrap > .lang-card{margin-bottom:16px;} /* equal spacing before skills */
   }
 
   /* Skills layout */
   .skills-2{display:grid; grid-template-columns:1fr 1fr; gap:18px; margin-top:6px}
-  /* === CHANGE: keep 2 columns on phones + equal gap === */
+  /* >>> CHANGE 2: on phones, stack Soft then Hard (one after the other) */
   @media (max-width:900px){
-    .skills-2{grid-template-columns:1fr 1fr; gap:16px}
+    .skills-2{grid-template-columns:1fr; gap:16px}
   }
   .skill-group-title{display:block; font-weight:700}
 
-  /* Exactly 2 columns × 4 rows per group */
   .chips{
-    display:grid;
-    grid-template-columns:repeat(2,1fr);
-    gap:8px;
-    margin-top:8px; /* consistent space after titles */
+    display:grid; grid-template-columns:repeat(2,1fr);
+    gap:8px; margin-top:8px;
   }
   .chip{
     display:inline-flex; align-items:center; justify-content:center;
-    padding:4px 8px; border:1px solid var(--line); border-radius:999px; background:#fff;
+    padding:4px 8px; border:1px solid var(--line); border-radius:999px;
     font-weight:600; font-size:.9rem; text-align:center; box-shadow:0 1px 2px rgba(2,6,23,.05);
     white-space:nowrap;
   }
@@ -231,7 +225,7 @@
   .edu .item .where{color:var(--muted); font-weight:600}
   .edu .item p{margin:.35rem 0 0}
 
-  /* Activities — 4-in-row desktop, FORCE 2×2 on phones */
+  /* Activities */
   .activities-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:12px}
   @media (max-width:900px){ .activities-grid{grid-template-columns:repeat(2,1fr)} }
   @media (max-width:420px){ .activities-grid{grid-template-columns:repeat(2,1fr)} }
@@ -312,7 +306,7 @@
       <h2 class="reveal fx-wipe-l">Skills and Languages</h2>
       <p class="lead reveal fx-from-right">Fluency, methods, and tools.</p>
 
-      <!-- Languages (UNCHANGED CONTENT) -->
+      <!-- Languages (unchanged content) -->
       <div class="card reveal fx-zoom lang-card">
         <strong class="lang-title reveal fx-wipe-r">Languages</strong>
         <div class="lang-wrap reveal fx-from-up">
@@ -329,7 +323,7 @@
 
       <!-- Skills -->
       <div class="skills-2">
-        <!-- Soft skills (8, single-line, 2x4) -->
+        <!-- Soft skills -->
         <div class="card reveal fx-from-left">
           <strong class="skill-group-title reveal fx-wipe-l">Soft skills</strong>
           <div class="chips">
@@ -344,7 +338,7 @@
           </div>
         </div>
 
-        <!-- Hard skills (8, single-line, 2x4) -->
+        <!-- Hard skills -->
         <div class="card reveal fx-from-right">
           <strong class="skill-group-title reveal fx-wipe-r">Hard skills</strong>
           <div class="chips">
@@ -397,7 +391,7 @@
   <section id="experience" class="section">
     <div class="wrap">
       <h2 class="reveal fx-wipe-l">Experience</h2>
-      <p class="lead reveal fx-from-right">Communications, humanitarian data, and policy research.</p>
+    <p class="lead reveal fx-from-right">Communications, humanitarian data, and policy research.</p>
       <div class="timeline">
         <div class="t">
           <div class="dot" aria-hidden="true"></div>
@@ -458,7 +452,7 @@
     </div>
   </section>
 
-  <!-- Selected Work (exactly as your last code) -->
+  <!-- Selected Work (unchanged) -->
   <section id="work" class="section">
     <div class="wrap">
       <h2 class="reveal fx-wipe-r">Selected Work</h2>
