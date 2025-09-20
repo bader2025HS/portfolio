@@ -245,7 +245,7 @@ header .brand{
       box-shadow:0 0 0 2px rgba(14,165,162,.12) inset;
     }
     /* Hide overlay brand (avoid duplicate) on desktop only */
-    #siteNav .mhead{display:none;}
+    #siteNav .mhead{display:flex;}
   }
 </style>
 
@@ -558,3 +558,4 @@ nav.querySelectorAll('a').forEach(a=>a.addEventListener('click',closeNav));
 addEventListener('keydown',e=>{ if(e.key==='Escape') closeNav(); });
 addEventListener('resize',()=>{ if(innerWidth>760) closeNav(); },{passive:true});
 </script>
+
