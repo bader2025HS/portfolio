@@ -35,7 +35,7 @@
     mix-blend-mode:soft-light; animation:gridPan 30s linear infinite;
   }
   body::after{
-    content:""; position:fixed; inset:0; z-index:-1; pointer-events:none; opacity:.18;
+    content:""; position:fixed; inset:0; pointer-events:none; opacity:.18;
     background:
       repeating-radial-gradient(circle at 20% 30%, rgba(2,6,23,.08) 0 2px, transparent 2px 18px),
       repeating-radial-gradient(circle at 75% 60%, rgba(2,6,23,.06) 0 2px, transparent 2px 22px);
@@ -79,7 +79,7 @@
     box-shadow:0 6px 18px rgba(2,6,23,.06); animation:spin 10s linear infinite}
   @keyframes spin{to{transform:rotate(360deg)}}
 
-  /* Navbar links (no underline) */
+  /* Navbar links */
   nav a{
     color:var(--muted); text-decoration:none; font-weight:600; margin-left:14px; position:relative; padding:6px 0
   }
@@ -87,7 +87,7 @@
   nav a.active{color:var(--accent)}
   nav a:after{display:none !important}
 
-  /* Hamburger + mobile overlay — EXACTLY like v30 */
+  /* Hamburger + mobile overlay */
   .menu-toggle{display:none; place-items:center; width:42px; height:42px;
     border:1px solid var(--line); border-radius:12px; background:var(--card); box-shadow:var(--shadow)}
   .menu-toggle .bar{width:20px; height:2px; background:var(--text); position:relative; transition:transform .25s}
@@ -104,8 +104,7 @@
     header nav#siteNav{
       position:fixed; inset:0; z-index:10004; height:100svh;
       padding:calc(env(safe-area-inset-top,0px) + 84px) 18px 24px;
-      display:flex; flex-direction:column; gap:10px;
-      background:#fff !important;
+      display:flex; flex-direction:column; gap:10px; background:#fff !important;
       transform:translateY(-100%); opacity:0; visibility:hidden; pointer-events:none;
       transition:transform .28s ease, opacity .2s ease;
     }
@@ -142,14 +141,15 @@
   .chips-mini{display:flex; gap:8px; flex-wrap:wrap}
   .chip-mini{padding:4px 10px; border:1px solid var(--line); border-radius:999px; background:var(--card); font-weight:600; font-size:.92rem}
 
-  /* ===== Skills & Languages (UPDATED) ===== */
-  /* Language row: one line on desktop, two columns on phones */
+  /* ===== Skills & Languages ===== */
+
+  /* Languages (unchanged content; tiny space before scrollbar on desktop) */
   .lang-card .lang-title{display:block}
-  .lang-wrap{margin-top:6px;} /* tiny space above the row */
+  .lang-wrap{margin-top:6px;}
   .lang-row{
     display:flex; gap:10px; align-items:center;
-    overflow-x:auto; padding:8px 4px 10px; /* bottom pad = gap before scrollbar */
-    scrollbar-gutter:stable; /* keeps space for scrollbar */
+    overflow-x:auto; padding:8px 4px 10px; /* tiny bottom space before scrollbar */
+    scrollbar-gutter:stable;
     scroll-snap-type:x proximity;
   }
   .lang-pill{
@@ -165,34 +165,34 @@
   }
   .flag img{width:100%; height:100%; object-fit:cover; display:block; image-rendering:auto}
 
+  /* Phone tweaks: smaller space after Languages title + tighter spacing to Soft box */
   @media (max-width:780px){
-    /* two columns on phones + smaller pills, space after "Languages" title */
     .lang-card .lang-title{margin-bottom:6px;}
-    .lang-row{
-      overflow:visible; padding:0; gap:8px;
-      display:grid; grid-template-columns:1fr 1fr;
-    }
+    .lang-wrap{margin-top:4px;}
+    .lang-row{overflow:visible; padding:0; gap:8px; display:grid; grid-template-columns:1fr 1fr;}
     .lang-pill{font-size:.9rem; padding:5px 8px; gap:6px}
     .flag{width:18px; height:18px; flex:0 0 18px}
+    /* Smaller space below the whole Languages card on phones */
+    #skills .wrap > .lang-card{margin-bottom:10px;}
   }
 
-  /* Skills as compact, gap-filling grid */
+  /* Skills layout */
   .skills-2{display:grid; grid-template-columns:1fr 1fr; gap:18px; margin-top:6px}
-  @media (max-width:900px){.skills-2{grid-template-columns:1fr}}
+  @media (max-width:900px){.skills-2{grid-template-columns:1fr; gap:22px}} /* larger gap between Soft & Hard on phones */
   .skill-group-title{display:block; font-weight:700}
+
+  /* Exactly 2 columns × 4 rows per group */
   .chips{
     display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(140px,1fr));
+    grid-template-columns:repeat(2,1fr);
     gap:8px;
-    margin-top:8px; /* space after titles */
-  }
-  @media (max-width:520px){
-    .chips{grid-template-columns:repeat(auto-fit,minmax(120px,1fr))}
+    margin-top:8px; /* consistent space after titles */
   }
   .chip{
     display:inline-flex; align-items:center; justify-content:center;
     padding:4px 8px; border:1px solid var(--line); border-radius:999px; background:var(--card);
     font-weight:600; font-size:.9rem; text-align:center; box-shadow:0 1px 2px rgba(2,6,23,.05);
+    white-space:nowrap;  /* single line only */
   }
 
   /* Projects */
@@ -300,12 +300,13 @@
     </div>
   </section>
 
-  <!-- Skills & Languages (UPDATED ONLY THIS SECTION) -->
+  <!-- Skills & Languages -->
   <section id="skills" class="section">
     <div class="wrap">
       <h2 class="reveal fx-wipe-l">Skills and Languages</h2>
       <p class="lead reveal fx-from-right">Fluency, methods, and tools.</p>
 
+      <!-- Languages (UNCHANGED CONTENT) -->
       <div class="card reveal fx-zoom lang-card">
         <strong class="lang-title reveal fx-wipe-r">Languages</strong>
         <div class="lang-wrap reveal fx-from-up">
@@ -320,33 +321,35 @@
         </div>
       </div>
 
+      <!-- Skills -->
       <div class="skills-2">
-        <!-- Soft skills -->
+        <!-- Soft skills (8, single-line, 2x4) -->
         <div class="card reveal fx-from-left">
           <strong class="skill-group-title reveal fx-wipe-l">Soft skills</strong>
           <div class="chips">
             <span class="chip">Communications</span>
             <span class="chip">Analytical synthesis</span>
-            <span class="chip">Press &amp; media monitoring</span>
+            <span class="chip">Press monitoring</span>
             <span class="chip">Critical thinking</span>
-            <span class="chip">Teamwork &amp; facilitation</span>
-            <span class="chip">Stakeholder coordination</span>
-            <span class="chip">Policy writing &amp; briefs</span>
+            <span class="chip">Team facilitation</span>
+            <span class="chip">Stakeholder coord.</span>
+            <span class="chip">Policy briefs</span>
             <span class="chip">Public speaking</span>
           </div>
         </div>
 
-        <!-- Hard skills -->
+        <!-- Hard skills (8, single-line, 2x4) -->
         <div class="card reveal fx-from-right">
           <strong class="skill-group-title reveal fx-wipe-r">Hard skills</strong>
           <div class="chips">
             <span class="chip">Data cleaning (Excel)</span>
-            <span class="chip">Mapping (QGIS &amp; Mapbox)</span>
+            <span class="chip">Mapping (QGIS/Mapbox)</span>
             <span class="chip">Dashboards &amp; visuals</span>
-            <span class="chip">WordPress &amp; GitHub Pages</span>
+            <span class="chip">WordPress &amp; Pages</span>
             <span class="chip">Microsoft 365</span>
             <span class="chip">Google Workspace</span>
             <span class="chip">Video editing (Premiere/CapCut)</span>
+            <span class="chip">Data viz (Tableau/Power BI)</span>
           </div>
         </div>
       </div>
@@ -449,7 +452,7 @@
     </div>
   </section>
 
-  <!-- Selected Work (EXACTLY AS YOU SENT) -->
+  <!-- Selected Work (exactly as your last code) -->
   <section id="work" class="section">
     <div class="wrap">
       <h2 class="reveal fx-wipe-r">Selected Work</h2>
@@ -555,7 +558,7 @@ const onScroll=()=>{
 };
 addEventListener('scroll',onScroll,{passive:true}); onScroll();
 
-/* Mobile menu (unchanged from v30) */
+/* Mobile menu */
 const menuBtn=document.getElementById('menuBtn');
 const nav=document.getElementById('siteNav');
 function closeNav(){ document.body.classList.remove('nav-open'); menuBtn.setAttribute('aria-expanded','false'); nav.setAttribute('aria-hidden','true'); }
