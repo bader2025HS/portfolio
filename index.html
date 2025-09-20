@@ -80,13 +80,19 @@
   @keyframes spin{to{transform:rotate(360deg)}}
 
   /* Navbar links */
-  nav a{color:var(--muted); text-decoration:none; font-weight:600; margin-left:14px; position:relative; padding:6px 0}
-  nav a:hover{color:var(--accent)} nav a.active{color:var(--accent)} nav a:after{display:none !important}
+  nav a{
+    color:var(--muted); text-decoration:none; font-weight:600; margin-left:14px; position:relative; padding:6px 0
+  }
+  nav a:hover{color:var(--accent)}
+  nav a.active{color:var(--accent)}
+  nav a:after{display:none !important}
 
   /* Hamburger + mobile overlay */
-  .menu-toggle{display:none; place-items:center; width:42px; height:42px; border:1px solid var(--line); border-radius:12px; background:#fff; box-shadow:var(--shadow)}
+  .menu-toggle{display:none; place-items:center; width:42px; height:42px;
+    border:1px solid var(--line); border-radius:12px; background:var(--card); box-shadow:var(--shadow)}
   .menu-toggle .bar{width:20px; height:2px; background:var(--text); position:relative; transition:transform .25s}
-  .menu-toggle .bar:before,.menu-toggle .bar:after{content:""; position:absolute; left:0; width:20px; height:2px; background:var(--text); transition:.25s}
+  .menu-toggle .bar:before,.menu-toggle .bar:after{
+    content:""; position:absolute; left:0; width:20px; height:2px; background:var(--text); transition:.25s}
   .menu-toggle .bar:before{top:-6px} .menu-toggle .bar:after{top:6px}
   body.nav-open .menu-toggle .bar{transform:rotate(45deg)}
   body.nav-open .menu-toggle .bar:before{transform:rotate(-90deg) translateX(-6px); opacity:0}
@@ -120,13 +126,11 @@
   .btn{display:inline-flex; align-items:center; gap:8px; padding:10px 14px; border-radius:14px;
     border:1px solid var(--line); font-weight:700; text-decoration:none; position:relative; overflow:hidden}
   .btn.primary{background:linear-gradient(135deg,var(--accent),var(--accent2)); color:#fff; border-color:transparent}
-  .btn.ghost{background:#fff; color:var(--text)}
+  .btn.ghost{background:var(--card); color:var(--text)}
   .btn:hover{transform:translateY(-1px)}
   .btn:after{content:""; position:absolute; inset:auto; top:0; left:0; width:0; height:100%; background:rgba(255,255,255,.15); transition:width .25s}
   .btn:hover:after{width:100%}
-
-  /* Plain, opaque cards everywhere */
-  .card{background:#fff; border:1px solid var(--line); border-radius:var(--radius); box-shadow:var(--shadow); padding:clamp(14px,2vw,18px); transition:transform .2s, box-shadow .2s}
+  .card{background:var(--card); border:1px solid var(--line); border-radius:var(--radius); box-shadow:var(--shadow); padding:clamp(14px,2vw,18px); transition:transform .2s, box-shadow .2s}
   .card:hover{transform:translateY(-2px); box-shadow:0 14px 36px rgba(2,6,23,.11)}
 
   /* Strap under name */
@@ -135,7 +139,7 @@
   .fade{opacity:0; transform:translateY(6px); transition:opacity .25s, transform .25s}
   .fade.show{opacity:1; transform:none}
   .chips-mini{display:flex; gap:8px; flex-wrap:wrap}
-  .chip-mini{padding:4px 10px; border:1px solid var(--line); border-radius:999px; background:#fff; font-weight:600; font-size:.92rem}
+  .chip-mini{padding:4px 10px; border:1px solid var(--line); border-radius:999px; background:var(--card); font-weight:600; font-size:.92rem}
 
   /* ===== Skills & Languages ===== */
 
@@ -151,7 +155,7 @@
   .lang-pill{
     display:inline-flex; align-items:center; gap:8px;
     padding:6px 10px; border:1px solid var(--line); border-radius:999px;
-    background:#fff; white-space:nowrap; scroll-snap-align:center;
+    background:var(--card); white-space:nowrap; scroll-snap-align:center;
     box-shadow:0 1px 2px rgba(2,6,23,.05);
     font-weight:600;
   }
@@ -161,23 +165,23 @@
   }
   .flag img{width:100%; height:100%; object-fit:cover; display:block; image-rendering:auto}
 
-  /* Phone tweaks for Languages: keep as before, plus equal spacing to skills below */
+  /* Phone tweaks: smaller space after Languages title + tighter spacing to Soft box */
   @media (max-width:780px){
     .lang-card .lang-title{margin-bottom:6px;}
     .lang-wrap{margin-top:4px;}
     .lang-row{overflow:visible; padding:0; gap:8px; display:grid; grid-template-columns:1fr 1fr;}
     .lang-pill{font-size:.9rem; padding:5px 8px; gap:6px}
     .flag{width:18px; height:18px; flex:0 0 18px}
-    /* Equal space below Languages and between Soft/Hard on phones */
-    #skills .lang-card{margin-bottom:14px;}
+    /* Smaller space below the whole Languages card on phones */
+    #skills .wrap > .lang-card{margin-bottom:10px;}
   }
 
   /* Skills layout */
   .skills-2{display:grid; grid-template-columns:1fr 1fr; gap:18px; margin-top:6px}
-  @media (max-width:900px){.skills-2{grid-template-columns:1fr; gap:14px}} /* equal phone gap between Soft & Hard */
+  @media (max-width:900px){.skills-2{grid-template-columns:1fr; gap:22px}} /* larger gap between Soft & Hard on phones */
   .skill-group-title{display:block; font-weight:700}
 
-  /* 2 columns × 4 rows per group (desktop); on phones keep 2 columns but smaller chips so all stay single-line) */
+  /* Exactly 2 columns × 4 rows per group */
   .chips{
     display:grid;
     grid-template-columns:repeat(2,1fr);
@@ -186,12 +190,9 @@
   }
   .chip{
     display:inline-flex; align-items:center; justify-content:center;
-    padding:4px 8px; border:1px solid var(--line); border-radius:999px; background:#fff;
+    padding:4px 8px; border:1px solid var(--line); border-radius:999px; background:var(--card);
     font-weight:600; font-size:.9rem; text-align:center; box-shadow:0 1px 2px rgba(2,6,23,.05);
     white-space:nowrap;  /* single line only */
-  }
-  @media (max-width:780px){
-    .chip{font-size:.85rem; padding:3px 8px}
   }
 
   /* Projects */
@@ -233,7 +234,7 @@
 
   /* Footer (small) */
   footer{border-top:1px solid var(--line); color:var(--muted); padding:10px 0; margin-top:24px;
-    background:#fff; backdrop-filter:saturate(120%) blur(10px); font-size:.92rem}
+    background:rgba(255,255,255,.95); backdrop-filter:saturate(120%) blur(10px); font-size:.92rem}
   .to-top{position:fixed; right:18px; bottom:18px; z-index:9997; opacity:0; pointer-events:none; transition:opacity .2s}
   .to-top.show{opacity:1; pointer-events:auto}
 
@@ -243,7 +244,7 @@
     header nav#siteNav{display:flex; align-items:center; gap:8px;}
     header nav#siteNav a{
       margin:0; padding:8px 12px; border:1px solid var(--line); border-radius:12px;
-      background:#fff; text-decoration:none; color:var(--muted);
+      background:rgba(255,255,255,.9); text-decoration:none; color:var(--muted);
     }
     header nav#siteNav a:hover{border-color:var(--accent); color:var(--accent)}
     header nav#siteNav a.active{border-color:var(--accent); color:var(--accent); box-shadow:0 0 0 2px rgba(14,165,162,.12) inset}
@@ -322,7 +323,7 @@
 
       <!-- Skills -->
       <div class="skills-2">
-        <!-- Soft skills -->
+        <!-- Soft skills (8, single-line, 2x4) -->
         <div class="card reveal fx-from-left">
           <strong class="skill-group-title reveal fx-wipe-l">Soft skills</strong>
           <div class="chips">
@@ -337,7 +338,7 @@
           </div>
         </div>
 
-        <!-- Hard skills -->
+        <!-- Hard skills (8, single-line, 2x4) -->
         <div class="card reveal fx-from-right">
           <strong class="skill-group-title reveal fx-wipe-r">Hard skills</strong>
           <div class="chips">
@@ -451,7 +452,7 @@
     </div>
   </section>
 
-  <!-- Selected Work (unchanged) -->
+  <!-- Selected Work (exactly as your last code) -->
   <section id="work" class="section">
     <div class="wrap">
       <h2 class="reveal fx-wipe-r">Selected Work</h2>
@@ -481,6 +482,21 @@
             <p><a class="btn ghost" href="#" target="_blank" rel="noopener">Open project →</a></p>
           </div></div>
         </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Extracurricular Activities — 4 squares -->
+  <section id="activities" class="section">
+    <div class="wrap">
+      <h2 class="reveal fx-wipe-l">Extracurricular Activities</h2>
+      <p class="lead reveal fx-from-right">Clubs, volunteering, events, and field exposure.</p>
+
+      <div class="activities-grid">
+        <article class="card activity reveal fx-zoom"><div class="title">Sciences Po Monde Arabe — Communications Director</div></article>
+        <article class="card activity reveal fx-zoom"><div class="title">Tarjimly — Volunteer Translator & Interpreter</div></article>
+        <article class="card activity reveal fx-zoom"><div class="title">Events — Mediterranean of the Future & Paris Peace Forum</div></article>
+        <article class="card activity reveal fx-zoom"><div class="title">MEDMUN — Arabic Committee Director</div></article>
       </div>
     </div>
   </section>
