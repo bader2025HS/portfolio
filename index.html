@@ -134,6 +134,7 @@
   .card{background:#fff !important; border:1px solid var(--line); border-radius:var(--radius); box-shadow:var(--shadow); padding:clamp(14px,2vw,18px); transition:transform .2s, box-shadow .2s}
   .card:hover{transform:translateY(-2px); box-shadow:0 14px 36px rgba(2,6,23,.11)}
   .chip-mini{background:#fff}
+  .lang-pill{background:#fff}
   .chip{background:#fff}
 
   /* Strap under name */
@@ -146,31 +147,44 @@
 
   /* ===== Skills & Languages ===== */
 
-  /* Languages — back to fixed 2×3 grid (no scrolling) */
+  /* Languages */
   .lang-card .lang-title{display:block}
-  .lang-grid{
-    display:grid;
-    grid-template-columns:repeat(2,1fr);
-    gap:10px 14px;
-    margin-top:8px;
+  .lang-wrap{margin-top:6px;}
+  .lang-row{
+    display:flex; gap:10px; align-items:center;
+    overflow-x:auto; padding:8px 4px 10px; /* tiny bottom space before scrollbar */
+    scrollbar-gutter:stable; scroll-snap-type:x proximity;
   }
-  .lang-item{
-    display:flex; align-items:center; gap:10px; white-space:nowrap; font-weight:600;
+  .lang-pill{
+    display:inline-flex; align-items:center; gap:8px;
+    padding:6px 10px; border:1px solid var(--line); border-radius:999px;
+    white-space:nowrap; scroll-snap-align:center; box-shadow:0 1px 2px rgba(2,6,23,.05);
+    font-weight:600;
   }
   .flag{
     display:inline-block; width:20px; height:20px; border-radius:50%; overflow:hidden; flex:0 0 20px;
     box-shadow:0 0 0 1px var(--line), 0 1px 2px rgba(2,6,23,.12);
   }
-  .flag img{width:100%; height:100%; object-fit:cover; display:block}
+  .flag img{width:100%; height:100%; object-fit:cover; display:block; image-rendering:auto}
 
-  /* Skills — ALWAYS stacked: Soft then Hard, each in its own box */
-  .skills-stack{display:grid; grid-template-columns:1fr; gap:16px; margin-top:6px}
+  /* Skills layout */
+  .skills-2{display:grid; grid-template-columns:1fr 1fr; gap:18px; margin-top:6px}
   .skill-group-title{display:block; font-weight:700}
   .chips{display:grid; grid-template-columns:repeat(2,1fr); gap:8px; margin-top:8px}
   .chip{
     display:inline-flex; align-items:center; justify-content:center;
     padding:4px 8px; border:1px solid var(--line); border-radius:999px;
     font-weight:600; font-size:.9rem; text-align:center; box-shadow:0 1px 2px rgba(2,6,23,.05); white-space:nowrap;
+  }
+
+  /* Phone: make Languages + Soft + Hard align as identical full-width boxes */
+  @media (max-width:900px){
+    /* stack and make widths/margins identical */
+    .stack-uniform{display:block}
+    .stack-uniform > .card{width:100%; margin:0 0 16px 0}
+    .stack-uniform > .card:last-child{margin-bottom:0}
+    #skills .wrap > .lang-card{margin-bottom:16px} /* same gap before Soft */
+    .skills-2{grid-template-columns:1fr; gap:16px}  /* ensure single column */
   }
 
   /* Projects */
@@ -284,21 +298,23 @@
       <h2 class="reveal fx-wipe-l">Skills and Languages</h2>
       <p class="lead reveal fx-from-right">Fluency, methods, and tools.</p>
 
-      <!-- Languages (2×3 grid) -->
+      <!-- Languages (unchanged content) -->
       <div class="card reveal fx-zoom lang-card">
         <strong class="lang-title reveal fx-wipe-r">Languages</strong>
-        <div class="lang-grid reveal fx-from-up">
-          <div class="lang-item"><span class="flag"><img src="https://flagcdn.com/w40/sa.png" alt="Arabic"/></span><span>Arabic (Native)</span></div>
-          <div class="lang-item"><span class="flag"><img src="https://flagcdn.com/w40/fr.png" alt="French"/></span><span>French (Native)</span></div>
-          <div class="lang-item"><span class="flag"><img src="https://flagcdn.com/w40/gb.png" alt="English"/></span><span>English (C2)</span></div>
-          <div class="lang-item"><span class="flag"><img src="https://flagcdn.com/w40/de.png" alt="German"/></span><span>German (C1)</span></div>
-          <div class="lang-item"><span class="flag"><img src="https://flagcdn.com/w40/ir.png" alt="Persian"/></span><span>Persian (A2)</span></div>
-          <div class="lang-item"><span class="flag"><img src="https://flagcdn.com/w40/jp.png" alt="Japanese"/></span><span>Japanese (A2)</span></div>
+        <div class="lang-wrap reveal fx-from-up">
+          <div class="lang-row">
+            <span class="lang-pill"><span class="flag"><img src="https://flagcdn.com/w40/sa.png" alt="Arabic"/></span><strong>Arabic</strong> (Native)</span>
+            <span class="lang-pill"><span class="flag"><img src="https://flagcdn.com/w40/fr.png" alt="French"/></span><strong>French</strong> (Native)</span>
+            <span class="lang-pill"><span class="flag"><img src="https://flagcdn.com/w40/gb.png" alt="English"/></span><strong>English</strong> (C2)</span>
+            <span class="lang-pill"><span class="flag"><img src="https://flagcdn.com/w40/de.png" alt="German"/></span><strong>German</strong> (C1)</span>
+            <span class="lang-pill"><span class="flag"><img src="https://flagcdn.com/w40/ir.png" alt="Persian"/></span><strong>Persian</strong> (A2)</span>
+            <span class="lang-pill"><span class="flag"><img src="https://flagcdn.com/w40/jp.png" alt="Japanese"/></span><strong>Japanese</strong> (A2)</span>
+          </div>
         </div>
       </div>
 
-      <!-- Skills (stacked boxes) -->
-      <div class="skills-stack">
+      <!-- Skills -->
+      <div class="skills-2 stack-uniform">
         <!-- Soft skills -->
         <div class="card reveal fx-from-left">
           <strong class="skill-group-title reveal fx-wipe-l">Soft skills</strong>
