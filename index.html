@@ -1,4 +1,4 @@
-<!-- PORTFOLIO — v31 (desktop menu framed) -->
+<!-- PORTFOLIO — v32 (plain white cards, langs 2x3, phone stacked skills) -->
 
 <!-- Viewport (safety) -->
 <script>
@@ -15,7 +15,7 @@
   :root{
     --header:72px; --maxw:860px;
     --bg1:#eafaf7; --bg2:#f7fbff; --bg3:#e9f8ff;
-    --text:#0f172a; --muted:#475569; --card:#f8fafc; --line:#e2e8f0;
+    --text:#0f172a; --muted:#475569; --card:#fff; --line:#e2e8f0;
     --accent:#0ea5a2; --accent2:#1fbdb9; --gold:#d4af37;
     --radius:18px; --shadow:0 10px 30px rgba(2,6,23,.07);
   }
@@ -34,19 +34,11 @@
       repeating-linear-gradient(0deg,#000 0 1px,transparent 1px 26px);
     mix-blend-mode:soft-light; animation:gridPan 30s linear infinite;
   }
-  body::after{
-    content:""; position:fixed; inset:0; pointer-events:none; opacity:.18;
-    background:
-      repeating-radial-gradient(circle at 20% 30%, rgba(2,6,23,.08) 0 2px, transparent 2px 18px),
-      repeating-radial-gradient(circle at 75% 60%, rgba(2,6,23,.06) 0 2px, transparent 2px 22px);
-    filter:blur(.2px);
-  }
   @keyframes gridPan{to{transform:translate3d(-26px,-26px,0)}}
 
   .wrap{max-width:var(--maxw); margin-inline:auto; padding:clamp(16px,3vw,26px)}
   .section{margin:clamp(24px,5vw,46px) 0}
   .section h2{margin:0 0 6px; font-size:clamp(26px,4.2vw,38px)}
-  .section h2 + .lead{margin-top:2px}
   .lead{color:var(--muted)}
 
   /* Reveals */
@@ -67,8 +59,7 @@
   /* Header */
   header{
     position:sticky; top:0; z-index:9999; height:var(--header);
-    background:rgba(255,255,255,.95); border-bottom:1px solid var(--line);
-    backdrop-filter:saturate(120%) blur(10px);
+    background:#fff; border-bottom:1px solid var(--line); backdrop-filter:saturate(120%) blur(10px);
   }
   header .inner{max-width:var(--maxw); height:100%; margin:auto; padding:0 16px;
     display:flex; align-items:center; justify-content:space-between; gap:12px}
@@ -79,17 +70,12 @@
     box-shadow:0 6px 18px rgba(2,6,23,.06); animation:spin 10s linear infinite}
   @keyframes spin{to{transform:rotate(360deg)}}
 
-  /* Navbar links */
-  nav a{
-    color:var(--muted); text-decoration:none; font-weight:600; margin-left:14px; position:relative; padding:6px 0
-  }
-  nav a:hover{color:var(--accent)}
-  nav a.active{color:var(--accent)}
-  nav a:after{display:none !important}
+  nav a{color:var(--muted); text-decoration:none; font-weight:600; margin-left:14px; position:relative; padding:6px 0}
+  nav a:hover{color:var(--accent)} nav a.active{color:var(--accent)} nav a:after{display:none !important}
 
   /* Hamburger + mobile overlay */
   .menu-toggle{display:none; place-items:center; width:42px; height:42px;
-    border:1px solid var(--line); border-radius:12px; background:var(--card); box-shadow:var(--shadow)}
+    border:1px solid var(--line); border-radius:12px; background:#fff; box-shadow:var(--shadow)}
   .menu-toggle .bar{width:20px; height:2px; background:var(--text); position:relative; transition:transform .25s}
   .menu-toggle .bar:before,.menu-toggle .bar:after{
     content:""; position:absolute; left:0; width:20px; height:2px; background:var(--text); transition:.25s}
@@ -104,18 +90,14 @@
     header nav#siteNav{
       position:fixed; inset:0; z-index:10004; height:100svh;
       padding:calc(env(safe-area-inset-top,0px) + 84px) 18px 24px;
-      display:flex; flex-direction:column; gap:10px; background:#fff !important;
+      display:flex; flex-direction:column; gap:10px; background:#fff;
       transform:translateY(-100%); opacity:0; visibility:hidden; pointer-events:none;
       transition:transform .28s ease, opacity .2s ease;
     }
     body.nav-open header nav#siteNav{transform:translateY(0); opacity:1; visibility:visible; pointer-events:auto}
     header nav a{margin:0; padding:16px 14px; border-radius:12px; font-size:1.12rem; background:#fff; border:1px solid var(--line)}
     header nav a.active{color:var(--accent); border-color:var(--accent)}
-    #siteNav .mhead{
-      display:flex; align-items:center; gap:10px;
-      position:absolute; left:18px; top:calc(env(safe-area-inset-top,0px) + 18px);
-      font-weight:800;
-    }
+    #siteNav .mhead{display:flex; align-items:center; gap:10px; position:absolute; left:18px; top:calc(env(safe-area-inset-top,0px) + 18px); font-weight:800;}
   }
 
   #progress{position:fixed; top:0; left:0; height:3px; width:0; z-index:10000;
@@ -126,66 +108,32 @@
   .btn{display:inline-flex; align-items:center; gap:8px; padding:10px 14px; border-radius:14px;
     border:1px solid var(--line); font-weight:700; text-decoration:none; position:relative; overflow:hidden}
   .btn.primary{background:linear-gradient(135deg,var(--accent),var(--accent2)); color:#fff; border-color:transparent}
-  .btn.ghost{background:var(--card); color:var(--text)}
+  .btn.ghost{background:#fff; color:var(--text)}
   .btn:hover{transform:translateY(-1px)}
   .btn:after{content:""; position:absolute; inset:auto; top:0; left:0; width:0; height:100%; background:rgba(255,255,255,.15); transition:width .25s}
+  .btn:hover:after{width:100%}
 
-  /* Boxes plain white */
   .card{background:#fff !important; border:1px solid var(--line); border-radius:var(--radius); box-shadow:var(--shadow); padding:clamp(14px,2vw,18px); transition:transform .2s, box-shadow .2s}
   .card:hover{transform:translateY(-2px); box-shadow:0 14px 36px rgba(2,6,23,.11)}
-  .chip-mini{background:#fff}
-  .lang-pill{background:#fff}
-  .chip{background:#fff}
-
-  /* Strap under name */
-  .strap{margin:6px 0 12px; display:flex; align-items:center; gap:10px; flex-wrap:wrap}
-  .rotator{font-weight:800; letter-spacing:.2px}
-  .fade{opacity:0; transform:translateY(6px); transition:opacity .25s, transform .25s}
-  .fade.show{opacity:1; transform:none}
-  .chips-mini{display:flex; gap:8px; flex-wrap:wrap}
-  .chip-mini{padding:4px 10px; border:1px solid var(--line); border-radius:999px; font-weight:600; font-size:.92rem}
+  .chip-mini{padding:4px 10px; border:1px solid var(--line); border-radius:999px; background:#fff; font-weight:600; font-size:.92rem}
 
   /* ===== Skills & Languages ===== */
 
-  /* Languages */
+  /* Languages — 2x3 grid, no scrolling (desktop & phone) */
   .lang-card .lang-title{display:block}
-  .lang-wrap{margin-top:6px;}
-  .lang-row{
-    display:flex; gap:10px; align-items:center;
-    overflow-x:auto; padding:8px 4px 10px; /* tiny bottom space before scrollbar */
-    scrollbar-gutter:stable; scroll-snap-type:x proximity;
-  }
-  .lang-pill{
-    display:inline-flex; align-items:center; gap:8px;
-    padding:6px 10px; border:1px solid var(--line); border-radius:999px;
-    white-space:nowrap; scroll-snap-align:center; box-shadow:0 1px 2px rgba(2,6,23,.05);
-    font-weight:600;
-  }
-  .flag{
-    display:inline-block; width:20px; height:20px; border-radius:50%; overflow:hidden; flex:0 0 20px;
-    box-shadow:0 0 0 1px var(--line), 0 1px 2px rgba(2,6,23,.12);
-  }
+  .lang-grid{display:grid; grid-template-columns:repeat(2,1fr); gap:10px 14px; margin-top:8px}
+  .lang-item{display:flex; align-items:center; gap:10px; font-weight:700; white-space:nowrap}
+  .flag{display:inline-block; width:20px; height:20px; border-radius:50%; overflow:hidden; flex:0 0 20px; box-shadow:0 0 0 1px var(--line), 0 1px 2px rgba(2,6,23,.12)}
   .flag img{width:100%; height:100%; object-fit:cover; display:block; image-rendering:auto}
 
-  /* Skills layout */
-  .skills-2{display:grid; grid-template-columns:1fr 1fr; gap:18px; margin-top:6px}
+  /* Skills layout — desktop: 2 columns; phone: stack one after another */
+  .skills-2{display:grid; grid-template-columns:1fr 1fr; gap:18px; margin-top:12px}
+  @media (max-width:780px){
+    .skills-2{grid-template-columns:1fr; gap:16px} /* stack Soft then Hard */
+  }
   .skill-group-title{display:block; font-weight:700}
   .chips{display:grid; grid-template-columns:repeat(2,1fr); gap:8px; margin-top:8px}
-  .chip{
-    display:inline-flex; align-items:center; justify-content:center;
-    padding:4px 8px; border:1px solid var(--line); border-radius:999px;
-    font-weight:600; font-size:.9rem; text-align:center; box-shadow:0 1px 2px rgba(2,6,23,.05); white-space:nowrap;
-  }
-
-  /* Phone: make Languages + Soft + Hard align as identical full-width boxes */
-  @media (max-width:900px){
-    /* stack and make widths/margins identical */
-    .stack-uniform{display:block}
-    .stack-uniform > .card{width:100%; margin:0 0 16px 0}
-    .stack-uniform > .card:last-child{margin-bottom:0}
-    #skills .wrap > .lang-card{margin-bottom:16px} /* same gap before Soft */
-    .skills-2{grid-template-columns:1fr; gap:16px}  /* ensure single column */
-  }
+  .chip{display:inline-flex; align-items:center; justify-content:center; padding:4px 8px; border:1px solid var(--line); border-radius:999px; background:#fff; font-weight:600; font-size:.9rem; text-align:center; white-space:nowrap; box-shadow:0 1px 2px rgba(2,6,23,.05)}
 
   /* Projects */
   .projects{display:grid; grid-template-columns:repeat(3,1fr); gap:12px}
@@ -224,7 +172,7 @@
   .activity{aspect-ratio:1/1; display:grid; place-items:center; text-align:center; padding:12px}
   .activity .title{font-weight:800}
 
-  /* Footer (small) */
+  /* Footer */
   footer{border-top:1px solid var(--line); color:var(--muted); padding:10px 0; margin-top:24px;
     background:#fff; backdrop-filter:saturate(120%) blur(10px); font-size:.92rem}
   .to-top{position:fixed; right:18px; bottom:18px; z-index:9997; opacity:0; pointer-events:none; transition:opacity .2s}
@@ -298,24 +246,21 @@
       <h2 class="reveal fx-wipe-l">Skills and Languages</h2>
       <p class="lead reveal fx-from-right">Fluency, methods, and tools.</p>
 
-      <!-- Languages (unchanged content) -->
+      <!-- Languages (2x3 grid, no scroll) -->
       <div class="card reveal fx-zoom lang-card">
         <strong class="lang-title reveal fx-wipe-r">Languages</strong>
-        <div class="lang-wrap reveal fx-from-up">
-          <div class="lang-row">
-            <span class="lang-pill"><span class="flag"><img src="https://flagcdn.com/w40/sa.png" alt="Arabic"/></span><strong>Arabic</strong> (Native)</span>
-            <span class="lang-pill"><span class="flag"><img src="https://flagcdn.com/w40/fr.png" alt="French"/></span><strong>French</strong> (Native)</span>
-            <span class="lang-pill"><span class="flag"><img src="https://flagcdn.com/w40/gb.png" alt="English"/></span><strong>English</strong> (C2)</span>
-            <span class="lang-pill"><span class="flag"><img src="https://flagcdn.com/w40/de.png" alt="German"/></span><strong>German</strong> (C1)</span>
-            <span class="lang-pill"><span class="flag"><img src="https://flagcdn.com/w40/ir.png" alt="Persian"/></span><strong>Persian</strong> (A2)</span>
-            <span class="lang-pill"><span class="flag"><img src="https://flagcdn.com/w40/jp.png" alt="Japanese"/></span><strong>Japanese</strong> (A2)</span>
-          </div>
+        <div class="lang-grid reveal fx-from-up">
+          <div class="lang-item"><span class="flag"><img src="https://flagcdn.com/w40/sa.png" alt="Arabic"/></span>Arabic (Native)</div>
+          <div class="lang-item"><span class="flag"><img src="https://flagcdn.com/w40/fr.png" alt="French"/></span>French (Native)</div>
+          <div class="lang-item"><span class="flag"><img src="https://flagcdn.com/w40/gb.png" alt="English"/></span>English (C2)</div>
+          <div class="lang-item"><span class="flag"><img src="https://flagcdn.com/w40/de.png" alt="German"/></span>German (C1)</div>
+          <div class="lang-item"><span class="flag"><img src="https://flagcdn.com/w40/ir.png" alt="Persian"/></span>Persian (A2)</div>
+          <div class="lang-item"><span class="flag"><img src="https://flagcdn.com/w40/jp.png" alt="Japanese"/></span>Japanese (A2)</div>
         </div>
       </div>
 
-      <!-- Skills -->
-      <div class="skills-2 stack-uniform">
-        <!-- Soft skills -->
+      <!-- Skills (desktop 2 cols, phone stacked) -->
+      <div class="skills-2">
         <div class="card reveal fx-from-left">
           <strong class="skill-group-title reveal fx-wipe-l">Soft skills</strong>
           <div class="chips">
@@ -330,7 +275,6 @@
           </div>
         </div>
 
-        <!-- Hard skills -->
         <div class="card reveal fx-from-right">
           <strong class="skill-group-title reveal fx-wipe-r">Hard skills</strong>
           <div class="chips">
@@ -383,7 +327,7 @@
   <section id="experience" class="section">
     <div class="wrap">
       <h2 class="reveal fx-wipe-l">Experience</h2>
-    <p class="lead reveal fx-from-right">Communications, humanitarian data, and policy research.</p>
+      <p class="lead reveal fx-from-right">Communications, humanitarian data, and policy research.</p>
       <div class="timeline">
         <div class="t">
           <div class="dot" aria-hidden="true"></div>
@@ -444,7 +388,7 @@
     </div>
   </section>
 
-  <!-- Selected Work (unchanged) -->
+  <!-- Selected Work (exactly like your version) -->
   <section id="work" class="section">
     <div class="wrap">
       <h2 class="reveal fx-wipe-r">Selected Work</h2>
