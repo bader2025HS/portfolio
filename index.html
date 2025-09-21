@@ -11,6 +11,9 @@
 })();
 </script>
 
+<!-- Leaflet CSS (needed for the map) -->
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin />
+
 <style>
   :root{
     --header:72px; --maxw:860px;
@@ -227,7 +230,7 @@
   .tags{display:flex; gap:6px; flex-wrap:wrap; margin-top:8px}
   .tag{display:inline-block; padding:6px 10px; border:1px solid var(--line); border-radius:999px; font-size:.95rem; color:#0b3b3a; background:#e9fbf9}
 
-  /* Education */
+  /* Education (base styles kept for other cards that may exist) */
   .edu{display:grid; grid-template-columns:1fr; gap:12px}
   .edu .item .head{display:flex; align-items:center; justify-content:space-between; gap:10px; flex-wrap:wrap}
   .edu .item strong{display:block}
@@ -259,6 +262,58 @@
     header nav#siteNav a.active{border-color:var(--accent); color:var(--accent); box-shadow:0 0 0 2px rgba(14,165,162,.12) inset}
     #siteNav .mhead{display:none;}
   }
+
+  /* ====== EXTRA CSS ONLY FOR NEW EDUCATION SCROLLER + MAP ====== */
+
+  /* Education scroller (hidden scrollbar) */
+  #edu-scroll .box{
+    position:relative;
+    background:transparent !important;
+    border:none !important;
+    border-radius:0 !important;
+    box-shadow:none !important;
+    padding:0 !important;
+    overflow:visible;
+  }
+  #edu-scroll .tray-wrap{ position:relative; }
+  #edu-scroll .tray{
+    display:flex; gap:12px; align-items:center;
+    overflow-x:auto; overflow-y:hidden;
+    scroll-snap-type:x mandatory; -webkit-overflow-scrolling:touch;
+    padding:0;
+    scrollbar-width:none; -ms-overflow-style:none;
+  }
+  #edu-scroll .tray::-webkit-scrollbar{ width:0; height:0; background:transparent; }
+  #edu-scroll .edu-card{
+    scroll-snap-align:center;
+    flex:0 0 300px; display:grid; grid-template-rows:auto auto 1fr; gap:8px;
+    min-height:240px; background:#fff; border:1px solid var(--line);
+    border-radius:14px; box-shadow:var(--shadow); padding:14px 14px 16px
+  }
+  #edu-scroll .edu-card .meta{display:flex; align-items:center; gap:8px; color:var(--muted); font-size:1rem; white-space:nowrap; word-break:keep-all}
+  #edu-scroll .edu-card .flag-ico{width:24px; height:16px; object-fit:cover; border-radius:2px; box-shadow:0 0 0 1px var(--line)}
+  #edu-scroll .edu-card .school{font-weight:800; font-size:1.14rem; line-height:1.25}
+  #edu-scroll .edu-card .desc{font-size:1.02rem; line-height:1.38}
+  #edu-scroll .edu-card .note{font-size:.94rem; color:var(--muted)}
+  @media (min-width:1200px){ #edu-scroll .edu-card{ flex:0 0 320px; } }
+  @media (max-width:600px){
+    #edu-scroll .tray{ gap:12px !important; align-items:stretch !important; padding:0 !important; }
+    #edu-scroll .edu-card{ flex:0 0 88vw !important; min-height:unset; padding:12px 12px 14px; }
+    #edu-scroll .edu-card .meta{ white-space:normal; flex-wrap:wrap; gap:6px; font-size:.95rem; }
+    #edu-scroll .edu-card .school{ font-size:1.06rem; }
+  }
+
+  /* Travel map */
+  .map-card{
+    background:transparent;
+    border:none !important;
+    border-radius:0;
+    box-shadow:none;
+    padding:0;
+    overflow:visible;
+  }
+  #visitedMap{ height:min(60vh, 520px); width:100%; border-radius:14px; }
+  #visitedMap.leaflet-container{ background:transparent !important; }
 </style>
 
 <div id="progress"></div>
@@ -278,6 +333,7 @@
       <a href="#about">About</a>
       <a href="#skills">Skills</a>
       <a href="#education">Education</a>
+      <!-- Keeping original nav unchanged per your instruction (no Travel link added) -->
       <a href="#experience">Experience</a>
       <a href="#work">Work</a>
       <a href="#activities">Activities</a>
@@ -286,7 +342,7 @@
   </div>
 </header>
 
-<main>
+<main>  
   <!-- About -->
   <section id="about" class="section">
     <div class="wrap reveal fx-from-down">
@@ -365,32 +421,19 @@
     </div>
   </section>
 
-  <!-- Education -->
+  <!-- Education (REPLACED with the new horizontal scroller) -->
   <section id="education" class="section">
     <div class="wrap">
-      <h2 class="reveal fx-wipe-r">Education</h2>
-      <p class="lead reveal fx-from-left">Focus on security, migration, and EU governance.</p>
-      <div class="edu">
-        <div class="card item reveal fx-from-up">
-          <div class="head">
-            <strong class="reveal fx-wipe-l">M.A. International Security - Sciences Po (PSIA)</strong>
-            <span class="where reveal fx-from-right">Paris • 2024–2027</span>
+      <h2 class="reveal fx-wipe-r">Education Journey</h2>
+      <p class="lead reveal fx-from-left" style="margin:.25rem 0 .9rem">
+        Scroll sideways to browse. Focus on security, migration, and EU governance.
+      </p>
+
+      <div id="edu-scroll" class="reveal fx-zoom">
+        <div class="box" role="region" aria-label="Education cards carousel">
+          <div class="tray-wrap">
+            <div class="tray" id="eduTray" tabindex="0"></div>
           </div>
-          <p class="lead">Focus on Migration and Middle Eastern Studies at the Paris School of International Affairs.</p>
-        </div>
-        <div class="card item reveal fx-zoom">
-          <div class="head">
-            <strong class="reveal fx-wipe-r">M.A. International Relations - Freie Universität Berlin (OSI)</strong>
-            <span class="where reveal fx-from-right">Berlin • 2024–2027</span>
-          </div>
-          <p class="lead">Coursework in international relations and European Affairs in the Otto Suhr Institute track.</p>
-        </div>
-        <div class="card item reveal fx-from-down">
-          <div class="head">
-            <strong class="reveal fx-wipe-l">B.A. Politics and Government - Sciences Po</strong>
-            <span class="where reveal fx-from-right">Menton/Nancy • 2021–2024</span>
-          </div>
-          <p class="lead">Exchange: Tokyo University of Foreign Studies (TUFS) - Tokyo • 2023–2024.</p>
         </div>
       </div>
     </div>
@@ -512,6 +555,17 @@
     </div>
   </section>
 
+  <!-- Travel (ADDED new section) -->
+  <section id="travel" class="section">
+    <div class="wrap">
+      <h2 class="reveal fx-wipe-l">Countries I’ve Visited</h2>
+      <p class="lead reveal fx-from-right">Centered on Europe–Middle East–Asia. Hover for names.</p>
+      <div class="map-card reveal fx-from-up">
+        <div id="visitedMap" aria-label="Visited countries map"></div>
+      </div>
+    </div>
+  </section>
+  
   <!-- Contact -->
   <section id="contact" class="section">
     <div class="wrap reveal fx-from-up">
@@ -530,6 +584,9 @@
 
 <footer><div class="wrap">© 2025 Bader Suliman</div></footer>
 <a href="#about" class="btn primary to-top" id="toTop">↑ Top</a>
+
+<!-- Leaflet JS (needed for the map) -->
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin></script>
 
 <script>
 /* Reveal on scroll */
@@ -578,6 +635,112 @@ menuBtn.addEventListener('click',()=>{ document.body.classList.contains('nav-ope
 nav.querySelectorAll('a').forEach(a=>a.addEventListener('click',closeNav));
 addEventListener('keydown',e=>{ if(e.key==='Escape') closeNav(); });
 addEventListener('resize',()=>{ if(innerWidth>760) closeNav(); },{passive:true});
+
+/* ========= NEW: Build the education cards (from your second code) ========= */
+(function(){
+  const data = [
+    { year:"2026–2027", city:"Berlin, Germany", code:"de", school:"Freie Universität Berlin — OSI", program:"M.A. International Relations", note:"Expected to start 2026. Comparative security focus with modules on EU foreign and defense policies." },
+    { year:"2024–2026", city:"Paris, France", code:"fr", school:"Sciences Po — PSIA", program:"M.A. International Security & Migration", note:"Asylum and migration law, border governance, and humanitarian data analysis; qualitative research design and mapping/data projects." },
+
+    // Added after PSIA
+    { year:"2024–2025", city:"Paris, France", code:"fr", school:"INALCO — Eurasian Department", program:"Persian Language & Iranian Studies", note:"Intensive Persian (academic texts, conversation) plus history, society, and politics of Iran and Afghanistan; primary-source analysis, translation practice, and media literacy on the region." },
+
+    { year:"2023–2024", city:"Tokyo, Japan", code:"jp", school:"Tokyo University of Foreign Studies", program:"Exchange. Asia-Pacific & Japanese Studies", note:"Full-time Japanese intensive alongside Asia-Pacific politics; Japan/ASEAN focus with intercultural fieldwork." },
+    { year:"2022–2023", city:"Menton, France", code:"fr", school:"Sciences Po Campus of Menton", program:"B.A. Major in Politics & Government", note:"Middle Eastern & Mediterranean specialization: comparative politics, constitutional law, and regional history; debate workshops tied to current affairs." },
+    { year:"2021–2022", city:"Nancy, France", code:"fr", school:"Sciences Po Campus of Nancy", program:"B.A. Introduction to social sciences", note:"Multidisciplinary foundations in political science, economics, sociology, law, and history within a trilingual Franco-German track; EU institutions and academic writing." }
+  ];
+
+  const tray = document.getElementById('eduTray');
+  if (!tray) return;
+  tray.innerHTML = data.map(d => `
+    <article class="edu-card" tabindex="0">
+      <div class="meta">
+        <img class="flag-ico" src="https://flagcdn.com/w40/${d.code}.png" alt="${d.city} flag" loading="lazy" width="24" height="16">
+        <span>${d.year} • ${d.city}</span>
+      </div>
+      <div class="school">${d.school}</div>
+      <div class="desc">${d.program}</div>
+      ${d.note ? `<div class="note">${d.note}</div>`:''}
+    </article>
+  `).join('');
+
+  // Drag to scroll
+  let down=false,startX=0,sl=0,pid=null;
+  tray.addEventListener('pointerdown', e=>{down=true;startX=e.clientX;sl=tray.scrollLeft;pid=e.pointerId;tray.setPointerCapture(pid);});
+  tray.addEventListener('pointermove', e=>{if(!down)return; tray.scrollLeft=sl-(e.clientX-startX);});
+  tray.addEventListener('pointerup', ()=>{down=false; try{tray.releasePointerCapture(pid);}catch{} });
+
+  // Wheel → horizontal
+  tray.addEventListener('wheel', e=>{
+    if(Math.abs(e.deltaY)>Math.abs(e.deltaX)){ tray.scrollLeft += e.deltaY; e.preventDefault(); }
+  }, {passive:false});
+})();
+
+/* ========= NEW: Visited countries map (transparent, polygons only) ========= */
+(function(){
+  const el = document.getElementById('visitedMap');
+  if (!el || typeof L === 'undefined') return;
+
+  const map = L.map(el, {
+    scrollWheelZoom: false,
+    zoomControl: true,
+    zoomSnap: 0.5,
+    zoomDelta: 0.5
+  });
+
+  function setEurasiaView(){
+    map.setView([36, 60], 3.0);
+  }
+  setEurasiaView();
+  window.addEventListener('resize', setEurasiaView);
+
+  const visitedNames = [
+    "France","Germany","Belgium","Netherlands","Italy","Luxembourg","United Kingdom","Malta",
+    "Armenia","Georgia","Bulgaria","South Korea","Malaysia",
+    "Syria","Jordan","United Arab Emirates","Lebanon","Saudi Arabia",
+    "India","China","Vietnam","Japan","Taiwan","Cambodia","Thailand","Singapore","Philippines",
+    "Australia"
+  ];
+  const normalize = s => s.normalize('NFKD').replace(/[\u0300-\u036f]/g,'').toLowerCase();
+  const visited = new Set(visitedNames.map(normalize));
+
+  const accent = getComputedStyle(document.documentElement).getPropertyValue('--accent').trim() || '#0ea5a2';
+  const stroke = '#7a7a7a';
+
+  const SOURCES = [
+    'https://raw.githubusercontent.com/johan/world.geo.json/master/countries.geo.json',
+    'https://raw.githubusercontent.com/datasets/geo-countries/master/data/countries.geojson'
+  ];
+
+  function loadWorld(i){
+    return fetch(SOURCES[i]).then(r=>{ if(!r.ok) throw new Error('HTTP '+r.status); return r.json(); }).then(geo=>{
+      const useAdmin = !!(geo.features && geo.features[0]?.properties?.ADMIN);
+      L.geoJSON(geo, {
+        style: f => {
+          const props = f.properties || {};
+          const name = useAdmin ? (props.ADMIN || '') : (props.name || '');
+          const hit  = visited.has(normalize(name));
+          return {
+            fillColor: hit ? accent : 'transparent',
+            color: stroke,
+            weight: hit ? 1.2 : 0.6,
+            fillOpacity: hit ? 0.9 : 0.0,
+            opacity: 0.9
+          };
+        },
+        onEachFeature: (f, l) => {
+          const props = f.properties || {};
+          const name = (props.name || props.ADMIN || '');
+          l.bindTooltip(name, {sticky:true, direction:'top', opacity:0.9});
+          if (visited.has(normalize(name))) l.bindPopup(`<strong>${name}</strong>`);
+        }
+      }).addTo(map);
+      setTimeout(setEurasiaView, 0);
+    });
+  }
+  loadWorld(0).catch(()=>loadWorld(1)).catch(err=>{
+    console.error('GeoJSON load error:', err);
+    el.innerHTML = "<div style='padding:16px;color:#ef4444'>Failed to load country polygons.</div>";
+  });
+})();
 </script>
-
-
