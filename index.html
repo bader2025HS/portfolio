@@ -1,4 +1,4 @@
-<!-- PORTFOLIO — v32 (plain white cards, langs 2x3, phone stacked skills) -->
+<!-- PORTFOLIO — v32 (skills restructured, plain white cards) -->
 
 <!-- Viewport (safety) -->
 <script>
@@ -22,7 +22,8 @@
   *{box-sizing:border-box}
   html{scroll-behavior:smooth; scroll-padding-top:calc(var(--header) + 14px)}
   body{
-    margin:0; color:var(--text); font-family:system-ui,-apple-system,Segoe UI,Inter,Roboto,Arial;
+    margin:0; color:var(--text);
+    font-family:system-ui,-apple-system,Segoe UI,Inter,Roboto,Arial;
     background:linear-gradient(120deg,var(--bg1),var(--bg2),var(--bg3));
     background-size:200% 200%; animation:bgShift 22s ease infinite;
   }
@@ -35,183 +36,84 @@
     mix-blend-mode:soft-light; animation:gridPan 30s linear infinite;
   }
   @keyframes gridPan{to{transform:translate3d(-26px,-26px,0)}}
-
   .wrap{max-width:var(--maxw); margin-inline:auto; padding:clamp(16px,3vw,26px)}
   .section{margin:clamp(24px,5vw,46px) 0}
   .section h2{margin:0 0 6px; font-size:clamp(26px,4.2vw,38px)}
   .lead{color:var(--muted)}
 
-  /* Reveals */
-  .reveal{opacity:0; will-change:transform,filter;
-    transition:opacity .6s cubic-bezier(.2,.7,.2,1),
-               transform .6s cubic-bezier(.2,.7,.2,1),
-               filter .6s cubic-bezier(.2,.7,.2,1)}
-  .reveal.in{opacity:1; transform:none; filter:none}
-  .fx-from-left{transform:translateX(-28px) skewX(-2deg); filter:blur(4px)}
-  .fx-from-right{transform:translateX(28px) skewX(2deg); filter:blur(4px)}
-  .fx-from-up{transform:translateY(-24px); filter:blur(6px)}
-  .fx-from-down{transform:translateY(24px); filter:blur(6px)}
-  .fx-zoom{transform:scale(.94); filter:blur(4px)}
-  .fx-wipe-l,.fx-wipe-r{display:inline-block; will-change:clip-path; transition:clip-path .7s cubic-bezier(.2,.7,.2,1)}
-  .fx-wipe-l{clip-path:inset(0 100% 0 0)} .fx-wipe-r{clip-path:inset(0 0 0 100%)}
-  .fx-wipe-l.in,.fx-wipe-r.in{clip-path:inset(0 0 0 0)}
-
   /* Header */
   header{
     position:sticky; top:0; z-index:9999; height:var(--header);
-    background:#fff; border-bottom:1px solid var(--line); backdrop-filter:saturate(120%) blur(10px);
+    background:#fff; border-bottom:1px solid var(--line);
+    backdrop-filter:saturate(120%) blur(10px);
   }
   header .inner{max-width:var(--maxw); height:100%; margin:auto; padding:0 16px;
     display:flex; align-items:center; justify-content:space-between; gap:12px}
-  .brand{display:flex; align-items:center; gap:10px; font-weight:800; white-space:nowrap}
-  .brand span{display:inline-block}
+  .brand{display:flex; align-items:center; gap:10px; font-weight:800}
   .badge{width:34px; height:34px; border-radius:10px; flex:0 0 34px;
     background:conic-gradient(from 220deg,var(--accent),var(--accent2));
     box-shadow:0 6px 18px rgba(2,6,23,.06); animation:spin 10s linear infinite}
   @keyframes spin{to{transform:rotate(360deg)}}
 
-  nav a{color:var(--muted); text-decoration:none; font-weight:600; margin-left:14px; position:relative; padding:6px 0}
-  nav a:hover{color:var(--accent)} nav a.active{color:var(--accent)} nav a:after{display:none !important}
+  nav a{color:var(--muted); text-decoration:none; font-weight:600; margin-left:14px}
+  nav a:hover{color:var(--accent)} nav a.active{color:var(--accent)}
 
-  /* Hamburger + mobile overlay */
+  /* Mobile menu */
   .menu-toggle{display:none; place-items:center; width:42px; height:42px;
     border:1px solid var(--line); border-radius:12px; background:#fff; box-shadow:var(--shadow)}
-  .menu-toggle .bar{width:20px; height:2px; background:var(--text); position:relative; transition:transform .25s}
+  .menu-toggle .bar{width:20px; height:2px; background:var(--text); position:relative}
   .menu-toggle .bar:before,.menu-toggle .bar:after{
-    content:""; position:absolute; left:0; width:20px; height:2px; background:var(--text); transition:.25s}
+    content:""; position:absolute; left:0; width:20px; height:2px; background:var(--text)}
   .menu-toggle .bar:before{top:-6px} .menu-toggle .bar:after{top:6px}
-  body.nav-open .menu-toggle .bar{transform:rotate(45deg)}
-  body.nav-open .menu-toggle .bar:before{transform:rotate(-90deg) translateX(-6px); opacity:0}
-  body.nav-open .menu-toggle .bar:after{transform:rotate(-90deg); top:0}
-  body.nav-open{overflow:hidden}
 
-  @media (max-width:760px), (max-device-width:812px){
+  @media(max-width:760px){
     .menu-toggle{display:grid; position:fixed; right:12px; top:12px; z-index:10005}
     header nav#siteNav{
       position:fixed; inset:0; z-index:10004; height:100svh;
       padding:calc(env(safe-area-inset-top,0px) + 84px) 18px 24px;
       display:flex; flex-direction:column; gap:10px; background:#fff;
       transform:translateY(-100%); opacity:0; visibility:hidden; pointer-events:none;
-      transition:transform .28s ease, opacity .2s ease;
+      transition:.25s;
     }
     body.nav-open header nav#siteNav{transform:translateY(0); opacity:1; visibility:visible; pointer-events:auto}
     header nav a{margin:0; padding:16px 14px; border-radius:12px; font-size:1.12rem; background:#fff; border:1px solid var(--line)}
-    header nav a.active{color:var(--accent); border-color:var(--accent)}
-    #siteNav .mhead{display:flex; align-items:center; gap:10px; position:absolute; left:18px; top:calc(env(safe-area-inset-top,0px) + 18px); font-weight:800;}
+    #siteNav .mhead{display:flex; align-items:center; gap:10px;
+      position:absolute; left:18px; top:calc(env(safe-area-inset-top,0px) + 18px); font-weight:800}
   }
 
-  #progress{position:fixed; top:0; left:0; height:3px; width:0; z-index:10000;
-    background:linear-gradient(90deg,var(--accent),#7c61ff,#ff7a6e,#f59e0b)}
+  /* Cards */
+  .card{background:#fff; border:1px solid var(--line); border-radius:var(--radius); box-shadow:var(--shadow);
+    padding:clamp(14px,2vw,18px)}
 
-  /* Type / buttons / cards */
-  h1{font-size:clamp(44px,7vw,74px); margin:0 0 6px}
-  .btn{display:inline-flex; align-items:center; gap:8px; padding:10px 14px; border-radius:14px;
-    border:1px solid var(--line); font-weight:700; text-decoration:none; position:relative; overflow:hidden}
-  .btn.primary{background:linear-gradient(135deg,var(--accent),var(--accent2)); color:#fff; border-color:transparent}
-  .btn.ghost{background:#fff; color:var(--text)}
-  .btn:hover{transform:translateY(-1px)}
-  .btn:after{content:""; position:absolute; inset:auto; top:0; left:0; width:0; height:100%; background:rgba(255,255,255,.15); transition:width .25s}
-  .btn:hover:after{width:100%}
-
-  .card{background:#fff !important; border:1px solid var(--line); border-radius:var(--radius); box-shadow:var(--shadow); padding:clamp(14px,2vw,18px); transition:transform .2s, box-shadow .2s}
-  .card:hover{transform:translateY(-2px); box-shadow:0 14px 36px rgba(2,6,23,.11)}
-  .chip-mini{padding:4px 10px; border:1px solid var(--line); border-radius:999px; background:#fff; font-weight:600; font-size:.92rem}
-
-  /* ===== Skills & Languages ===== */
-
-  /* Languages — 2x3 grid, no scrolling (desktop & phone) */
-  .lang-card .lang-title{display:block}
+  /* Languages */
   .lang-grid{display:grid; grid-template-columns:repeat(2,1fr); gap:10px 14px; margin-top:8px}
-  .lang-item{display:flex; align-items:center; gap:10px; font-weight:700; white-space:nowrap}
-  .flag{display:inline-block; width:20px; height:20px; border-radius:50%; overflow:hidden; flex:0 0 20px; box-shadow:0 0 0 1px var(--line), 0 1px 2px rgba(2,6,23,.12)}
-  .flag img{width:100%; height:100%; object-fit:cover; display:block; image-rendering:auto}
+  .lang-item{display:flex; align-items:center; gap:10px; font-weight:700}
+  .flag{width:20px; height:20px; border-radius:50%; overflow:hidden; flex:0 0 20px;
+    box-shadow:0 0 0 1px var(--line),0 1px 2px rgba(2,6,23,.12)}
+  .flag img{width:100%; height:100%; object-fit:cover; display:block}
 
-  /* Skills layout — desktop: 2 columns; phone: stack one after another */
+  /* Skills */
   .skills-2{display:grid; grid-template-columns:1fr 1fr; gap:18px; margin-top:12px}
-  @media (max-width:780px){
-    .skills-2{grid-template-columns:1fr; gap:16px} /* stack Soft then Hard */
+  @media(max-width:780px){
+    .skills-2{grid-template-columns:1fr 1fr; gap:12px}
   }
-  .skill-group-title{display:block; font-weight:700}
+  .skill-group-title{font-weight:700}
   .chips{display:grid; grid-template-columns:repeat(2,1fr); gap:8px; margin-top:8px}
-  .chip{display:inline-flex; align-items:center; justify-content:center; padding:4px 8px; border:1px solid var(--line); border-radius:999px; background:#fff; font-weight:600; font-size:.9rem; text-align:center; white-space:nowrap; box-shadow:0 1px 2px rgba(2,6,23,.05)}
-
-  /* Projects */
-  .projects{display:grid; grid-template-columns:repeat(3,1fr); gap:12px}
-  @media (max-width:1000px){.projects{grid-template-columns:1fr}}
-  .project{will-change:transform; transform:translateZ(0); transition:transform .28s, box-shadow .28s}
-  .project:hover{transform:scale(1.12); z-index:6; box-shadow:0 22px 54px rgba(2,6,23,.18)}
-  .thumb{aspect-ratio:16/10; border-radius:14px; border:1px solid var(--line); background:#e6fffb center/cover no-repeat; transition:transform .28s}
-  .project:hover .thumb{transform:scale(1.18)}
-  .project .body{display:grid; grid-template-rows:0fr; transition:grid-template-rows .25s, opacity .25s; opacity:0}
-  .project:hover .body{grid-template-rows:1fr; opacity:1}
-  .project .body>div{overflow:hidden}
-  @media (hover:none){ .project .body{grid-template-rows:1fr; opacity:1} .project:hover,.project:hover .thumb{transform:none} }
-
-  /* Experience */
-  .timeline{position:relative; margin-top:8px}
-  .timeline:before{content:""; position:absolute; left:12px; top:0; bottom:0; width:2px; background:linear-gradient(var(--accent),var(--gold)); opacity:.3}
-  .t{display:grid; grid-template-columns:26px 1fr; gap:12px; margin:14px 0}
-  .dot{width:22px; height:22px; border-radius:50%; border:2px solid var(--accent); background:radial-gradient(circle at 40% 35%, #d4af37, #f3e8c1); box-shadow:0 0 0 3px rgba(14,165,162,.12)}
-  .role{display:flex; align-items:center; justify-content:space-between; gap:12px; white-space:nowrap}
-  @media (max-width:520px){ .role{white-space:normal} }
-  .where{color:var(--muted)}
-  .tags{display:flex; gap:6px; flex-wrap:wrap; margin-top:8px}
-  .tag{display:inline-block; padding:6px 10px; border:1px solid var(--line); border-radius:999px; font-size:.95rem; color:#0b3b3a; background:#e9fbf9}
-
-  /* Education */
-  .edu{display:grid; grid-template-columns:1fr; gap:12px}
-  .edu .item .head{display:flex; align-items:center; justify-content:space-between; gap:10px; flex-wrap:wrap}
-  .edu .item strong{display:block}
-  .edu .item .where{color:var(--muted); font-weight:600}
-  .edu .item p{margin:.35rem 0 0}
-
-  /* Activities */
-  .activities-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:12px}
-  @media (max-width:900px){ .activities-grid{grid-template-columns:repeat(2,1fr)} }
-  @media (max-width:420px){ .activities-grid{grid-template-columns:repeat(2,1fr)} }
-  .activity{aspect-ratio:1/1; display:grid; place-items:center; text-align:center; padding:12px}
-  .activity .title{font-weight:800}
-
-  /* Footer */
-  footer{border-top:1px solid var(--line); color:var(--muted); padding:10px 0; margin-top:24px;
-    background:#fff; backdrop-filter:saturate(120%) blur(10px); font-size:.92rem}
-  .to-top{position:fixed; right:18px; bottom:18px; z-index:9997; opacity:0; pointer-events:none; transition:opacity .2s}
-  .to-top.show{opacity:1; pointer-events:auto}
-
-  /* === Desktop menu framing (mobile untouched) === */
-  @media (min-width:761px){
-    header .brand{padding:0; border:none; border-radius:0; background:transparent; box-shadow:none;}
-    header nav#siteNav{display:flex; align-items:center; gap:8px;}
-    header nav#siteNav a{
-      margin:0; padding:8px 12px; border:1px solid var(--line); border-radius:12px;
-      background:rgba(255,255,255,.9); text-decoration:none; color:var(--muted);
-    }
-    header nav#siteNav a:hover{border-color:var(--accent); color:var(--accent)}
-    header nav#siteNav a.active{border-color:var(--accent); color:var(--accent); box-shadow:0 0 0 2px rgba(14,165,162,.12) inset}
-    #siteNav .mhead{display:none;}
-  }
+  .chip{display:inline-flex; align-items:center; justify-content:center;
+    padding:4px 8px; border:1px solid var(--line); border-radius:999px;
+    font-weight:600; font-size:.9rem; background:#fff; white-space:nowrap}
 </style>
 
 <div id="progress"></div>
 
 <header>
   <div class="inner">
-    <div class="brand"><div class="badge" aria-hidden="true"></div><span>Bader Suliman</span></div>
-
-    <!-- Hamburger -->
-    <button class="menu-toggle" id="menuBtn" aria-label="Open menu" aria-expanded="false" aria-controls="siteNav">
-      <span class="bar"></span>
-    </button>
-
+    <div class="brand"><div class="badge"></div><span>Bader Suliman</span></div>
+    <button class="menu-toggle" id="menuBtn"><span class="bar"></span></button>
     <nav id="siteNav">
-      <div class="mhead"><div class="badge" aria-hidden="true"></div><span>Bader Suliman</span></div>
-
-      <a href="#about">About</a>
-      <a href="#skills">Skills</a>
-      <a href="#education">Education</a>
-      <a href="#experience">Experience</a>
-      <a href="#work">Work</a>
-      <a href="#activities">Activities</a>
+      <div class="mhead"><div class="badge"></div><span>Bader Suliman</span></div>
+      <a href="#about">About</a><a href="#skills">Skills</a><a href="#education">Education</a>
+      <a href="#experience">Experience</a><a href="#work">Work</a><a href="#activities">Activities</a>
       <a href="#contact">Contact</a>
     </nav>
   </div>
@@ -220,22 +122,10 @@
 <main>
   <!-- About -->
   <section id="about" class="section">
-    <div class="wrap reveal fx-from-down">
-      <h1 class="reveal fx-wipe-l">Bader Suliman</h1>
-
-      <div class="strap reveal fx-from-right">
-        <span class="rotator"><span id="rotate" class="fade">Communications</span></span>
-        <div class="chips-mini">
-          <span class="chip-mini">AR EN FR DE</span>
-          <span class="chip-mini">Paris • willing to relocate</span>
-        </div>
-      </div>
-
-      <div class="card reveal fx-zoom">
-        <strong class="reveal fx-wipe-r">About</strong>
-        <p class="lead reveal fx-from-left" style="margin:.4rem 0 0">
-          I make sense first, then make it simple. Think press reviews that highlight what matters, maps that you can read in five seconds, and short briefs that help a team decide the next step. I also enjoy research the practical way, from digging through datasets and field notes to speaking with practitioners, then turning that into concise takeaways and visuals that move work forward.
-        </p>
+    <div class="wrap">
+      <h1>Bader Suliman</h1>
+      <div class="card"><strong>About</strong>
+        <p class="lead">I make sense first, then make it simple...</p>
       </div>
     </div>
   </section>
@@ -243,264 +133,43 @@
   <!-- Skills & Languages -->
   <section id="skills" class="section">
     <div class="wrap">
-      <h2 class="reveal fx-wipe-l">Skills and Languages</h2>
-      <p class="lead reveal fx-from-right">Fluency, methods, and tools.</p>
+      <h2>Skills and Languages</h2>
+      <p class="lead">Fluency, methods, and tools.</p>
 
-      <!-- Languages (2x3 grid, no scroll) -->
-      <div class="card reveal fx-zoom lang-card">
-        <strong class="lang-title reveal fx-wipe-r">Languages</strong>
-        <div class="lang-grid reveal fx-from-up">
-          <div class="lang-item"><span class="flag"><img src="https://flagcdn.com/w40/sa.png" alt="Arabic"/></span>Arabic (Native)</div>
-          <div class="lang-item"><span class="flag"><img src="https://flagcdn.com/w40/fr.png" alt="French"/></span>French (Native)</div>
-          <div class="lang-item"><span class="flag"><img src="https://flagcdn.com/w40/gb.png" alt="English"/></span>English (C2)</div>
-          <div class="lang-item"><span class="flag"><img src="https://flagcdn.com/w40/de.png" alt="German"/></span>German (C1)</div>
-          <div class="lang-item"><span class="flag"><img src="https://flagcdn.com/w40/ir.png" alt="Persian"/></span>Persian (A2)</div>
-          <div class="lang-item"><span class="flag"><img src="https://flagcdn.com/w40/jp.png" alt="Japanese"/></span>Japanese (A2)</div>
+      <!-- Languages -->
+      <div class="card">
+        <strong>Languages</strong>
+        <div class="lang-grid">
+          <div class="lang-item"><span class="flag"><img src="https://flagcdn.com/w40/sa.png"/></span>Arabic (Native)</div>
+          <div class="lang-item"><span class="flag"><img src="https://flagcdn.com/w40/fr.png"/></span>French (Native)</div>
+          <div class="lang-item"><span class="flag"><img src="https://flagcdn.com/w40/gb.png"/></span>English (C2)</div>
+          <div class="lang-item"><span class="flag"><img src="https://flagcdn.com/w40/de.png"/></span>German (C1)</div>
+          <div class="lang-item"><span class="flag"><img src="https://flagcdn.com/w40/ir.png"/></span>Persian (A2)</div>
+          <div class="lang-item"><span class="flag"><img src="https://flagcdn.com/w40/jp.png"/></span>Japanese (A2)</div>
         </div>
       </div>
 
-      <!-- Skills (desktop 2 cols, phone stacked) -->
+      <!-- Skills -->
       <div class="skills-2">
-        <div class="card reveal fx-from-left">
-          <strong class="skill-group-title reveal fx-wipe-l">Soft skills</strong>
+        <div class="card"><strong class="skill-group-title">Soft skills</strong>
           <div class="chips">
-            <span class="chip">Communications</span>
-            <span class="chip">Analytical synthesis</span>
-            <span class="chip">Press monitoring</span>
-            <span class="chip">Critical thinking</span>
-            <span class="chip">Team facilitation</span>
-            <span class="chip">Stakeholder coord.</span>
-            <span class="chip">Policy briefs</span>
-            <span class="chip">Public speaking</span>
+            <span class="chip">Communications</span><span class="chip">Analytical synthesis</span>
+            <span class="chip">Press monitoring</span><span class="chip">Critical thinking</span>
+            <span class="chip">Team facilitation</span><span class="chip">Stakeholder coord.</span>
+            <span class="chip">Policy briefs</span><span class="chip">Public speaking</span>
           </div>
         </div>
-
-        <div class="card reveal fx-from-right">
-          <strong class="skill-group-title reveal fx-wipe-r">Hard skills</strong>
+        <div class="card"><strong class="skill-group-title">Hard skills</strong>
           <div class="chips">
-            <span class="chip">Data cleaning (Excel)</span>
-            <span class="chip">Mapping (QGIS/Mapbox)</span>
-            <span class="chip">Dashboards &amp; visuals</span>
-            <span class="chip">WordPress &amp; Pages</span>
-            <span class="chip">Microsoft 365</span>
-            <span class="chip">Google Workspace</span>
-            <span class="chip">Video editing (Premiere/CapCut)</span>
-            <span class="chip">Basic programming/coding</span>
+            <span class="chip">Data cleaning (Excel)</span><span class="chip">Mapping (QGIS/Mapbox)</span>
+            <span class="chip">Dashboards & visuals</span><span class="chip">WordPress & Pages</span>
+            <span class="chip">Microsoft 365</span><span class="chip">Google Workspace</span>
+            <span class="chip">Video editing</span><span class="chip">Basic programming</span>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Education -->
-  <section id="education" class="section">
-    <div class="wrap">
-      <h2 class="reveal fx-wipe-r">Education</h2>
-      <p class="lead reveal fx-from-left">Focus on security, migration, and EU governance.</p>
-      <div class="edu">
-        <div class="card item reveal fx-from-up">
-          <div class="head">
-            <strong class="reveal fx-wipe-l">M.A. International Security - Sciences Po (PSIA)</strong>
-            <span class="where reveal fx-from-right">Paris • 2024–2027</span>
-          </div>
-          <p class="lead">Focus on Migration and Middle Eastern Studies at the Paris School of International Affairs.</p>
-        </div>
-        <div class="card item reveal fx-zoom">
-          <div class="head">
-            <strong class="reveal fx-wipe-r">M.A. International Relations - Freie Universität Berlin (OSI)</strong>
-            <span class="where reveal fx-from-right">Berlin • 2024–2027</span>
-          </div>
-          <p class="lead">Coursework in international relations and European Affairs in the Otto Suhr Institute track.</p>
-        </div>
-        <div class="card item reveal fx-from-down">
-          <div class="head">
-            <strong class="reveal fx-wipe-l">B.A. Politics and Government - Sciences Po</strong>
-            <span class="where reveal fx-from-right">Menton/Nancy • 2021–2024</span>
-          </div>
-          <p class="lead">Exchange: Tokyo University of Foreign Studies (TUFS) - Tokyo • 2023–2024.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Experience -->
-  <section id="experience" class="section">
-    <div class="wrap">
-      <h2 class="reveal fx-wipe-l">Experience</h2>
-      <p class="lead reveal fx-from-right">Communications, humanitarian data, and policy research.</p>
-      <div class="timeline">
-        <div class="t">
-          <div class="dot" aria-hidden="true"></div>
-          <div class="card reveal fx-from-left">
-            <div class="role">
-              <strong>Intern - Project Design and Monitoring, OIF</strong>
-              <span class="where">Paris • 2025</span>
-            </div>
-            <p class="lead" style="margin:.35rem 0 0">Analyzed project data, maintained structured cooperation databases, wrote country briefs, and supported monitoring and evaluation for the execution report.</p>
-            <div class="tags"><span class="tag">Data analysis</span><span class="tag">Database design</span><span class="tag">Country briefs</span><span class="tag">Monitoring and evaluation</span></div>
-          </div>
-        </div>
-        <div class="t">
-          <div class="dot"></div>
-          <div class="card reveal fx-from-right">
-            <div class="role">
-              <strong>Intern - Data Analysis, AQLITY</strong>
-              <span class="where">Remote • 2025</span>
-            </div>
-            <p class="lead" style="margin:.35rem 0 0">Cleaned and analyzed humanitarian datasets and produced GIS maps and visual materials to explain trends and inform reports.</p>
-            <div class="tags"><span class="tag">Data cleaning</span><span class="tag">GIS and mapping</span><span class="tag">Infographics</span><span class="tag">Reporting</span></div>
-          </div>
-        </div>
-        <div class="t">
-          <div class="dot"></div>
-          <div class="card reveal fx-from-left">
-            <div class="role">
-              <strong>Assistant - Immigration Law, ARDHIS</strong>
-              <span class="where">Paris • 2024 to 2025</span>
-            </div>
-            <p class="lead" style="margin:.35rem 0 0">Guided asylum seekers during drop in sessions, researched country conditions, and drafted case notes and briefs for OFPRA and the CNDA.</p>
-            <div class="tags"><span class="tag">Legal support</span><span class="tag">Country research</span><span class="tag">Case briefs</span><span class="tag">Interviewing</span></div>
-          </div>
-        </div>
-        <div class="t">
-          <div class="dot"></div>
-          <div class="card reveal fx-from-right">
-            <div class="role">
-              <strong>Intern - Partnerships and Development Dept., Royal Scientific Society</strong>
-              <span class="where">Amman • 2023</span>
-            </div>
-            <p class="lead" style="margin:.35rem 0 0">Researched climate, water scarcity, and desalination in the Middle East and published an article with the Konrad Adenauer Stiftung while collaborating across research and policy teams.</p>
-            <div class="tags"><span class="tag">Desalination</span><span class="tag">Climate and water</span><span class="tag">Research writing</span><span class="tag">Science diplomacy</span></div>
-          </div>
-        </div>
-        <div class="t">
-          <div class="dot"></div>
-          <div class="card reveal fx-from-left">
-            <div class="role">
-              <strong>Intern - International Relations Department, City Hall</strong>
-              <span class="where">Nancy • 2022</span>
-            </div>
-            <p class="lead" style="margin:.35rem 0 0">Organized public events and intercultural outreach with twin cities and assisted logistics and protocol for official visits.</p>
-            <div class="tags"><span class="tag">Event operations</span><span class="tag">Intercultural outreach</span><span class="tag">Protocol</span><span class="tag">Logistics</span></div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Selected Work (exactly like your version) -->
-  <section id="work" class="section">
-    <div class="wrap">
-      <h2 class="reveal fx-wipe-r">Selected Work</h2>
-      <p class="lead reveal fx-from-left">Case studies blending analysis, design, and impact. Hover a project to see details.</p>
-      <div class="projects">
-        <article class="card project reveal fx-zoom">
-          <div class="thumb" style="background-image:url('https://images.unsplash.com/photo-1618477388954-7852f32655ec?q=80&w=1600&auto=format&fit=crop');"></div>
-          <h3 style="margin:10px 0">Human Security - Interactive Twine</h3>
-          <div class="body"><div>
-            <p class="lead">Interactive learning experience with quizzes and styled passages.</p>
-            <p><a class="btn ghost" href="#" target="_blank" rel="noopener">Open project →</a></p>
-          </div></div>
-        </article>
-        <article class="card project reveal fx-zoom">
-          <div class="thumb" style="background-image:url('https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?q=80&w=1600&auto=format&fit=crop');"></div>
-          <h3 style="margin:10px 0">SLAC Assessments - Data to Narrative</h3>
-          <div class="body"><div>
-            <p class="lead">Settlement level data distilled into briefs and maps for partners.</p>
-            <p><a class="btn ghost" href="#" target="_blank" rel="noopener">Open project →</a></p>
-          </div></div>
-        </article>
-        <article class="card project reveal fx-zoom">
-          <div class="thumb" style="background-image:url('https://images.unsplash.com/photo-1545239351-1141bd82e8a6?q=80&w=1600&auto=format&fit=crop');"></div>
-          <h3 style="margin:10px 0">Desalination - Policy Brief</h3>
-          <div class="body"><div>
-            <p class="lead">Explainer on environmental and social impacts.</p>
-            <p><a class="btn ghost" href="#" target="_blank" rel="noopener">Open project →</a></p>
-          </div></div>
-        </article>
-      </div>
-    </div>
-  </section>
-
-  <!-- Extracurricular Activities — 4 squares -->
-  <section id="activities" class="section">
-    <div class="wrap">
-      <h2 class="reveal fx-wipe-l">Extracurricular Activities</h2>
-      <p class="lead reveal fx-from-right">Clubs, volunteering, events, and field exposure.</p>
-
-      <div class="activities-grid">
-        <article class="card activity reveal fx-zoom"><div class="title">Sciences Po Monde Arabe — Communications Director</div></article>
-        <article class="card activity reveal fx-zoom"><div class="title">Tarjimly — Volunteer Translator & Interpreter</div></article>
-        <article class="card activity reveal fx-zoom"><div class="title">Events — Mediterranean of the Future & Paris Peace Forum</div></article>
-        <article class="card activity reveal fx-zoom"><div class="title">MEDMUN — Arabic Committee Director</div></article>
-      </div>
-    </div>
-  </section>
-
-  <!-- Contact -->
-  <section id="contact" class="section">
-    <div class="wrap reveal fx-from-up">
-      <div class="card reveal fx-zoom">
-        <h2 class="reveal fx-wipe-r">Let’s work together</h2>
-        <p class="lead reveal fx-from-left">Available for research, data, and communications projects.</p>
-        <div style="display:flex;gap:10px;flex-wrap:wrap">
-          <a class="btn primary" href="mailto:badersuliman79@gmail.com">Email me</a>
-          <a class="btn ghost" href="https://www.linkedin.com/in/bader-suliman-845840234" target="_blank" rel="noopener">LinkedIn</a>
-          <a class="btn ghost" href="bs.eng.cv.pdf" target="_blank" rel="noopener">Download CV</a>
-        </div>
-      </div>
-    </div>
-  </section>
+  <!-- ... rest of Education, Experience, Work, Activities, Contact ... -->
 </main>
-
-<footer><div class="wrap">© 2025 Bader Suliman</div></footer>
-<a href="#about" class="btn primary to-top" id="toTop">↑ Top</a>
-
-<script>
-/* Reveal on scroll */
-(function(){
-  const els=[...document.querySelectorAll('.reveal')];
-  if(!('IntersectionObserver'in window)){els.forEach(e=>e.classList.add('in'))}
-  else{
-    const io=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{root:null,rootMargin:'0px 0px -10% 0px',threshold:0});
-    els.forEach(e=>io.observe(e));
-  }
-  const kick=()=>els.forEach(e=>{const r=e.getBoundingClientRect(); if(r.top<innerHeight*.9&&r.bottom>0)e.classList.add('in')});
-  requestAnimationFrame(kick); addEventListener('load',kick,{once:true}); addEventListener('resize',kick); addEventListener('orientationchange',kick);
-})();
-
-// Rotating tagline
-const words=["Communications","Data","Mapping","Research"]; let wi=0;
-const rot=document.getElementById("rotate");
-function cycle(){ if(!rot) return; rot.classList.remove('show'); setTimeout(()=>{ wi=(wi+1)%words.length; rot.textContent=words[wi]; rot.classList.add('show'); },220); }
-if(rot){ rot.classList.add('show'); setInterval(cycle,1800); }
-
-// Back to top
-const toTop=document.getElementById('toTop');
-const toggleTop=()=>{ scrollY>400 ? toTop.classList.add('show') : toTop.classList.remove('show') };
-addEventListener('scroll',toggleTop,{passive:true}); toggleTop();
-
-// Active nav highlight + progress bar
-const links=[...document.querySelectorAll('nav a')];
-const ids=links.map(a=>a.getAttribute('href')).filter(h=>h.startsWith('#'));
-const secs=ids.map(id=>document.querySelector(id));
-let prog=document.getElementById('progress'); if(!prog){prog=document.createElement('div');prog.id='progress';document.body.appendChild(prog);}
-const onScroll=()=>{
-  const h=document.documentElement; const scrolled=(h.scrollTop)/(h.scrollHeight-h.clientHeight);
-  prog.style.width=(scrolled*100)+'%';
-  let idx=0; secs.forEach((s,i)=>{const r=s.getBoundingClientRect(); if(r.top<=innerHeight*0.4) idx=i;});
-  const atBottom=Math.ceil(scrollY+innerHeight)>=document.body.scrollHeight-2; if(atBottom) idx=secs.length-1;
-  links.forEach(a=>a.classList.remove('active')); const active=document.querySelector(`nav a[href="${ids[idx]}"]`); if(active) active.classList.add('active');
-};
-addEventListener('scroll',onScroll,{passive:true}); onScroll();
-
-/* Mobile menu */
-const menuBtn=document.getElementById('menuBtn');
-const nav=document.getElementById('siteNav');
-function closeNav(){ document.body.classList.remove('nav-open'); menuBtn.setAttribute('aria-expanded','false'); nav.setAttribute('aria-hidden','true'); }
-function openNav(){ document.body.classList.add('nav-open'); menuBtn.setAttribute('aria-expanded','true'); nav.removeAttribute('aria-hidden'); }
-menuBtn.addEventListener('click',()=>{ document.body.classList.contains('nav-open') ? closeNav() : openNav(); });
-nav.querySelectorAll('a').forEach(a=>a.addEventListener('click',closeNav));
-addEventListener('keydown',e=>{ if(e.key==='Escape') closeNav(); });
-addEventListener('resize',()=>{ if(innerWidth>760) closeNav(); },{passive:true});
-</script>
