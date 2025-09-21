@@ -152,8 +152,7 @@
   .lang-wrap{margin-top:6px;}
   .lang-row{
     display:flex; gap:10px; align-items:center;
-    overflow-x:auto; padding:8px 4px 10px; /* tiny bottom space before scrollbar */
-    scrollbar-gutter:stable; scroll-snap-type:x proximity;
+    overflow-x:auto; padding:8px 4px 10px; scrollbar-gutter:stable; scroll-snap-type:x proximity;
   }
   .lang-pill{
     display:inline-flex; align-items:center; gap:8px;
@@ -173,7 +172,7 @@
     .lang-row{overflow:visible; padding:0; gap:8px; display:grid; grid-template-columns:1fr 1fr;}
     .lang-pill{font-size:.9rem; padding:5px 8px; gap:6px}
     .flag{width:18px; height:18px; flex:0 0 18px}
-    #skills .wrap > .lang-card{margin-bottom:16px;} /* space before Soft skills box */
+    #skills .wrap > .lang-card{margin-bottom:16px;}
   }
 
   /* Skills layout */
@@ -193,9 +192,16 @@
 
   /* === PHONE-ONLY: Soft/Hard skills formatting (only change requested) === */
   @media (max-width:900px){
-    .skills-2{grid-template-columns:1fr; gap:16px;}     /* Soft then Hard stacked */
-    .chips{grid-template-columns:repeat(2,1fr); gap:6px;}
-    .chip{font-size:.82rem; padding:3px 6px;}           /* smaller chips to avoid overflow */
+    .skills-2{grid-template-columns:1fr; gap:16px;} /* stack sections */
+    .chips{grid-template-columns:repeat(2,minmax(0,1fr)); gap:8px;}
+    .chip{
+      font-size:.84rem; padding:6px 8px;
+      white-space:normal;                /* allow wrapping */
+      line-height:1.2;
+      overflow-wrap:anywhere;            /* break long words if needed */
+      word-break:normal;
+      max-width:100%;
+    }
   }
 
   /* Projects */
@@ -309,7 +315,7 @@
       <h2 class="reveal fx-wipe-l">Skills and Languages</h2>
       <p class="lead reveal fx-from-right">Fluency, methods, and tools.</p>
 
-      <!-- Languages (unchanged content) -->
+      <!-- Languages -->
       <div class="card reveal fx-zoom lang-card">
         <strong class="lang-title reveal fx-wipe-r">Languages</strong>
         <div class="lang-wrap reveal fx-from-up">
