@@ -176,23 +176,37 @@
     #skills .wrap > .lang-card{margin-bottom:16px;} /* space before Soft skills box */
   }
 
-  /* Skills layout */
+  /* Skills layout (desktop unchanged) */
   .skills-2{display:grid; grid-template-columns:1fr 1fr; gap:18px; margin-top:6px}
-  @media (max-width:900px){
-    .skills-2{grid-template-columns:1fr; gap:16px} /* Soft then Hard stacked on phone */
-  }
-  .skill-group-title{display:block; font-weight:700}
 
-  .chips{
-    display:grid; grid-template-columns:repeat(2,1fr);
-    gap:8px; margin-top:8px;
+  /* ==== PHONE-ONLY CHANGES (Soft/Hard skills stacking and fitting) ==== */
+  @media (max-width:900px){
+    .skills-2{grid-template-columns:1fr; gap:16px} /* Soft then Hard stacked */
   }
-  .chip{
-    display:inline-flex; align-items:center; justify-content:center;
-    padding:4px 8px; border:1px solid var(--line); border-radius:999px;
-    font-weight:600; font-size:.9rem; text-align:center; box-shadow:0 1px 2px rgba(2,6,23,.05);
-    white-space:nowrap;
+  @media (max-width:780px){
+    /* keep boxes full width like Languages, no overflow */
+    .skills-2 .card{width:100%; max-width:100%}
+    .skill-group-title{margin-bottom:6px}
+
+    /* force 2 columns × 4 rows in each box */
+    .chips{
+      display:grid;
+      grid-template-columns:repeat(2, minmax(0,1fr));
+      gap:8px;
+      margin-top:8px;
+    }
+    /* smaller chips to ensure two columns fit on narrow phones */
+    .chip{
+      font-size:.82rem;
+      line-height:1.15;
+      padding:4px 6px;
+      max-width:100%;
+      overflow:hidden;
+      text-overflow:ellipsis;
+      white-space:nowrap; /* single line */
+    }
   }
+  /* ================================================================ */
 
   /* Projects */
   .projects{display:grid; grid-template-columns:repeat(3,1fr); gap:12px}
