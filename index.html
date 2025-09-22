@@ -314,6 +314,17 @@
   }
   #visitedMap{ height:min(60vh, 520px); width:100%; border-radius:14px; }
   #visitedMap.leaflet-container{ background:transparent !important; }
+
+  /* Remove background/shadow from education scroller cards */
+#edu-scroll .edu-card {
+  background: var(--card) !important; /* or transparent if you want totally see-through */
+  box-shadow: none !important;
+}
+#edu-scroll .edu-card {
+  background: #ffffff !important;  /* pure white */
+  box-shadow: none !important;
+}
+
 </style>
 
 <div id="progress"></div>
@@ -744,4 +755,3 @@ addEventListener('resize',()=>{ if(innerWidth>760) closeNav(); },{passive:true})
   });
 })();
 </script>
-
