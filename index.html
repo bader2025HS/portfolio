@@ -263,45 +263,67 @@
     #siteNav .mhead{display:none;}
   }
 
-  /* ====== EXTRA CSS ONLY FOR NEW EDUCATION SCROLLER + MAP ====== */
+ /* ====== EXTRA CSS ONLY FOR NEW EDUCATION SCROLLER + MAP ====== */
 
-  /* Education scroller (hidden scrollbar) */
-  #edu-scroll .box{
-    position:relative;
-    background:transparent !important;
-    border:none !important;
-    border-radius:0 !important;
-    box-shadow:none !important;
-    padding:0 !important;
-    overflow:visible;
-  }
-  #edu-scroll .tray-wrap{ position:relative; }
-  #edu-scroll .tray{
-    display:flex; gap:12px; align-items:center;
-    overflow-x:auto; overflow-y:hidden;
-    scroll-snap-type:x mandatory; -webkit-overflow-scrolling:touch;
-    padding:0;
-    scrollbar-width:none; -ms-overflow-style:none;
-  }
-  #edu-scroll .tray::-webkit-scrollbar{ width:0; height:0; background:transparent; }
-  #edu-scroll .edu-card{
-    scroll-snap-align:center;
-    flex:0 0 300px; display:grid; grid-template-rows:auto auto 1fr; gap:8px;
-    min-height:240px; background:#fff; border:1px solid var(--line);
-    border-radius:14px; box-shadow:var(--shadow); padding:14px 14px 16px
-  }
-  #edu-scroll .edu-card .meta{display:flex; align-items:center; gap:8px; color:var(--muted); font-size:1rem; white-space:nowrap; word-break:keep-all}
-  #edu-scroll .edu-card .flag-ico{width:24px; height:16px; object-fit:cover; border-radius:2px; box-shadow:0 0 0 1px var(--line)}
-  #edu-scroll .edu-card .school{font-weight:800; font-size:1.14rem; line-height:1.25}
-  #edu-scroll .edu-card .desc{font-size:1.02rem; line-height:1.38}
-  #edu-scroll .edu-card .note{font-size:.94rem; color:var(--muted)}
-  @media (min-width:1200px){ #edu-scroll .edu-card{ flex:0 0 320px; } }
-  @media (max-width:600px){
-    #edu-scroll .tray{ gap:12px !important; align-items:stretch !important; padding:0 !important; }
-    #edu-scroll .edu-card{ flex:0 0 88vw !important; min-height:unset; padding:12px 12px 14px; }
-    #edu-scroll .edu-card .meta{ white-space:normal; flex-wrap:wrap; gap:6px; font-size:.95rem; }
-    #edu-scroll .edu-card .school{ font-size:1.06rem; }
-  }
+/* Education scroller (hidden scrollbar) */
+#edu-scroll .box{
+  position:relative;
+  background:transparent !important;
+  border:none !important;
+  border-radius:0 !important;
+  box-shadow:none !important;
+  padding:0 !important;
+  overflow:visible;
+}
+#edu-scroll .tray-wrap{ position:relative; }
+#edu-scroll .tray{
+  display:flex; gap:12px; align-items:center;
+  overflow-x:auto; overflow-y:hidden;
+  scroll-snap-type:x mandatory; -webkit-overflow-scrolling:touch;
+  padding:0;
+  scrollbar-width:none; -ms-overflow-style:none;
+}
+#edu-scroll .tray::-webkit-scrollbar{ width:0; height:0; background:transparent; }
+
+#edu-scroll .edu-card{
+  scroll-snap-align:center;
+  flex:0 0 300px;
+  display:grid; grid-template-rows:auto auto 1fr; gap:8px;
+  min-height:240px;
+  background:#fff !important;
+  border:1px solid var(--line) !important;
+  border-radius:var(--radius);
+  box-shadow:var(--shadow) !important;   /* aura */
+  padding:clamp(14px,2vw,18px);
+  transition:transform .2s, box-shadow .2s;
+}
+#edu-scroll .edu-card:hover{
+  transform:translateY(-2px);
+  box-shadow:0 14px 36px rgba(2,6,23,.11) !important; /* hover lift */
+}
+
+#edu-scroll .edu-card .meta{
+  display:flex; align-items:center; gap:8px;
+  color:var(--muted); font-size:1rem; white-space:nowrap; word-break:keep-all;
+}
+#edu-scroll .edu-card .flag-ico{
+  width:24px; height:16px; object-fit:cover; border-radius:2px;
+  box-shadow:0 0 0 1px var(--line);
+}
+#edu-scroll .edu-card .school{font-weight:800; font-size:1.14rem; line-height:1.25}
+#edu-scroll .edu-card .desc{font-size:1.02rem; line-height:1.38}
+#edu-scroll .edu-card .note{font-size:.94rem; color:var(--muted)}
+
+@media (min-width:1200px){
+  #edu-scroll .edu-card{ flex:0 0 320px; }
+}
+@media (max-width:600px){
+  #edu-scroll .tray{ gap:12px !important; align-items:stretch !important; padding:0 !important; }
+  #edu-scroll .edu-card{ flex:0 0 88vw !important; min-height:unset; padding:12px 12px 14px; }
+  #edu-scroll .edu-card .meta{ white-space:normal; flex-wrap:wrap; gap:6px; font-size:.95rem; }
+  #edu-scroll .edu-card .school{ font-size:1.06rem; }
+}
+
 
   /* Travel map */
   .map-card{
@@ -330,25 +352,21 @@
   box-shadow: none !important;      /* no shadow */
   border: 1px solid #e5e7eb !important; /* light grey border (same tone as line grid) */
 }
-  /* Education scroller cards — white + floating aura */
-#edu-scroll .edu-card{
-  background:#ffffff !important;              /* pure white */
-  border:1px solid #e5e7eb !important;        /* soft border */
-  box-shadow:
-    0 2px 10px rgba(2,6,23,.05),              /* soft base blur */
-    0 12px 28px rgba(2,6,23,.06),             /* outer aura */
-    0 0 0 1px rgba(255,255,255,.8) inset;     /* subtle inner crispness */
-  border-radius:14px;                          /* match site style */
-  transition:transform .2s, box-shadow .2s;    /* smooth hover */
-}
-#edu-scroll .edu-card:hover{
-  transform:translateY(-2px);
-  box-shadow:
-    0 6px 16px rgba(2,6,23,.08),
-    0 18px 40px rgba(2,6,23,.10),
-    0 0 0 1px rgba(255,255,255,.85) inset;
+
+/* Make edu-cards behave exactly like normal cards */
+#edu-scroll .edu-card {
+  background:#fff !important;
+  border:1px solid var(--line);
+  border-radius:var(--radius);
+  box-shadow:var(--shadow);   /* same aura as .card */
+  padding:clamp(14px,2vw,18px);
+  transition:transform .2s, box-shadow .2s;
 }
 
+#edu-scroll .edu-card:hover {
+  transform:translateY(-2px);
+  box-shadow:0 14px 36px rgba(2,6,23,.11);
+}
 
 </style>
 
@@ -591,6 +609,134 @@
     </div>
   </section>
 
+<!-- Quiz Section -->
+<section id="quiz" class="section">
+  <div class="wrap">
+    <h2>Quick Quiz</h2>
+    <p class="lead">Test your knowledge with 5 tricky questions.</p>
+    <div id="quizBox" class="card"></div>
+  </div>
+</section>
+
+<style>
+  .quiz-question{margin-bottom:20px; font-weight:600; font-size:1.2rem;}
+  .quiz-options{display:flex; flex-wrap:wrap; gap:12px; margin-top:10px}
+  .quiz-option{
+    flex:1 1 calc(25% - 12px);
+    padding:12px;
+    border:2px solid var(--line);
+    border-radius:10px;
+    text-align:center;
+    cursor:pointer;
+    transition:.25s;
+    font-weight:700; /* all options bold */
+    color:inherit;
+  }
+  .quiz-option:hover{background:#f9f9f9}
+  .quiz-option.correct{border:3px solid #22c55e; color:#22c55e;} /* green */
+  .quiz-option.wrong{border:3px solid #ef4444; color:#ef4444;}   /* red */
+
+  /* On phones – options appear black initially */
+  @media (max-width:768px){
+    .quiz-option{color:#000;}
+  }
+
+  .quiz-result{margin-top:12px; font-size:1.2rem; font-weight:400;} /* not bold */
+  .quiz-comment{margin-top:6px; font-size:1.1rem; font-weight:500; color:var(--muted);}
+</style>
+
+<script>
+(function(){
+  const questions = [
+    {
+      q:"Around what percentage of the world’s refugees are children? (UNHCR, 2023)",
+      options:["25%","40%","55%","70%"],
+      answer:1
+    },
+    {
+      q:"Beef production is responsible for what share of global livestock emissions? (FAO, 2021)",
+      options:["10%","20%","30%","60%"],
+      answer:3
+    },
+    {
+      q:"Where is the headquarters of the International Atomic Energy Agency (IAEA)? (IAEA.org)",
+      options:["Geneva","Vienna","New York","The Hague"],
+      answer:1
+    },
+    {
+      q:"Persian (Farsi) is written in Arabic script, but what language family does it belong to? (Encyclopaedia Iranica)",
+      options:["Semitic","Turkic","Caucasian","Indo-European"],
+      answer:3
+    },
+    {
+      q:"Roughly what proportion of the world's population are international migrants, living outside their birth country? (UN DESA, 2020)",
+      options:["~3%","~15%","~25%","~40%"],
+      answer:0
+    }
+  ];
+
+  let current=0, score=0;
+  const box=document.getElementById("quizBox");
+
+  function showQuestion(){
+    if(current>=questions.length){ return showResult(); }
+
+    const q=questions[current];
+    box.innerHTML=`
+      <div class="quiz-question">${q.q}</div>
+      <div class="quiz-options">
+        ${q.options.map((opt,i)=>`<div class="quiz-option" data-idx="${i}">${opt}</div>`).join("")}
+      </div>
+    `;
+
+    box.querySelectorAll(".quiz-option").forEach(opt=>{
+      opt.addEventListener("click",()=>{
+        if(opt.classList.contains("correct")||opt.classList.contains("wrong")) return;
+        const idx=parseInt(opt.dataset.idx,10);
+        box.querySelectorAll(".quiz-option").forEach(b=>b.style.pointerEvents="none");
+
+        if(idx===q.answer){
+          opt.classList.add("correct");
+          score++;
+        }else{
+          opt.classList.add("wrong");
+          box.querySelector(`.quiz-option[data-idx="${q.answer}"]`).classList.add("correct");
+        }
+        setTimeout(()=>{ current++; showQuestion(); }, 1200);
+      });
+    });
+  }
+
+  function showResult(){
+    const total = questions.length;
+    let comment = "";
+    const pct = (score/total)*100;
+    if (pct === 100) comment = "Perfect! Expert vibes.";
+    else if (pct >= 80) comment = "Great job — you really know your stuff.";
+    else if (pct >= 60) comment = "Solid — a couple of tricky ones.";
+    else if (pct >= 40) comment = "Not bad — these were tough.";
+    else comment = "Tough set — want to try again?";
+
+    box.innerHTML = `
+      <div class="quiz-result">Your score: ${score}/${total}</div>
+      <div class="quiz-comment">${comment}</div>
+      <div style="margin-top:14px">
+        <button id="playAgainBtn" class="btn primary">Play Again</button>
+      </div>
+    `;
+
+    document.getElementById("playAgainBtn").addEventListener("click", ()=>{
+      current = 0;
+      score = 0;
+      showQuestion();
+    });
+  }
+
+  showQuestion();
+})();
+</script>
+
+  
   <!-- Travel (ADDED new section) -->
   <section id="travel" class="section">
     <div class="wrap">
@@ -780,4 +926,3 @@ addEventListener('resize',()=>{ if(innerWidth>760) closeNav(); },{passive:true})
   });
 })();
 </script>
-
