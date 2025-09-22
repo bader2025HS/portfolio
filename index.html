@@ -295,6 +295,7 @@
   border-radius:var(--radius);
   padding:clamp(14px,2vw,18px);
   transition:transform .2s, box-shadow .2s;
+  box-shadow:none; /* 👈 default = no shadow (phone safe) */
 }
 #edu-scroll .edu-card .meta{
   display:flex; align-items:center; gap:8px;
@@ -318,16 +319,17 @@
   #edu-scroll .edu-card .school{ font-size:1.06rem; }
 }
 
-/* Desktop & tablet only: subtle aura like language pills */
+/* Desktop & tablet only: add subtle aura */
 @media (min-width:601px){
   #edu-scroll .edu-card{
-    box-shadow:0 1px 2px rgba(2,6,23,.05);
+    box-shadow:0 2px 6px rgba(0,0,0,.06);
   }
   #edu-scroll .edu-card:hover{
     transform:translateY(-1px);
-    box-shadow:0 4px 12px rgba(2,6,23,.08);
+    box-shadow:0 6px 16px rgba(0,0,0,.10);
   }
 }
+
 
   /* Travel map */
   .map-card{
@@ -930,4 +932,5 @@ addEventListener('resize',()=>{ if(innerWidth>760) closeNav(); },{passive:true})
   });
 })();
 </script>
+
 
