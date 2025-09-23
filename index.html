@@ -1,5 +1,17 @@
 <!-- PORTFOLIO — v31 (desktop menu framed, phone skills fixed) -->
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Portfolio</title>
+
+  <!-- Favicons (use absolute paths + cache-busting) -->
+<link rel="icon" href='data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64"><rect width="64" height="64" rx="10" ry="10" fill="%230ea5a2"/><text x="50%" y="50%" text-anchor="middle" dominant-baseline="middle" font-family="Inter,Arial" font-size="34" font-weight="700" fill="white">BS</text></svg>'>
+
+  <!-- Viewport (safety) -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
 <!-- Viewport (safety) -->
 <script>
 (function(){
@@ -121,8 +133,10 @@
     }
   }
 
-  #progress{position:fixed; top:0; left:0; height:3px; width:0; z-index:10000;
-    background:linear-gradient(90deg,var(--accent),#7c61ff,#ff7a6e,#f59e0b)}
+  #progress{
+  position:fixed; top:0; left:0; height:3px; width:0; z-index:10000;
+  background: var(--accent);
+}
 
   /* Type / buttons / cards */
   h1{font-size:clamp(44px,7vw,74px); margin:0 0 6px}
@@ -392,6 +406,9 @@
 }
 
 </style>
+  
+</head>
+  <body>
 
 <div id="progress"></div>
 
@@ -961,4 +978,6 @@ addEventListener('resize',()=>{ if(innerWidth>760) closeNav(); },{passive:true})
 })();
 </script>
 
+</body>
+</html>
 
