@@ -263,16 +263,16 @@
     #siteNav .mhead{display:none;}
   }
 
-/* ====== EXTRA CSS ONLY FOR NEW EDUCATION SCROLLER + MAP ====== */
+ /* ====== EXTRA CSS ONLY FOR NEW EDUCATION SCROLLER + MAP ====== */
 
 /* Education scroller (hidden scrollbar) */
 #edu-scroll .box{
   position:relative;
-  background:transparent;
-  border:none;
-  border-radius:0;
-  box-shadow:none;
-  padding:0;
+  background:transparent !important;
+  border:none !important;
+  border-radius:0 !important;
+  box-shadow:none !important;
+  padding:0 !important;
   overflow:visible;
 }
 #edu-scroll .tray-wrap{ position:relative; }
@@ -290,13 +290,18 @@
   flex:0 0 300px;
   display:grid; grid-template-rows:auto auto 1fr; gap:8px;
   min-height:240px;
-  background:#fff;
-  border:1px solid var(--line);
+  background:#fff !important;
+  border:1px solid var(--line) !important;
   border-radius:var(--radius);
+  box-shadow:var(--shadow) !important;   /* aura */
   padding:clamp(14px,2vw,18px);
   transition:transform .2s, box-shadow .2s;
-  box-shadow:none; /* 👈 default = no shadow (phone safe) */
 }
+#edu-scroll .edu-card:hover{
+  transform:translateY(-2px);
+  box-shadow:0 14px 36px rgba(2,6,23,.11) !important; /* hover lift */
+}
+
 #edu-scroll .edu-card .meta{
   display:flex; align-items:center; gap:8px;
   color:var(--muted); font-size:1rem; white-space:nowrap; word-break:keep-all;
@@ -319,15 +324,18 @@
   #edu-scroll .edu-card .school{ font-size:1.06rem; }
 }
 
-/* Desktop & tablet only: add subtle aura */
-@media (min-width:601px){
-  #edu-scroll .edu-card{
-    box-shadow:0 2px 6px rgba(0,0,0,.06);
-  }
-  #edu-scroll .edu-card:hover{
-    transform:translateY(-1px);
-    box-shadow:0 6px 16px rgba(0,0,0,.10);
-  }
+ /* Softer, more discreet aura for education cards */
+#edu-scroll .edu-card {
+  background:#fff !important;
+  border:1px solid var(--line) !important;
+  border-radius:var(--radius) !important;
+  box-shadow:0 4px 10px rgba(0,0,0,.06) !important;  /* lighter + softer */
+  transition:transform .2s, box-shadow .2s !important;
+}
+
+#edu-scroll .edu-card:hover {
+  transform:translateY(-1px) !important;  /* subtle lift */
+  box-shadow:0 8px 18px rgba(0,0,0,.08) !important; /* gentle hover glow */
 }
 
 
@@ -343,6 +351,15 @@
   #visitedMap{ height:min(60vh, 520px); width:100%; border-radius:14px; }
   #visitedMap.leaflet-container{ background:transparent !important; }
 
+/* === Country glow micro-interaction (Leaflet SVG paths) === */
+#visitedMap .leaflet-interactive{
+  transition: filter .25s ease, stroke-width .2s ease;
+}
+#visitedMap .leaflet-interactive:hover{
+  /* soft glow around the hovered country */
+  filter: drop-shadow(0 0 8px rgba(14,165,162,0.55));
+}
+  
   /* Remove background/shadow from education scroller cards */
 #edu-scroll .edu-card {
   background: var(--card) !important; /* or transparent if you want totally see-through */
@@ -614,12 +631,12 @@
       </div>
     </div>
   </section>
-  
+
   <!-- Travel (ADDED new section) -->
   <section id="travel" class="section">
     <div class="wrap">
-      <h2 class="reveal fx-wipe-l">Lived, Studied, Worked, Traveled</h2>
-      <p class="lead reveal fx-from-right">Hover for names.</p>
+      <h2 class="reveal fx-wipe-l">Countries I’ve Visited</h2>
+      <p class="lead reveal fx-from-right">Centered on Europe–Middle East–Asia. Hover for names.</p>
       <div class="map-card reveal fx-from-up">
         <div id="visitedMap" aria-label="Visited countries map"></div>
       </div>
@@ -728,10 +745,10 @@
     const total = questions.length;
     let comment = "";
     const pct = (score/total)*100;
-    if (pct === 100) comment = "Perfect! You'd do great at PSIA..";
-    else if (pct >= 80) comment = "Great job, you really know your stuff.";
-    else if (pct >= 60) comment = "Solid, a couple of tricky ones.";
-    else if (pct >= 40) comment = "Not bad, these were tough.";
+    if (pct === 100) comment = "Perfect! Expert vibes.";
+    else if (pct >= 80) comment = "Great job — you really know your stuff.";
+    else if (pct >= 60) comment = "Solid — a couple of tricky ones.";
+    else if (pct >= 40) comment = "Not bad — these were tough.";
     else comment = "Tough set — want to try again?";
 
     box.innerHTML = `
@@ -830,7 +847,7 @@ addEventListener('resize',()=>{ if(innerWidth>760) closeNav(); },{passive:true})
     { year:"2024–2026", city:"Paris, France", code:"fr", school:"Sciences Po — PSIA", program:"M.A. International Security & Migration", note:"Asylum and migration law, border governance, and humanitarian data analysis; qualitative research design and mapping/data projects." },
 
     // Added after PSIA
-    { year:"2024–2025", city:"Paris, France", code:"fr", school:"INALCO — Eurasian Department", program:"Persian Language & Iranian Studies", note:"Intensive Persian (academic texts, conversation) plus history, society, and politics of Iran and Afghanistan." },
+    { year:"2024–2025", city:"Paris, France", code:"fr", school:"INALCO — Eurasian Department", program:"Persian Language & Iranian Studies", note:"Intensive Persian (academic texts, conversation) plus history, society, and politics of Iran and Afghanistan; primary-source analysis, translation practice, and media literacy on the region." },
 
     { year:"2023–2024", city:"Tokyo, Japan", code:"jp", school:"Tokyo University of Foreign Studies", program:"Exchange. Asia-Pacific & Japanese Studies", note:"Full-time Japanese intensive alongside Asia-Pacific politics; Japan/ASEAN focus with intercultural fieldwork." },
     { year:"2022–2023", city:"Menton, France", code:"fr", school:"Sciences Po Campus of Menton", program:"B.A. Major in Politics & Government", note:"Middle Eastern & Mediterranean specialization: comparative politics, constitutional law, and regional history; debate workshops tied to current affairs." },
@@ -902,26 +919,38 @@ addEventListener('resize',()=>{ if(innerWidth>760) closeNav(); },{passive:true})
   function loadWorld(i){
     return fetch(SOURCES[i]).then(r=>{ if(!r.ok) throw new Error('HTTP '+r.status); return r.json(); }).then(geo=>{
       const useAdmin = !!(geo.features && geo.features[0]?.properties?.ADMIN);
-      L.geoJSON(geo, {
-        style: f => {
-          const props = f.properties || {};
-          const name = useAdmin ? (props.ADMIN || '') : (props.name || '');
-          const hit  = visited.has(normalize(name));
-          return {
-            fillColor: hit ? accent : 'transparent',
-            color: stroke,
-            weight: hit ? 1.2 : 0.6,
-            fillOpacity: hit ? 0.9 : 0.0,
-            opacity: 0.9
-          };
-        },
-        onEachFeature: (f, l) => {
-          const props = f.properties || {};
-          const name = (props.name || props.ADMIN || '');
-          l.bindTooltip(name, {sticky:true, direction:'top', opacity:0.9});
-          if (visited.has(normalize(name))) l.bindPopup(`<strong>${name}</strong>`);
-        }
-      }).addTo(map);
+     const layer = L.geoJSON(geo, {
+  style: f => {
+    const props = f.properties || {};
+    const name = useAdmin ? (props.ADMIN || '') : (props.name || '');
+    const hit  = visited.has(normalize(name));
+    return {
+      fillColor: hit ? accent : 'transparent',
+      color: stroke,
+      weight: hit ? 1.2 : 0.6,
+      fillOpacity: hit ? 0.9 : 0.0,
+      opacity: 0.9
+    };
+  },
+  onEachFeature: (f, l) => {
+    const props = f.properties || {};
+    const name = (props.name || props.ADMIN || '');
+
+    l.bindTooltip(name, { sticky:true, direction:'top', opacity:0.9 });
+    if (visited.has(normalize(name))) {
+      l.bindPopup(`<strong>${name}</strong>`);
+    }
+
+    // Hover micro-interaction: thicker stroke + bring to front
+    l.on('mouseover', e => {
+      e.target.setStyle({ weight: 2.2 });
+      try { e.target.bringToFront(); } catch {}
+    });
+    l.on('mouseout', e => {
+      try { layer.resetStyle(e.target); } catch {}
+    });
+  }
+}).addTo(map);
       setTimeout(setEurasiaView, 0);
     });
   }
@@ -931,8 +960,3 @@ addEventListener('resize',()=>{ if(innerWidth>760) closeNav(); },{passive:true})
   });
 })();
 </script>
-
-
-
-
-
